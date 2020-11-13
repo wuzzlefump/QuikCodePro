@@ -5,6 +5,11 @@ import {
   Route
 } from "react-router-dom";
 import "./App.css";
+import SignIn from './pages/signin'
+import SignUp from './pages/signup'
+import Profile from './pages/profile'
+import NewSnip from './pages/newsnip'
+import NoPage from './pages/nopage'
 
 function App() {
   return (
@@ -12,19 +17,19 @@ function App() {
   <div>
     <Switch>
       <Route exact path ="/">
-         {/* <Profile/> */}
+         <Profile/>
       </Route>
       <Route exact path = "/signin">
-      {/* <SignIn/> */}
+      <SignIn/>
       </Route>
       <Route exact path = "/signup">
-      {/* <SignUp/> */}
+      <SignUp/>
       </Route>
       <Route exact path = "/newsnip">
-      {/* <Editor/> */}
+      <NewSnip/>
       </Route>
       <Route>
-      {/* <NoPage/> */}
+      <NoPage/>
       </Route>
     </Switch>
   </div>
