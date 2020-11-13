@@ -1,10 +1,12 @@
 import React from 'react'
 import SigninNav from '../components/signinnav'
+import SignUpCard from '../components/signupcard'
 function SignUp(){
 
     return(<>
     <SigninNav/>
-<h1>Placeholder</h1>
+<SignUpCard/>
+{/* jokes @ bottom */}
     </>)
     
 }
