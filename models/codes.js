@@ -9,7 +9,9 @@ const codeSchema = new Schema({
   public: {type: Boolean, default: true},
   codeType: { type: String, required: true },
   snip: { type: String, required: true},
-  keywords: {type: String, required: true}
+  keywords: {type: String, required: true},
+  dateCreated: { type: Date, default: Date.now },
+  comments: {type: String, required: false}
 });
 
 const Codes = mongoose.model("Codes", codeSchema);
