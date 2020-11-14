@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/esm/Button'
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
-import Image from 'react-bootstrap/Image'
+import AceModalUser  from '../components/codemodaluser'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faSeedling } from '@fortawesome/free-solid-svg-icons'
@@ -135,6 +135,7 @@ const Avatars = [
         "large":"7x"
     }
     ]
+const example =[{name: "example"}, {name: "example2"}]
 
 function Profile(){
 
@@ -155,7 +156,8 @@ function Profile(){
             </Form.Control>
             <br />
             <Button>Search</Button>
-            {/* modal buttons will be mapped here */}
+            <br />
+            {example.map(item=>  <><AceModalUser name={item.name}  /><br /></>)}
             </Jumbotron>
         </Col>
         <Col sm={12} md={6}>
