@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default {
-  // Gets all books
+  // Gets all code
   getCodes: function() {
     return axios.get("/api/code");
   },
@@ -13,7 +13,7 @@ export default {
     return axios.get("/api/code/" + id);
   },
   // Deletes the snip with the given id
-  deleteBook: function(id) {
+  deleteCode: function(id) {
     return axios.delete("/api/codes/" + id);
   },
   // Saves a snip to the database
