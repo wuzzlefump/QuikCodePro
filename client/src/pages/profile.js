@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/esm/Button'
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
 import AceModalUser  from '../components/codemodaluser'
+import FollowModal from '../components/followModal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faSeedling } from '@fortawesome/free-solid-svg-icons'
@@ -136,6 +137,7 @@ const Avatars = [
     }
     ]
 const example =[{name: "example"}, {name: "example2"}]
+const follow =[{name: "Bob", skills:"none"}]
 
 function Profile(){
 
@@ -184,7 +186,8 @@ function Profile(){
   <br />
   
   <Button>Search</Button>
-  {/* users to connect with populate here */}
+  <br />
+  {follow.map(item=><><FollowModal name ={item.name} skills ={item.skills}/> <br /></>)}
             </Jumbotron>
         </Col>
     </Row>
