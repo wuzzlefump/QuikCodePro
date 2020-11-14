@@ -10,6 +10,7 @@ const codeSchema = new Schema({
   codeType: { type: String, required: true },
   snip: { type: String, required: true},
   keywords: {type: String, required: true},
+  dateCreated: { type: Date, default: Date.now },
   comments: {type: String, required: false}
 });
 
