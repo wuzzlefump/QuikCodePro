@@ -10,6 +10,7 @@ import SignUp from './pages/signup'
 import Profile from './pages/profile'
 import NewSnip from './pages/newsnip'
 import NoPage from './pages/nopage'
+import Feed from './pages/feed'
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
       </Route>
       <Route exact path = "/newsnip">
       <NewSnip/>
+      </Route>
+      <Route exact path = "/feed">
+        <Feed/>
       </Route>
       <Route>
       <NoPage/>
