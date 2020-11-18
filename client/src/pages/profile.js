@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState,useEffect} from 'react'
 import TheNav from '../components/thenav'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -8,7 +8,8 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/esm/Button'
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
-import Image from 'react-bootstrap/Image'
+import AceModalUser  from '../components/codemodaluser'
+import FollowModal from '../components/followModal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faSeedling } from '@fortawesome/free-solid-svg-icons'
@@ -37,106 +38,121 @@ import AvatarOption from '../components/avatarOp'
 const Avatars = [
     {
         "name":"Plant",
-        "icon":{faSeedling},
+        "icon":faSeedling,
         "size":"7x"
     },
     {
         "name":"Frog",
-        "icon":{faFrog},
+        "icon":faFrog,
         "size":"7x"
     },
     {
         "name":"Wizard",
-        "icon":{faHatWizard},
+        "icon":faHatWizard,
         "size":"7x"
     },
     {
         "name":"Burger",
-        "icon":{faHamburger},
+        "icon":faHamburger,
         "size":"7x"
     },
     {
         "name":"Guitar",
-        "icon":{faGuitar},
+        "icon":faGuitar,
         "size":"7x"
     },
     {
         "name":"Ghost",
-        "icon":{faGhost},
+        "icon":faGhost,
         "size":"7x"
     },
     {
         "name":"Couch",
-        "icon":{faCouch},
+        "icon":faCouch,
         "size":"7x"
     },
     {
         "name":"Drumstick",
-        "icon":{faDrumstickBite},
+        "icon":faDrumstickBite,
         "size":"7x"
     },
     {
         "name":"Bird",
-        "icon":{faDove},
+        "icon":faDove,
         "size":"7x"
     },
     {
         "name":"Bomb",
-        "icon":{faBomb},
+        "icon":faBomb,
         "size":"7x"
     },
     {
         "name":"Apple",
-        "icon":{faAppleAlt},
+        "icon":faAppleAlt,
         "size":"7x"
     },
     {
         "name":"Injured Person",
-        "icon":{faUserInjured},
+        "icon":faUserInjured,
         "size":"7x"
     },
     {
         "name":"Ninja",
-        "icon":{faUserNinja},
+        "icon":faUserNinja,
         "size":"7x"
     },
     {
         "name":"Person",
-        "icon":{faUser},
+        "icon":faUser,
         "size":"7x"
     },
     {
         "name":"Tie Person",
-        "icon":{faUserTie},
+        "icon":faUserTie,
         "size":"7x"
     },{
         "name":"Hippo",
-        "icon":{faHippo},
+        "icon":faHippo,
         "size":"7x"
     },{
         "name":"Dog",
-        "icon":{faDog},
+        "icon":faDog,
         "size":"7x"
     },{
         "name":"Home Slice",
-        "icon":{faBreadSlice},
+        "icon":faBreadSlice,
         "size":"7x"
     },{
         "name":"Cat",
-        "icon":{faCat},
-        "large":"7x"
+        "icon":faCat,
+        "size":"7x"
     },{
         "name":"Bug",
-        "small":{faBug},
-        "large": "7x"
+        "small":faBug,
+        "size": "7x"
     },{
         "name":"Poo",
-        "small":{faPoo},
-        "large":"7x"
+        "small":faPoo,
+        "size":"7x"
     }
     ]
+const example =[{name: "example"}, {name: "example2"}]
+const follow =[{name: "Bob", skills:"none"}]
+
 
 function Profile(){
+
+    const [avatarState,setAvatar]= useState()
+
+    function avatarInputChange(event) {
+        const currentAvatar = event.target.value;
+        Avatars.forEach(item=>{
+                        if(currentAvatar=== item.name){
+                setAvatar(item.icon)
+            }
+        })
+    };
+
 
     return(<>
 <TheNav/>
@@ -155,13 +171,14 @@ function Profile(){
             </Form.Control>
             <br />
             <Button>Search</Button>
-            {/* modal buttons will be mapped here */}
+            <br />
+            {example.map(item=>  <><AceModalUser name={item.name}  /><br /></>)}
             </Jumbotron>
         </Col>
         <Col sm={12} md={6}>
             <Jumbotron style ={{marginTop:"5%", display: "flex", flexDirection:"column",alignItems:"center", justifyContent:"center" }}>
-            <FontAwesomeIcon icon={faUser} size="7x"></FontAwesomeIcon>
-            <Form.Control size="sm" as="select">
+            <FontAwesomeIcon icon={avatarState} size="7x"></FontAwesomeIcon>
+            <Form.Control size="sm" as="select" onChange={avatarInputChange}>
             <option>Choose an Avatar</option>
             {Avatars.map(item =><AvatarOption name={item.name}></AvatarOption>)}
             </Form.Control>
@@ -182,7 +199,8 @@ function Profile(){
   <br />
   
   <Button>Search</Button>
-  {/* users to connect with populate here */}
+  <br />
+  {follow.map(item=><><FollowModal name ={item.name} skills ={item.skills}/> <br /></>)}
             </Jumbotron>
         </Col>
     </Row>

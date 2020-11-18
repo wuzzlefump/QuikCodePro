@@ -1,10 +1,13 @@
-import React from 'react'
-import Card from 'react-bootstrap/Card'
-import InputGroup from 'react-bootstrap/InputGroup'
-import FormControl from 'react-bootstrap/FormControl'
-import Button from 'react-bootstrap/Button'
+import React, { useContext } from 'react';
+import Card from 'react-bootstrap/Card';
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl';
+import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
+import UserContext from '../../src/utils/UserContext';
 
 function SignInCard(){
+  const { userData, handleInputChange, handleLogin } = useContext(UserContext);
     return( <div style={{display:"flex", flexDirection:"column", alignItems: "center", justifyContent: "center", marginTop: "10%"}}> <Card
         bg="secondary"
         text='white'
@@ -16,19 +19,19 @@ function SignInCard(){
         <Card.Title>Sign In</Card.Title>
           <InputGroup size="sm" className="mb-3">
             <InputGroup.Prepend>
-                <InputGroup.Text id="inputGroup-sizing-sm"></InputGroup.Text>
+                <InputGroup.Text id="username" className="inputGroup-sizing-sm" value={userData.username} onChange={handleInputChange} ></InputGroup.Text>
             </InputGroup.Prepend>
             <FormControl placeholder ="Username" aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
           </InputGroup>
         <br />
           <InputGroup size="sm" className="mb-3">
             <InputGroup.Prepend>
-                <InputGroup.Text id="inputGroup-sizing-sm"></InputGroup.Text>
+                <InputGroup.Text id="password" value={ userData.password} onChange={handleInputChange}className="inputGroup-sizing-sm"></InputGroup.Text>
             </InputGroup.Prepend>
             <FormControl placeholder ="Password"  aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
           </InputGroup>
         <br />
-        <Button className="info">Submit</Button>
+        <Button onClick={handleLogin} className="info">Submit</Button>
         </Card.Body>
       </Card></div>)
 
