@@ -15,8 +15,6 @@ import Feed from './pages/feed';
 
 function App() {
   // const [userData, setUserData] = useState({
-  //   firstname: '',
-  //   lastname: '',
   //   email: '',
   //   username: '',
   //   password: ''
@@ -75,8 +73,6 @@ function App() {
   //   event.preventDefault();
   //   try {
   //     const data = {
-  //       firstname: userData.firstname,
-  //       lastname: userData.lastname,
   //       email: userData.email,
   //       username: userData.username,
   //       password: userData.password

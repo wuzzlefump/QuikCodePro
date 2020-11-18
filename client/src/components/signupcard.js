@@ -12,8 +12,6 @@ import UserContext from '../../src/utils/UserContext';
 
 function SignUpCard(){
   const { userData, handleInputChange, handleSignup, failureMessage,} = useContext(UserContext);
-  const [ validFirstName, setValidFirstName ] = useState(false);
-  const [ validLastName, setValidLastName ] = useState(false);
   const [ validEmail, setValidEmail ] = useState(false);
   const [ validUsername, setValidUsername ] = useState(false);
   const [ isConfirmed, setIsConfirmed ] = useState(false);
@@ -29,35 +27,6 @@ function SignUpCard(){
     setConfirmPassword(value);
   };
 
-  //function to check if firstname is valid, it requires to enter a name with at least 3 characters.
-  const checkFirstname = () => {
-    const length = userData.firstname.length;
-    if (length === 0 ) {
-      setValidFirstName(false);
-      setErrorMessage({... errorMessage, firstname: "" });
-    } else if (length < 3 ) {
-      setValidFirstName(false);
-      setErrorMessage({...errorMessage, firstname: "First Name should be at least 3 characters long."});
-    } else {
-    setValidFirstName(true);
-    setErrorMessage({...errorMessage, firstname: ''});
-  }
-}
-
-//make sure lastname is at least 3 characters long as well
-const checkLastname = () => {
-  const length = userData.lastname.length;
-  if (length === 0 ) {
-    setValidLastName(false);
-    setErrorMessage({... errorMessage, lastname: "" });
-  } else if (length < 3 ) {
-    setValidLastName(false);
-    setErrorMessage({...errorMessage, lastname: "Last Name should be at least 3 characters long."});
-  } else {
-  setValidLastName(true);
-  setErrorMessage({...errorMessage, lastname: ''});
-}
-}
 
 //validate email with RegEx
 const checkEmail = () => {
@@ -130,26 +99,6 @@ const checkUsername = () => {
         <Card.Header>Quik Code Pro</Card.Header>
         <Card.Body>
         <Card.Title>Sign up</Card.Title>
-        <InputGroup size="sm" className="mb-3">
-            <InputGroup.Prepend>
-                <InputGroup.Text id="firstname" value={userData.firstname}
-            onChange={handleInputChange}
-            onBlur={checkFirstname}
-            valid={validFirstName} className="inputGroup-sizing-sm"></InputGroup.Text>
-            </InputGroup.Prepend>
-            <FormControl placeholder ="First Name" aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
-          </InputGroup>
-        <br />
-        <InputGroup size="sm" className="mb-3">
-            <InputGroup.Prepend>
-                <InputGroup.Text id="lastname" value={userData.lastname}
-            onChange={handleInputChange}
-            onBlur={checkLastname}
-            valid={validLastName} className="inputGroup-sizing-sm"></InputGroup.Text>
-            </InputGroup.Prepend>
-            <FormControl placeholder ="Last Name" aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
-          </InputGroup>
-        <br />
           <InputGroup size="sm" className="mb-3">
             <InputGroup.Prepend>
                 <InputGroup.Text id="username" value={userData.username}
