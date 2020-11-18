@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import ReactAce from 'react-ace';
+import Accordion from 'react-bootstrap/Accordion'
+import Card from 'react-bootstrap/Card'
 import brace from 'brace';
 import 'brace/mode/javascript';
 import 'brace/mode/css';
@@ -12,7 +14,8 @@ import 'brace/theme/monokai';
 import $ from "jquery";
 
 
-function AceModelGlobal({name, title, props, author, snip}){
+
+function AceModelGlobal({name, title, note, author, snip}){
 
     const [show, setShow] = useState(false);
 
@@ -58,6 +61,18 @@ function AceModelGlobal({name, title, props, author, snip}){
             <Button variant="primary">Save to your Library</Button>
             <Button variant="primary">Copy To Clipboard</Button>
           </Modal.Footer>
+          <Accordion defaultActiveKey="0">
+    <Card>
+      <Card.Header>
+        <Accordion.Toggle as={Button} variant="link" eventKey="1">
+        Code Note
+        </Accordion.Toggle>
+      </Card.Header>
+      <Accordion.Collapse eventKey="1">
+    <Card.Body>{note}</Card.Body>
+      </Accordion.Collapse>
+    </Card>
+  </Accordion>
         </Modal>
       </>)
 
