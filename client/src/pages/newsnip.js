@@ -7,7 +7,7 @@ function NewSnip(){
     return(<>
     <TheNav/>
     {/* giant ace editor goes here */}
-    <Jumbotron>
+    <Jumbotron style={{opacity:"0.8"}}>
         <Editor />
         {/* code title goes here */}
         {/* code type input goes here */}
