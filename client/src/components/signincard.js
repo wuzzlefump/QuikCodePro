@@ -21,12 +21,12 @@ function SignInCard(){
             <InputGroup.Prepend>
                 <InputGroup.Text id="username" className="inputGroup-sizing-sm" value={userData.username} onChange={handleInputChange} ></InputGroup.Text>
             </InputGroup.Prepend>
-            <FormControl placeholder ="Username" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value={ userData.password} onChange={handleInputChange}/>
+            <FormControl placeholder ="Username" aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
           </InputGroup>
         <br />
           <InputGroup size="sm" className="mb-3">
             <InputGroup.Prepend>
-                <InputGroup.Text id="password"className="inputGroup-sizing-sm"></InputGroup.Text>
+                <InputGroup.Text id="password" value={ userData.password} onChange={handleInputChange}className="inputGroup-sizing-sm"></InputGroup.Text>
             </InputGroup.Prepend>
             <FormControl placeholder ="Password"  aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
           </InputGroup>

@@ -148,10 +148,10 @@ function Profile(){
         const currentAvatar = event.target.value;
         Avatars.forEach(item=>{
                         if(currentAvatar=== item.name){
-                   setAvatar(item.icon)
+                setAvatar(item.icon)
             }
         })
-      };
+    };
 
 
     return(<>
