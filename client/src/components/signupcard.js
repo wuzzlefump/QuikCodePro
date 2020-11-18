@@ -1,20 +1,21 @@
-import React, {useState, useEffect, useContext } from 'react'
-import Card from 'react-bootstrap/Card'
-import InputGroup from 'react-bootstrap/InputGroup'
-import FormControl from 'react-bootstrap/FormControl'
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
-import Avatars from '../avatars.json'
-import AvatarOption from '../components/avatarOp'
+import React, {useState, useEffect, useContext } from 'react';
+import Card from 'react-bootstrap/Card';
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Avatars from '../avatars.json';
+import AvatarOption from '../components/avatarOp';
+import UserContext from '../../src/utils/UserContext';
 
 
 
 function SignUpCard(){
-  const { useData, handleInputChange, handleSignup, failureMessage,} = useContext(UserContext);
+  const { userData, handleInputChange, handleSignup, failureMessage,} = useContext(UserContext);
   const [ validFirstName, setValidFirstName ] = useState(false);
   const [ validLastName, setValidLastName ] = useState(false);
   const [ validEmail, setValidEmail ] = useState(false);
-  const [ validUserName, setValidUserName ] = useState(false);
+  const [ validUsername, setValidUsername ] = useState(false);
   const [ isConfirmed, setIsConfirmed ] = useState(false);
   const [ confirmPassword, setConfirmPassword ] = useState("");
   const [ errorMessage, setErrorMessage ] = useState({});
@@ -29,7 +30,7 @@ function SignUpCard(){
   };
 
   //function to check if firstname is valid, it requires to enter a name with at least 3 characters.
-  const checkFirstName = () => {
+  const checkFirstname = () => {
     const length = userData.firstname.length;
     if (length === 0 ) {
       setValidFirstName(false);
@@ -44,7 +45,7 @@ function SignUpCard(){
 }
 
 //make sure lastname is at least 3 characters long as well
-const checkLastName = () => {
+const checkLastname = () => {
   const length = userData.lastname.length;
   if (length === 0 ) {
     setValidLastName(false);
@@ -84,38 +85,38 @@ const checkEmail = () => {
 const checkUsername = () => {
   const length = userData.username.length;
   if (length === 0) {
-    setValidUserName(false);
+    setValidUsername(false);
     setErrorMessage({ ...errorMessage, username: '' });
   } else if (length < 5) {
-    setValidUserName(false);
+    setValidUsername(false);
     setErrorMessage({
       ...errorMessage,
       username: 'Username should be at least 5 characters.',
     });
   } else {
-    setValidUserName(true);
+    setValidUsername(true);
     setErrorMessage({ ...errorMessage, username: '' });
   }
 };
 
  // checks is password meets regex test (at least 8 letters, 1 capital and 1 number)
- const checkPassword = () => {
+  const checkPassword = () => {
   const strongPassword = new RegExp(
     /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/,
   );
   const valid = strongPassword.test(userData.password);
   const length = userData.password.length;
   if (length === 0) {
-    setValidPassword(false);
+    setConfirmPassword(false);
     setErrorMessage({ ...errorMessage, password: '' });
   } else if (!valid) {
-    setValidPassword(false);
+    setConfirmPassword(false);
     setErrorMessage({
       ...errorMessage,
       password: 'Password should be at least 8 letters, 1 capital & 1 number',
     });
   } else {
-    setValidPassword(true);
+    setConfirmPassword(true);
     setErrorMessage({ ...errorMessage, password: '' });
   }
 };
@@ -172,9 +173,9 @@ const checkUsername = () => {
           <InputGroup size="sm" className="mb-3">
             <InputGroup.Prepend>
                 <InputGroup.Text id="password" value={userData.password}
-            onChange={handleInputChange}
+            onChange={handleConfirmPassword}
             onBlur={checkPassword}
-            valid={validPassword} className="inputGroup-sizing-sm"></InputGroup.Text>
+            valid={confirmPassword} className="inputGroup-sizing-sm"></InputGroup.Text>
             </InputGroup.Prepend>
             <FormControl placeholder ="Password"  aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
           </InputGroup>
@@ -191,4 +192,4 @@ const checkUsername = () => {
 
 }
 
-export default SignUpCard
+export default SignUpCard;
