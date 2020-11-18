@@ -32,9 +32,9 @@ import { faUserTie } from '@fortawesome/free-solid-svg-icons'
 
 
 function Feed(){
-const globalexample=[{name:"example 1", author:"Bob", language:"Html",snip:"<p>Hello World</p>"}]
+const globalexample=[{name:"example 1", author:"Bob", language:"Html",snip:"<p>Hello World</p>", note:"Quality Stuff"}]
 
-const postsexample=[{name:"example 1", author:"Bob", language:"Html",snip:"<p>Hello World</p>", avatar:faCat}, {name:"example 2", author:"Tim", language:"Html",snip:"<p>Good night moon</p>", avatar:faDog}]
+const postsexample=[{name:"example 1", author:"Bob", language:"Html",snip:"<p>Hello World</p>", avatar:faCat, note:"Quality Stuff"}, {name:"example 2", author:"Tim", language:"Html",snip:"<p>Good night moon</p>", avatar:faDog, note:"Some Good Code Here"}]
 
     return(<><TheNav/>
     <Container>
@@ -53,13 +53,13 @@ const postsexample=[{name:"example 1", author:"Bob", language:"Html",snip:"<p>He
             <br />
             <Button>Search</Button>
             <br />
-            {globalexample.map(item=>  <><AceModalGlobal name={item.name} snip={item.snip} author={item.author} language={item.language}  /><br /></>)}
+            {globalexample.map(item=>  <><AceModalGlobal name={item.name} snip={item.snip} author={item.author} language={item.language} note={item.note} /><br /></>)}
             </Jumbotron>
             </Col>
             <Col sm = {12} md={8}>
                 <Jumbotron style= {{marginTop:"5%"}}>
                 <h2 style= {{textAlign:"center"}}>News Feed:</h2>
-                {postsexample.map((item)=><><Posts name={item.name} snip ={item.snip} author ={item.author} language= {item.language} avatar={item.avatar} /><br /></>)}
+                {postsexample.map((item)=><><Posts name={item.name} snip ={item.snip} author ={item.author} language= {item.language} avatar={item.avatar} note={item.note} /><br /></>)}
                 </Jumbotron>
             </Col>
         </Row>
