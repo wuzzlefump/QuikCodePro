@@ -40,7 +40,7 @@ const postsexample=[{name:"example 1", author:"Bob", language:"Html",snip:"<p>He
     <Container>
         <Row>
             <Col sm={12} md={4}>
-            <Jumbotron style={{marginTop:"10%", display:"flex", flexDirection:"column",alignItems:"center",justifyContent:"center", textAlign:"center"}}>
+            <Jumbotron style={{marginTop:"10%", display:"flex", flexDirection:"column",alignItems:"center",justifyContent:"center", textAlign:"center",opacity:"0.7" }}>
             <h4>Global Code Search</h4>
             <Form.Control size="sm" as="select">
                 <option>Code type</option>
@@ -57,7 +57,7 @@ const postsexample=[{name:"example 1", author:"Bob", language:"Html",snip:"<p>He
             </Jumbotron>
             </Col>
             <Col sm = {12} md={8}>
-                <Jumbotron style= {{marginTop:"5%"}}>
+                <Jumbotron style= {{marginTop:"5%", opacity:"0.7"}}>
                 <h2 style= {{textAlign:"center"}}>News Feed:</h2>
                 {postsexample.map((item)=><><Posts name={item.name} snip ={item.snip} author ={item.author} language= {item.language} avatar={item.avatar} note={item.note} /><br /></>)}
                 </Jumbotron>

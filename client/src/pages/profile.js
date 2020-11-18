@@ -149,7 +149,7 @@ function Profile(){
 <Container>
     <Row>
         <Col sm={12} md={3}>
-            <Jumbotron style={{marginTop:"10%", display:"flex", flexDirection:"column",alignItems:"center",justifyContent:"center", textAlign:"center"}}>
+            <Jumbotron style={{marginTop:"10%", display:"flex", flexDirection:"column",alignItems:"center",justifyContent:"center", textAlign:"center",opacity:"0.7" }}>
             <h4>Private Code Search</h4>
             <Form.Control size="sm" as="select">
                 <option>Code type</option>
@@ -166,7 +166,7 @@ function Profile(){
             </Jumbotron>
         </Col>
         <Col sm={12} md={6}>
-            <Jumbotron style ={{marginTop:"5%", display: "flex", flexDirection:"column",alignItems:"center", justifyContent:"center" }}>
+            <Jumbotron style ={{marginTop:"5%", display: "flex", flexDirection:"column",alignItems:"center", justifyContent:"center",opacity:"0.7" }}>
             <FontAwesomeIcon icon={avatarState} size="7x"></FontAwesomeIcon>
             <Form.Control size="sm" as="select" onChange={avatarInputChange}>
             <option>Choose an Avatar</option>
@@ -178,7 +178,7 @@ function Profile(){
             </Jumbotron>
         </Col>
         <Col sm={12} md={3}>
-            <Jumbotron style ={{marginTop:"10%", display:"flex", flexDirection:"column", alignItems:"center",justifyContent:"center",textAlign:"center"}}>
+            <Jumbotron style ={{marginTop:"10%", display:"flex", flexDirection:"column", alignItems:"center",justifyContent:"center",textAlign:"center", opacity:"0.7"}}>
                 <h4>Follow a User</h4>
             <InputGroup size="sm" className="mb-3">
                 <InputGroup.Prepend>

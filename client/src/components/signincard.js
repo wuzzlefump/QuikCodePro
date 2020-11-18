@@ -8,7 +8,7 @@ import UserContext from '../../src/utils/UserContext';
 
 function SignInCard(){
   const { userData, handleInputChange, handleLogin } = useContext(UserContext);
-    return( <div style={{display:"flex", flexDirection:"column", alignItems: "center", justifyContent: "center", marginTop: "10%"}}> <Card
+    return( <div style={{display:"flex", flexDirection:"column", alignItems: "center", justifyContent: "center", marginTop: "10%", opacity:"0.5"}}> <Card
         bg="secondary"
         text='white'
         style={{ width: '30rem' }}
