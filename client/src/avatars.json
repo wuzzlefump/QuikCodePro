@@ -93,15 +93,5 @@
     "name":"Cat",
     "icon":["fas","cat"],
     "large":"7x"
-},
-{
-    "name":"Bug",
-    "small":["fas","bug"],
-    "large": "7x"
-},
-{
-    "name":"Poo",
-    "small":["fas","poo"],
-    "large":"7x"
 }
 ]

@@ -28,8 +28,6 @@ import { faDog } from '@fortawesome/free-solid-svg-icons'
 import { faHippo } from '@fortawesome/free-solid-svg-icons'
 import { faBreadSlice } from '@fortawesome/free-solid-svg-icons'
 import { faCat } from '@fortawesome/free-solid-svg-icons'
-import { faBug } from '@fortawesome/free-solid-svg-icons'
-import { faPoo } from '@fortawesome/free-solid-svg-icons'
 import { faFrog } from '@fortawesome/free-solid-svg-icons'
 import { faUserTie } from '@fortawesome/free-solid-svg-icons'
 import AvatarOption from '../components/avatarOp'
@@ -125,14 +123,6 @@ const Avatars = [
     },{
         "name":"Cat",
         "icon":faCat,
-        "size":"7x"
-    },{
-        "name":"Bug",
-        "small":faBug,
-        "size": "7x"
-    },{
-        "name":"Poo",
-        "small":faPoo,
         "size":"7x"
     }
     ]
