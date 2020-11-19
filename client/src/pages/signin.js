@@ -8,7 +8,6 @@ function SignIn(){
     <SigninNav/>
     <SignInCard/>
     <FooterPage/>
-    
     </>)
    
 }

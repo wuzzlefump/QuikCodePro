@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import Button from 'react-bootstrap/Button';
 
+function FooterPage(){
 
 const quotes = [
   "This is the code you’re looking for.",
@@ -24,17 +25,22 @@ const quotes = [
   "If at first you don’t succeed; call it version 1.0",
   "Hi Class! It's me, Zoo Loop from Activity 18, Week 3. Never forget your roots. Giraffe.",
 ];
-const randomNumber = Math.floor(Math.random() * quotes.length);
-// console.log(quotes[randomNumber]);
-const newQuote = quotes[randomNumber];
-// console.log(newQuote)
 
-function FooterPage(){
+var randomNumber = Math.floor(Math.random() * quotes.length);
+var newQuote = quotes[randomNumber];
+const [Joke, setJoke] = useState(newQuote)
+function setJokeFunction() {
+  randomNumber = Math.floor(Math.random() * quotes.length);
+  newQuote = quotes[randomNumber];
+  setJoke(newQuote);
+}
+
+
     return(
   <Navbar fixed="bottom" bg="dark" variant="dark">
-    <Navbar.Text>QuikCode Say:<div></div>"<em>{newQuote}</em>"</Navbar.Text>
+    <Navbar.Text>QuikCode Say:<div></div>"<em>{Joke}</em>"</Navbar.Text>
     <Navbar.Collapse className = "justify-content-end">
-    <Button className = "mr-4">Hit Me Again</Button>
+    <Button onClick={setJokeFunction} className="mr-4">Hit Me Again</Button>
         <Nav>
       <Navbar.Text>© {new Date().getFullYear()}</Navbar.Text>
       </Nav>
