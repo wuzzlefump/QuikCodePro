@@ -3,10 +3,7 @@ import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import Button from 'react-bootstrap/Button';
 
-
-
 function FooterPage(){
-
 
 const quotes = [
   "This is the code you’re looking for.",
@@ -28,6 +25,7 @@ const quotes = [
   "If at first you don’t succeed; call it version 1.0",
   "Hi Class! It's me, Zoo Loop from Activity 18, Week 3. Never forget your roots. Giraffe.",
 ];
+
 var randomNumber = Math.floor(Math.random() * quotes.length);
 var newQuote = quotes[randomNumber];
 const [Joke, setJoke] = useState(newQuote)
