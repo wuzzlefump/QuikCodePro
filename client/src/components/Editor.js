@@ -86,7 +86,7 @@ export default function Editor() {
             </div>
             <div className="d-flex row justify-content-center">
                 <div className="editor mr-5">
-                    <ReactAce ref={ace1} onChange={toTextArea1} mode={Language1} theme="monokai" setReadOnly={false} />
+                    <ReactAce ref={ace1} onChange={toTextArea1} mode={Language1} theme="monokai" setReadOnly={false} value={textArea1}/>
                     <textarea  ref={textAreaRef1} value={textArea1} className="textArea"></textarea>
                     <Button onClick={toClipBoard1} className="float-right m-1">Copy Code</Button> 
                     <label className="mb-0 mt-3 ml-1" for="formGroupExampleSearch">Language</label>
@@ -105,7 +105,7 @@ export default function Editor() {
                     {/* <button type="button" class="close" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button> */}
-                    <ReactAce ref={ace2} onChange={toTextArea2} mode={Language2} theme="monokai" setReadOnly={false} />
+                    <ReactAce ref={ace2} onChange={toTextArea2} mode={Language2} theme="monokai" setReadOnly={false} value={textArea2}/>
                     <textarea  ref={textAreaRef2} value={textArea2} className="textArea"></textarea>
                     <Button onClick={toClipBoard2} className="float-right m-1">Copy Code</Button>
                     <label className="mb-0 mt-3 ml-1" for="formGroupExampleSearch">Language</label>
@@ -127,7 +127,7 @@ export default function Editor() {
                             {/* <button type="button" class="close" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button> */}
-                            <ReactAce ref={ace2} onChange={toTextArea2} mode={Language2} theme="monokai" setReadOnly={false} />
+                            <ReactAce ref={ace2} onChange={toTextArea2} mode={Language2} theme="monokai" setReadOnly={false} value={textArea2}/>
                             <textarea  ref={textAreaRef2} value={textArea2} className="textArea"></textarea>
                             <Button onClick={toClipBoard2} className="float-right m-1">Copy Code</Button>
                             <label className="mb-0 mt-3 ml-1" for="formGroupExampleSearch">Language</label>
@@ -146,7 +146,7 @@ export default function Editor() {
                             {/* <button type="button" class="close" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button> */}
-                            <ReactAce ref={ace3} onChange={toTextArea3} mode={Language3} theme="monokai" setReadOnly={false} />
+                            <ReactAce ref={ace3} onChange={toTextArea3} mode={Language3} theme="monokai" setReadOnly={false} value={textArea3}/>
                             <textarea  ref={textAreaRef3} value={textArea3} className="textArea"></textarea>
                             <Button onClick={toClipBoard3} className="float-right m-1">Copy Code</Button>
                             <label className="mb-0 mt-3 ml-1" for="formGroupExampleSearch">Language</label>
