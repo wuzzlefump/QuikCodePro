@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import ReactDOM from "react-dom";
 import ReactAce from 'react-ace';
 // import {split as SplitEditor} from 'react-ace';
@@ -9,6 +9,7 @@ import 'brace/mode/css';
 import 'brace/mode/html';
 import 'brace/theme/monokai';
 import Button from 'react-bootstrap/Button';
+import './Editor.css'
 import $ from "jquery";
 
 
@@ -20,6 +21,9 @@ export default function Editor() {
     const [Language3, setLanguage3] = useState("html");
     const [showResults2, setShowResults2] = useState(false);
     const [showResults3, setShowResults3] = useState(false);
+    const [textArea1, setTextArea1] = useState("")
+    const [textArea2, setTextArea2] = useState("")
+    const [textArea3, setTextArea3] = useState("")
 
     function languageSelect1() {
         setLanguage1($("#languageSelect1").val());
@@ -43,6 +47,36 @@ export default function Editor() {
         setShowResults3(true)
     }
 
+    const ace1 = useRef(null);
+    const ace2 = useRef(null);
+    const ace3 = useRef(null);
+    const textAreaRef1 = useRef(null);
+    const textAreaRef2 = useRef(null);
+    const textAreaRef3 = useRef(null);
+    function toTextArea1() {
+        setTextArea1(ace1.current.editor.getValue());
+    }
+    function toTextArea2() {
+        setTextArea2(ace2.current.editor.getValue());
+    }
+    function toTextArea3() {
+        setTextArea3(ace3.current.editor.getValue());
+    }
+    function toClipBoard1() {
+        textAreaRef1.current.select();
+        document.execCommand('copy')
+    }
+    function toClipBoard2() {
+        textAreaRef2.current.select();
+        document.execCommand('copy')
+    }
+    function toClipBoard3() {
+        textAreaRef3.current.select();
+        document.execCommand('copy')
+    }
+
+
+
     return (
         <div>
             <div className="d-flex row justify-content-center">
@@ -52,8 +86,10 @@ export default function Editor() {
             </div>
             <div className="d-flex row justify-content-center">
                 <div className="editor mr-5">
-                    <ReactAce mode={Language1} theme="monokai" setReadOnly={false} />
-                    <label for="formGroupExampleSearch">Language</label>
+                    <ReactAce ref={ace1} onChange={toTextArea1} mode={Language1} theme="monokai" setReadOnly={false} />
+                    <textarea  ref={textAreaRef1} value={textArea1} className="textArea"></textarea>
+                    <Button onClick={toClipBoard1} className="float-right m-1">Copy Code</Button> 
+                    <label className="mb-0 mt-3 ml-1" for="formGroupExampleSearch">Language</label>
                     <select class="form-control" id="languageSelect1" onChange={languageSelect1}>
                         <option value="html">HTML</option>
                         <option value="css">CSS</option>
@@ -69,8 +105,10 @@ export default function Editor() {
                     {/* <button type="button" class="close" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button> */}
-                    <ReactAce mode={Language2} theme="monokai" setReadOnly={false} />
-                    <label for="formGroupExampleSearch">Language</label>
+                    <ReactAce ref={ace2} onChange={toTextArea2} mode={Language2} theme="monokai" setReadOnly={false} />
+                    <textarea  ref={textAreaRef2} value={textArea2} className="textArea"></textarea>
+                    <Button onClick={toClipBoard2} className="float-right m-1">Copy Code</Button>
+                    <label className="mb-0 mt-3 ml-1" for="formGroupExampleSearch">Language</label>
                     <select class="form-control" id="languageSelect2" onChange={languageSelect2}>
                         <option value="html">HTML</option>
                         <option value="css">CSS</option>
@@ -89,8 +127,10 @@ export default function Editor() {
                             {/* <button type="button" class="close" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button> */}
-                            <ReactAce mode={Language2} theme="monokai" setReadOnly={false} />
-                            <label for="formGroupExampleSearch">Language</label>
+                            <ReactAce ref={ace2} onChange={toTextArea2} mode={Language2} theme="monokai" setReadOnly={false} />
+                            <textarea  ref={textAreaRef2} value={textArea2} className="textArea"></textarea>
+                            <Button onClick={toClipBoard2} className="float-right m-1">Copy Code</Button>
+                            <label className="mb-0 mt-3 ml-1" for="formGroupExampleSearch">Language</label>
                             <select class="form-control" id="languageSelect2" onChange={languageSelect2}>
                                 <option value="html">HTML</option>
                                 <option value="css">CSS</option>
@@ -106,8 +146,10 @@ export default function Editor() {
                             {/* <button type="button" class="close" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button> */}
-                            <ReactAce mode={Language3} theme="monokai" setReadOnly={false} />
-                            <label for="formGroupExampleSearch">Language</label>
+                            <ReactAce ref={ace3} onChange={toTextArea3} mode={Language3} theme="monokai" setReadOnly={false} />
+                            <textarea  ref={textAreaRef3} value={textArea3} className="textArea"></textarea>
+                            <Button onClick={toClipBoard3} className="float-right m-1">Copy Code</Button>
+                            <label className="mb-0 mt-3 ml-1" for="formGroupExampleSearch">Language</label>
                             <select class="form-control" id="languageSelect3" onChange={languageSelect3}>
                                 <option value="html">HTML</option>
                                 <option value="css">CSS</option>
