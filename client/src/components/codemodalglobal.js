@@ -22,13 +22,11 @@ function AceModelGlobal({name, title, note, author, snip}){
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+
+    //need to change language to user choice
     const [Language, setLanguage] = useState("html");
 
-    function languageSelect() {
-        setLanguage($("#languageSelect").val());
-        console.log("Working?", $("#languageSelect").val())
-      }
-    
+  
     const [textArea1, setTextArea1] = useState("")
     const ace1 = useRef(null);
     const textAreaRef1 = useRef(null);
