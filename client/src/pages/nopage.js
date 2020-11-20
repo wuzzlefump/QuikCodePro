@@ -1,6 +1,7 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card'
 
+
 function NoPage(){
 
     return( <div style={{display:"flex", flexDirection:"column",alignItems:"center",justifyContent:"center", marginTop:"10%"}}> <Card

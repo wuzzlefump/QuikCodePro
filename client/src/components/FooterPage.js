@@ -23,6 +23,7 @@ const quotes = [
   "Documentation? We don’t need no stinking documentation!",
   "Things aren’t always #000000 and #FFFFFF",
   "If at first you don’t succeed; call it version 1.0",
+  "Mitch, if you're reading this, give John a raise.",
   "Hi Class! It's me, Zoo Loop from Activity 18, Week 3. Never forget your roots. Giraffe.",
 ];
 
