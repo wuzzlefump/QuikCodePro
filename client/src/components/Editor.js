@@ -75,8 +75,6 @@ export default function Editor() {
         document.execCommand('copy')
     }
 
-
-
     return (
         <div>
             <div className="d-flex row justify-content-center">
@@ -86,7 +84,7 @@ export default function Editor() {
             </div>
             <div className="d-flex row justify-content-center">
                 <div className="editor mr-5">
-                    <ReactAce ref={ace1} onChange={toTextArea1} mode={Language1} theme="monokai" setReadOnly={false} value={textArea1}/>
+                    <ReactAce ref={ace1} onChange={toTextArea1} mode={Language1} theme="monokai" setReadOnly={false} value={textArea1} />
                     <textarea  ref={textAreaRef1} value={textArea1} className="textArea"></textarea>
                     <Button onClick={toClipBoard1} className="float-right m-1">Copy Code</Button> 
                     <label className="mb-0 mt-3 ml-1" for="formGroupExampleSearch">Language</label>

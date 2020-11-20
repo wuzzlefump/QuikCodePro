@@ -49,7 +49,7 @@ function AceModelGlobal({name, title, note, author, snip}){
 
           <div className="d-flex">
              <div className="editor">
-                 <ReactAce mode={Language} theme="monokai" value={snip} setReadOnly={true} width={465} />
+                 <ReactAce mode={Language} theme="monokai" value={snip} setReadOnly={true} width={465}  maxLines={Infinity}/>
              </div>
           </div>
 
