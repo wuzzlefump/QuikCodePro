@@ -16,15 +16,22 @@ import $ from "jquery";
 function AceModelUser({name, title, props}){
 
     const [show, setShow] = useState(false);
+    const [snipState,setSnip] =useState({})
+
+    function handleSnipInput(event){
+      const { name, value } = event.target;
+      setSnip({...snipState, [name]: value })
+      console.log(snipState)
+    }
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
+    const updateSnip =()=>{}
     const [Language, setLanguage] = useState("html");
-
-    function languageSelect() {
+    function languageSelect(event) {
         setLanguage($("#languageSelect").val());
         console.log("Working?", $("#languageSelect").val())
+        handleSnipInput(event)
       }
 
   
@@ -48,13 +55,22 @@ function AceModelUser({name, title, props}){
               <Form.Control type="email" placeholder={name} />
           </Form.Group>
           <div className="d-flex">
+
              <div className="editor mb-2">
-                 <ReactAce mode={Language} theme="monokai" setReadOnly={false} width={465} maxLines={Infinity} />
+                 <ReactAce name="editorOne" mode={Language} theme="monokai" setReadOnly={false} width={465} onChange={handleSnipInput} maxLines={Infinity}/>
+
              </div>
           </div>
 
+
           
-          <Form.Control size="sm" as="select" id="languageSelect" onChange={languageSelect}>
+
+
+          <Form.Group controlId="formBasicEmail">
+              <Form.Control type="email" placeholder="title" onChange={handleSnipInput} />
+          </Form.Group>
+          <Form.Control name="language" size="sm" as="select" id="languageSelect" onChange={languageSelect}>
+
               <option value="html">HTML</option>
               <option value="javascript">Javascript</option>
               <option value="css">CSS</option>
@@ -76,10 +92,10 @@ function AceModelUser({name, title, props}){
           </Form.Control>
           <br />
           <Form.Group controlId="formBasicEmail">
-              <Form.Control type="email" placeholder="Keywords" />
+              <Form.Control name="keywords"  type="email" placeholder="Keywords" onChange={handleSnipInput} />
           </Form.Group>
 
-          <Form.Control size="sm" as="select">
+          <Form.Control name="share" size="sm" as="select" onChange={handleSnipInput}>
               <option>Sharing Preferences</option>
               <option>Private</option>
               <option>Public</option>
@@ -91,7 +107,7 @@ function AceModelUser({name, title, props}){
             <Button variant="secondary" onClick={handleClose}>
               Delete
             </Button>
-            <Button variant="primary">Update</Button>
+            <Button variant="primary" onClick={updateSnip}>Update</Button>
           </Modal.Footer>
         </Modal>
       </>)
