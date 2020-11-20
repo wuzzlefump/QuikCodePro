@@ -2,6 +2,8 @@ import React from 'react'
 import TheNav from '../components/thenav'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import Editor from '../components/Editor'
+import FooterPage from '../components/FooterPage'
+
 function NewSnip(){
 
     return(<>
@@ -14,7 +16,7 @@ function NewSnip(){
         {/* keywords input goes here */}
         {/* savecode */}
     </Jumbotron>
-    {/* jokes @ bottom */}
+    <FooterPage/>
     </>
     )
 

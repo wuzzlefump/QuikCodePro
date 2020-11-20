@@ -31,6 +31,7 @@ import { faCat } from '@fortawesome/free-solid-svg-icons'
 import { faFrog } from '@fortawesome/free-solid-svg-icons'
 import { faUserTie } from '@fortawesome/free-solid-svg-icons'
 import AvatarOption from '../components/avatarOp'
+import FooterPage from '../components/FooterPage'
 
 
 const Avatars = [
@@ -231,7 +232,7 @@ const updateUser =()=>{}
         </Col>
     </Row>
 </Container>
-{/* jokes @ bottom */}
+<FooterPage/>
 
 </>)
     

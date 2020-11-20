@@ -29,6 +29,7 @@ import { faBug } from '@fortawesome/free-solid-svg-icons'
 import { faPoo } from '@fortawesome/free-solid-svg-icons'
 import { faFrog } from '@fortawesome/free-solid-svg-icons'
 import { faUserTie } from '@fortawesome/free-solid-svg-icons'
+import FooterPage from '../components/FooterPage'
 
 
 function Feed(){
@@ -64,6 +65,7 @@ const postsexample=[{name:"example 1", author:"Bob", language:"Html",snip:"<p>He
             </Col>
         </Row>
     </Container>
+    <FooterPage/>
 
     
     </>
