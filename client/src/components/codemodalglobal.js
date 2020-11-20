@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import ReactAce from 'react-ace';
@@ -28,8 +28,21 @@ function AceModelGlobal({name, title, note, author, snip}){
         setLanguage($("#languageSelect").val());
         console.log("Working?", $("#languageSelect").val())
       }
+    
+    const [textArea1, setTextArea1] = useState("")
+    const ace1 = useRef(null);
+    const textAreaRef1 = useRef(null);
+    
+    function toTextArea1() {
+      setTextArea1(ace1.current.editor.getValue());
+    }
+    function copyClipboard() {
+      console.log(ace1.current.editor.getValue())
+      textAreaRef1.current.select();
+      document.execCommand('copy');
+    }
+
     const SaveGlobal =()=>{}
-    const copyClipboard =()=>{}
   
     return (
       <>
@@ -50,7 +63,8 @@ function AceModelGlobal({name, title, note, author, snip}){
 
           <div className="d-flex">
              <div className="editor">
-                 <ReactAce mode={Language} theme="monokai" value={snip} setReadOnly={true} width={465}  maxLines={Infinity}/>
+                 <ReactAce ref={ace1} onChange={toTextArea1} mode={Language} theme="monokai" value={snip} setReadOnly={true} width={465}  maxLines={Infinity}/>
+                 <textarea  ref={textAreaRef1} value={snip} className="textArea"></textarea>
              </div>
           </div>
 

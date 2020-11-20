@@ -51,7 +51,9 @@ function AceModelUser({name, title, props}){
           <Modal.Title>{name}</Modal.Title>
           </Modal.Header>
           <Modal.Body >
-
+          <Form.Group controlId="formBasicEmail">
+              <Form.Control type="email" placeholder={name} />
+          </Form.Group>
           <div className="d-flex">
 
              <div className="editor mb-2">
@@ -60,10 +62,15 @@ function AceModelUser({name, title, props}){
              </div>
           </div>
 
+
+          
+
+
           <Form.Group controlId="formBasicEmail">
               <Form.Control type="email" placeholder="title" onChange={handleSnipInput} />
           </Form.Group>
           <Form.Control name="language" size="sm" as="select" id="languageSelect" onChange={languageSelect}>
+
               <option value="html">HTML</option>
               <option value="javascript">Javascript</option>
               <option value="css">CSS</option>
