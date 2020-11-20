@@ -13,7 +13,7 @@ import 'brace/theme/monokai';
 import $ from "jquery";
 
 
-function AceModelUser({name, title, props}){
+function AceModelUser({name, title, snip, sniptwo, props}){
 
     const [show, setShow] = useState(false);
     const [snipState,setSnip] =useState({})
@@ -28,6 +28,7 @@ function AceModelUser({name, title, props}){
     const handleShow = () => setShow(true);
     const updateSnip =()=>{}
     const [Language, setLanguage] = useState("html");
+    const [LanguageTwo, setLanguageTwo] = useState("html");
     function languageSelect(event) {
         setLanguage($("#languageSelect").val());
         console.log("Working?", $("#languageSelect").val())
@@ -57,7 +58,7 @@ function AceModelUser({name, title, props}){
           <div className="d-flex">
 
              <div className="editor mb-2">
-                 <ReactAce name="editorOne" mode={Language} theme="monokai" setReadOnly={false} width={465} onChange={handleSnipInput} maxLines={Infinity}/>
+                 <ReactAce name="editorOne" mode={Language} theme="monokai" setReadOnly={false} width={465} onChange={handleSnipInput} maxLines={Infinity} value={snip}/>
 
              </div>
           </div>
@@ -79,7 +80,8 @@ function AceModelUser({name, title, props}){
           </Form.Control>
           <div className="d-flex">
              <div className="editor mt-3 mb-2">
-                 <ReactAce mode={Language} theme="monokai" setReadOnly={false} width={465} maxLines={Infinity} />
+
+                 <ReactAce name="editorTwo" mode={LanguageTwo} theme="monokai" setReadOnly={false} width={465} maxLines={Infinity} value={sniptwo}  onChange={handleSnipInput}/>
              </div>
           </div>
 

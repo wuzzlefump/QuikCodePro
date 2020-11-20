@@ -127,7 +127,7 @@ const Avatars = [
         "size":"7x"
     }
     ]
-const example =[{name: "example"}, {name: "example2"}]
+const example =[{name: "example", snip:"<p>hello world</p>", sniptwo:"good night moon"}, {name: "example2"}]
 const follow =[{name: "Bob", skills:"none"}]
 
 
@@ -196,7 +196,7 @@ const updateUser =()=>{}
                 </InputGroup>
             <Button onClick={privateSearchCode}>Search</Button>
             <br />
-            {example.map(item=>  <><AceModalUser name={item.name}  /><br /></>)}
+            {example.map(item=>  <><AceModalUser name={item.name} snip={item.snip} sniptwo={item.sniptwo} /><br /></>)}
             </Jumbotron>
         </Col>
         <Col sm={12} md={6}>
