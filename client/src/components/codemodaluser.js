@@ -44,16 +44,16 @@ function AceModelUser({name, title, props}){
           <Modal.Title>{name}</Modal.Title>
           </Modal.Header>
           <Modal.Body >
-
+          <Form.Group controlId="formBasicEmail">
+              <Form.Control type="email" placeholder={name} />
+          </Form.Group>
           <div className="d-flex">
              <div className="editor mb-2">
                  <ReactAce mode={Language} theme="monokai" setReadOnly={false} width={465} maxLines={Infinity} />
              </div>
           </div>
 
-          <Form.Group controlId="formBasicEmail">
-              <Form.Control type="email" placeholder={name} />
-          </Form.Group>
+          
           <Form.Control size="sm" as="select" id="languageSelect" onChange={languageSelect}>
               <option value="html">HTML</option>
               <option value="javascript">Javascript</option>
