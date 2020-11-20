@@ -10,7 +10,7 @@ function FollowModal({name, skills}){
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-  
+    const followUser =() => {}
     return (
       <>
         <Button variant="primary" onClick={handleShow}>
@@ -33,7 +33,7 @@ function FollowModal({name, skills}){
             <Button variant="secondary" onClick={handleClose}>
               No
             </Button>
-            <Button variant="primary">Yes</Button>
+            <Button onClick={followUser} variant="primary">Yes</Button>
           </Modal.Footer>
         </Modal>
       </>)

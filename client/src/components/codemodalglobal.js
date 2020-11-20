@@ -28,7 +28,8 @@ function AceModelGlobal({name, title, note, author, snip}){
         setLanguage($("#languageSelect").val());
         console.log("Working?", $("#languageSelect").val())
       }
-
+    const SaveGlobal =()=>{}
+    const copyClipboard =()=>{}
   
     return (
       <>
@@ -58,8 +59,8 @@ function AceModelGlobal({name, title, note, author, snip}){
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            <Button variant="primary">Save to your Library</Button>
-            <Button variant="primary">Copy To Clipboard</Button>
+            <Button onClick={SaveGlobal} variant="primary">Save to your Library</Button>
+            <Button onClick={copyClipboard} variant="primary">Copy To Clipboard</Button>
           </Modal.Footer>
           <Accordion defaultActiveKey="0">
     <Card>
