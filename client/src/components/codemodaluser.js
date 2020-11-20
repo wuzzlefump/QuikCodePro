@@ -43,17 +43,30 @@ function AceModelUser({name, title, props}){
           <Modal.Header closeButton>
           <Modal.Title>{name}</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
+          <Modal.Body >
 
           <div className="d-flex">
-             <div className="editor">
-                 <ReactAce mode={Language} theme="monokai" setReadOnly={false} width={465} />
+             <div className="editor mb-2">
+                 <ReactAce mode={Language} theme="monokai" setReadOnly={false} width={465} maxLines={Infinity} />
              </div>
           </div>
 
           <Form.Group controlId="formBasicEmail">
               <Form.Control type="email" placeholder={name} />
           </Form.Group>
+          <Form.Control size="sm" as="select" id="languageSelect" onChange={languageSelect}>
+              <option value="html">HTML</option>
+              <option value="javascript">Javascript</option>
+              <option value="css">CSS</option>
+              <option value="markdown">Mark Down</option>
+              <option value="handlebars">Handlebars</option>
+          </Form.Control>
+          <div className="d-flex">
+             <div className="editor mt-3 mb-2">
+                 <ReactAce mode={Language} theme="monokai" setReadOnly={false} width={465} maxLines={Infinity} />
+             </div>
+          </div>
+
           <Form.Control size="sm" as="select" id="languageSelect" onChange={languageSelect}>
               <option value="html">HTML</option>
               <option value="javascript">Javascript</option>
