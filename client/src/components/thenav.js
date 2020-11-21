@@ -15,10 +15,10 @@ function TheNav() {
 
   return (
     <div>
-      <Navbar   >
-        <Navbar.Brand href="/">React Auth</Navbar.Brand>
+      <Navbar  bg="dark" variant="dark"   >
+        <Navbar.Brand href="/"><img src="https://img.icons8.com/color/48/000000/source-code.png"/>QC Pro</Navbar.Brand>
 
-
+      <Navbar.Collapse className = "justify-content-end">
         <Nav.Link href="/">Feed</Nav.Link>
 
 
@@ -31,7 +31,7 @@ function TheNav() {
         <Nav.Link href="/login">Login</Nav.Link>
 
         <Nav.Link href="/signup">Signup</Nav.Link>
-
+        </Navbar.Collapse>
 
 
 
