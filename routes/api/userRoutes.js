@@ -1,9 +1,9 @@
-const userRouter = require('express').Router();
+const router = require('express').Router();
 const passport = require('../../config/passport');
 const db = require('../../models');
 const authMiddleware = require('../../config/middleware/authMiddleware');
 
-userRouter.post(
+router.post(
   '/login',
   passport.authenticate('local', {
     failureRedirect: '/api/users/unauthorized',
@@ -18,7 +18,7 @@ userRouter.post(
   },
 );
 
-userRouter.post('/signup', (req, res, next) => {
+router.post('/signup', (req, res, next) => {
   db.User.findOne({ username: req.body.username }, (err, user) => {
     if (err) throw err;
     if (user) {
@@ -51,29 +51,29 @@ userRouter.post('/signup', (req, res, next) => {
   });
 });
 
-userRouter.get('/unauthorized', (req, res, next) => {
+router.get('/unauthorized', (req, res, next) => {
   res.json({
     error: req.flash('error'),
     message: 'user not authenticated',
   });
 });
 
-userRouter.get('/profile', authMiddleware.isLoggedIn, (req, res, next) => {
+router.get('/profile', authMiddleware.isLoggedIn, (req, res, next) => {
   res.json({
     user: req.user,
     loggedIn: true,
   });
 });
 
-userRouter.get('/logout', authMiddleware.logoutUser, (req, res, next) => {
+router.get('/logout', authMiddleware.logoutUser, (req, res, next) => {
   res.json('User logged out successfully');
 });
 
-userRouter.get('/admin', authMiddleware.isAdmin, (req, res, next) => {
+router.get('/admin', authMiddleware.isAdmin, (req, res, next) => {
   res.json({
     user: req.user,
     loggedIn: true,
   });
 });
 
-module.exports = userRouter;
+module.exports = router;
