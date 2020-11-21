@@ -1,13 +1,14 @@
-import React from 'react'
-import TheNav from '../components/thenav'
+import React, {useContext} from 'react'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import Editor from '../components/Editor'
 import FooterPage from '../components/FooterPage'
+import LogInBro from '../components/loginbro'
+import UserContext from '../utils/UserContext'
 
 function NewSnip(){
 
-    return(<>
-    <TheNav/>
+    const { user, loggedIn, logout } = useContext(UserContext);
+    return(<>{loggedIn ? (<>
     {/* giant ace editor goes here */}
     <Jumbotron style={{opacity:"0.8"}}>
         <Editor />
@@ -17,7 +18,7 @@ function NewSnip(){
         {/* savecode */}
     </Jumbotron>
     <FooterPage/>
-    </>
+    </>):(<LogInBro/>)}</>
     )
 
 }

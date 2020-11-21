@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import LogInBro from '../components/loginbro'
 import AceModalGlobal from '../components/codemodalglobal'
 import Posts from '../components/posts'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
@@ -73,12 +74,7 @@ const postsexample=[{name:"example 1", author:"Bob", language:"Html",snip:"<p>He
     
     </>
     ): (
-        <div>
-          <h1> Log in to view this page </h1>
-          <Link to="/login">
-            <Button> Login </Button>
-          </Link>
-        </div>
+        <LogInBro/>
       )}
       
       </>

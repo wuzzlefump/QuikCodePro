@@ -24,6 +24,7 @@ function TheNav() {
 
         <Nav.Link href="/profile">Profile</Nav.Link>
 
+        <Nav.Link href="/newSnip"> Make a New Snip</Nav.Link>
 
         <Nav.Link onClick={logout}>Logout</Nav.Link>
 

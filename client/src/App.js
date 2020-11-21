@@ -153,6 +153,7 @@ const App = () =>{
                 render={() => <SignIn action="signup" />}
               />
               <Route exact path="/profile" component={Profile} />
+              <Route exact path="/newSnip" component={NewSnip} />
               <Route render={NoPage} />
             </Switch>
           </Container>
