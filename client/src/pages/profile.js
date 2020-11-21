@@ -127,7 +127,7 @@ const Avatars = [
         "size":"7x"
     }
     ]
-const example =[{name: "example", snip:"<p>hello world</p>", sniptwo:"good night moon"}, {name: "example2"}]
+const example =[{name: "example", snip:"<p>hello world</p>", sniptwo:"<h1>good night moon</h1>"}, {name: "example2"}]
 const follow =[{name: "Bob", skills:"none"}]
 
 

@@ -26,16 +26,9 @@ function AceModelGlobal({name, title, note, author, snip}){
     //need to change language to user choice
     const [Language, setLanguage] = useState("html");
 
-  
-    const [textArea1, setTextArea1] = useState("")
-    const ace1 = useRef(null);
     const textAreaRef1 = useRef(null);
     
-    function toTextArea1() {
-      setTextArea1(ace1.current.editor.getValue());
-    }
     function copyClipboard() {
-      console.log(ace1.current.editor.getValue())
       textAreaRef1.current.select();
       document.execCommand('copy');
     }
@@ -61,7 +54,7 @@ function AceModelGlobal({name, title, note, author, snip}){
 
           <div className="d-flex">
              <div className="editor">
-                 <ReactAce ref={ace1} onChange={toTextArea1} mode={Language} theme="monokai" value={snip} setReadOnly={true} width={465}  maxLines={Infinity}/>
+                 <ReactAce mode={Language} theme="monokai" value={snip} setReadOnly={true} width={465}  maxLines={Infinity}/>
                  <textarea  ref={textAreaRef1} value={snip} className="textArea"></textarea>
              </div>
           </div>

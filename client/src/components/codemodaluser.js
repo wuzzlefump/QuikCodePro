@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState, useRef } from 'react'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
@@ -29,11 +29,25 @@ function AceModelUser({name, title, snip, sniptwo, props}){
     const updateSnip =()=>{}
     const [Language, setLanguage] = useState("html");
     const [LanguageTwo, setLanguageTwo] = useState("html");
+
     function languageSelect(event) {
         setLanguage($("#languageSelect").val());
         console.log("Working?", $("#languageSelect").val())
         handleSnipInput(event)
-      }
+    }
+
+    const textAreaRef1 = useRef(null);
+    const textAreaRef2 = useRef(null);
+
+    function copyClipboard1() {
+      textAreaRef1.current.select();
+      document.execCommand('copy');
+    }
+
+    function copyClipboard2() {
+      textAreaRef2.current.select();
+      document.execCommand('copy');
+    }
 
   
     return (
@@ -53,23 +67,17 @@ function AceModelUser({name, title, snip, sniptwo, props}){
           </Modal.Header>
           <Modal.Body >
           <Form.Group controlId="formBasicEmail">
-              <Form.Control type="email" placeholder={name} />
+              <Form.Control type="email" value={name} onChange={handleSnipInput} />
           </Form.Group>
           <div className="d-flex">
 
              <div className="editor mb-2">
-                 <ReactAce name="editorOne" mode={Language} theme="monokai" setReadOnly={false} width={465} onChange={handleSnipInput} maxLines={Infinity} value={snip}/>
-
+                  <ReactAce name="editorOne" mode={Language} theme="monokai" setReadOnly={false} width={465} onChange={handleSnipInput} maxLines={Infinity} value={snip}/>
+                  <textarea  ref={textAreaRef1} value={snip} className="textArea"></textarea>
+                  <Button onClick={copyClipboard1} className="float-right m-1">Copy Code</Button>
              </div>
           </div>
 
-
-          
-
-
-          <Form.Group controlId="formBasicEmail">
-              <Form.Control type="email" placeholder="title" onChange={handleSnipInput} />
-          </Form.Group>
           <Form.Control name="language" size="sm" as="select" id="languageSelect" onChange={languageSelect}>
 
               <option value="html">HTML</option>
@@ -80,8 +88,9 @@ function AceModelUser({name, title, snip, sniptwo, props}){
           </Form.Control>
           <div className="d-flex">
              <div className="editor mt-3 mb-2">
-
                  <ReactAce name="editorTwo" mode={LanguageTwo} theme="monokai" setReadOnly={false} width={465} maxLines={Infinity} value={sniptwo}  onChange={handleSnipInput}/>
+                 <textarea  ref={textAreaRef2} value={sniptwo} className="textArea"></textarea>
+                  <Button onClick={copyClipboard2} className="float-right m-1">Copy Code</Button>
              </div>
           </div>
 
