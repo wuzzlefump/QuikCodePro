@@ -1,10 +1,11 @@
-import React, {useState,useEffect} from 'react'
-import TheNav from '../components/thenav'
+import React, {useState, useEffect, useContext} from 'react'
+import TheNav from '../components/thenav';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import Form from 'react-bootstrap/Form'
+import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/esm/Button'
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
@@ -32,6 +33,7 @@ import { faFrog } from '@fortawesome/free-solid-svg-icons'
 import { faUserTie } from '@fortawesome/free-solid-svg-icons'
 import AvatarOption from '../components/avatarOp'
 import FooterPage from '../components/FooterPage'
+import UserContext from '../utils/UserContext'
 
 
 const Avatars = [
@@ -132,6 +134,7 @@ const follow =[{name: "Bob", skills:"none"}]
 
 
 function Profile(){
+    const { user, loggedIn, logout } = useContext(UserContext);
 //avatar toggle
  const [avatarState,setAvatar]= useState()
 function avatarInputChange(event) {
@@ -172,6 +175,7 @@ const userSearch =() =>{}
 const updateUser =()=>{}
 
     return(<>
+    {loggedIn ? (<>
 <TheNav/>
 <Container>
     <Row>
@@ -234,7 +238,16 @@ const updateUser =()=>{}
 </Container>
 <FooterPage/>
 
-</>)
-    
+</>): (
+        <div>
+          <h1> Log in to view this page </h1>
+          <Link to="/login">
+            <Button> Login </Button>
+          </Link>
+        </div>
+      )}
+      
+      </>
+    )
 }
 export default Profile

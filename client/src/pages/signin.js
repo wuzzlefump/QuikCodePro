@@ -2,12 +2,13 @@ import React from 'react'
 import SigninNav from '../components/signinnav'
 import SignInCard from '../components/signincard'
 import FooterPage from '../components/FooterPage'
-function SignIn(){
+import SignUpCard from '../components/signupcard'
+function SignIn(props){
 
     return(<>
-    <SigninNav/>
-    <SignInCard/>
-    <FooterPage/>
+    {/* <SigninNav/> */}
+    {props.action === 'login' ? <SignInCard /> : <SignUpCard />}
+    {/* <FooterPage/> */}
     </>)
    
 }

@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Avatars from '../avatars.json';
 import AvatarOption from '../components/avatarOp';
-import UserContext from '../../src/utils/UserContext';
+import UserContext from '../utils/UserContext';
 
 
 
