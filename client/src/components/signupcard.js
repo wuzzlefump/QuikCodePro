@@ -18,6 +18,7 @@ function SignUpCard(){
   const [ confirmPassword, setConfirmPassword ] = useState("");
   const [ errorMessage, setErrorMessage ] = useState({});
 
+  
   useEffect(() => {
     console.log(errorMessage);
   }, []);
@@ -135,7 +136,7 @@ const checkUsername = () => {
     {Avatars.map((item)=>(<AvatarOption name={item.name}/>))}
     </Form.Control>
   </Form.Group>
-        <Button className="info">Submit</Button>
+        <Button className="info" onClick={handleSignup}>Submit</Button>
         </Card.Body>
       </Card></div>)
 

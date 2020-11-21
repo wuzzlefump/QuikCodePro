@@ -33,6 +33,7 @@ const App = () =>{
 
   useEffect(() => {
     isLoggedIn();
+
   }, []);
 
   const handleInputChange = (event) => {
