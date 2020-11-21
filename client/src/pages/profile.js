@@ -206,6 +206,7 @@ const updateUser =()=>{}
         <Col sm={12} md={6}>
             <Jumbotron style ={{marginTop:"5%", display: "flex", flexDirection:"column",alignItems:"center", justifyContent:"center",opacity:"0.7" }}>
             <FontAwesomeIcon icon={avatarState} size="7x"></FontAwesomeIcon>
+            <br></br>
             <Form.Control size="sm" as="select" name="avatar" onChange={avatarInputChange}>
             <option>Choose an Avatar</option>
             {Avatars.map(item =><AvatarOption name={item.name}></AvatarOption>)}
