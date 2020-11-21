@@ -34,6 +34,7 @@ import { faUserTie } from '@fortawesome/free-solid-svg-icons'
 import AvatarOption from '../components/avatarOp'
 import FooterPage from '../components/FooterPage'
 import UserContext from '../utils/UserContext'
+import LogInBro from '../components/loginbro'
 
 
 const Avatars = [
@@ -239,12 +240,7 @@ const updateUser =()=>{}
 <FooterPage/>
 
 </>): (
-        <div>
-          <h1> Log in to view this page </h1>
-          <Link to="/login">
-            <Button> Login </Button>
-          </Link>
-        </div>
+<LogInBro/>
       )}
       
       </>
