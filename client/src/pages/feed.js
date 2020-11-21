@@ -1,5 +1,5 @@
-import React from 'react'
-
+import React, {useContext} from 'react'
+import { Link } from 'react-router-dom';
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -30,15 +30,17 @@ import { faPoo } from '@fortawesome/free-solid-svg-icons'
 import { faFrog } from '@fortawesome/free-solid-svg-icons'
 import { faUserTie } from '@fortawesome/free-solid-svg-icons'
 import FooterPage from '../components/FooterPage'
+import UserContext from '../utils/UserContext'
 
 
 function Feed(){
+    const { user, loggedIn, logout } = useContext(UserContext);
 const globalexample=[{name:"example 1", author:"Bob", language:"Html",snip:"<p>Hello World</p>", note:"Quality Stuff"}]
 
 const postsexample=[{name:"example 1", author:"Bob", language:"Html",snip:"<p>Hello World</p>", avatar:faCat, note:"Quality Stuff"}, {name:"example 2", author:"Tim", language:"Html",snip:"<p>Good night moon</p>", avatar:faDog, note:"Some Good Code Here"}]
 
     return (<>
-    
+    {loggedIn ? (<>
     <Container>
         <Row>
             <Col sm={12} md={4}>
@@ -70,6 +72,16 @@ const postsexample=[{name:"example 1", author:"Bob", language:"Html",snip:"<p>He
 
     
     </>
+    ): (
+        <div>
+          <h1> Log in to view this page </h1>
+          <Link to="/login">
+            <Button> Login </Button>
+          </Link>
+        </div>
+      )}
+      
+      </>
     )
 }
 export default Feed
