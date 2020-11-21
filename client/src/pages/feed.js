@@ -1,5 +1,5 @@
 import React from 'react'
-import TheNav from '../components/thenav'
+
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -37,7 +37,8 @@ const globalexample=[{name:"example 1", author:"Bob", language:"Html",snip:"<p>H
 
 const postsexample=[{name:"example 1", author:"Bob", language:"Html",snip:"<p>Hello World</p>", avatar:faCat, note:"Quality Stuff"}, {name:"example 2", author:"Tim", language:"Html",snip:"<p>Good night moon</p>", avatar:faDog, note:"Some Good Code Here"}]
 
-    return(<><TheNav/>
+    return (<>
+    
     <Container>
         <Row>
             <Col sm={12} md={4}>
