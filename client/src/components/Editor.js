@@ -14,8 +14,6 @@ import $ from "jquery";
 
 
 export default function Editor() {
-
-
     const [Language1, setLanguage1] = useState("html");
     const [Language2, setLanguage2] = useState("html");
     const [Language3, setLanguage3] = useState("html");
@@ -24,15 +22,29 @@ export default function Editor() {
     const [textArea1, setTextArea1] = useState("")
     const [textArea2, setTextArea2] = useState("")
     const [textArea3, setTextArea3] = useState("")
+    const [snipNote, setNote]=useState("")
+
+    function handleNoteChange(event){
+        const change= event.target.value;
+        setNote(change)
+        console.log(snipNote)
+    }
+
+    function saveSnip(){
+        //post call goes
+    }
 
     function languageSelect1() {
         setLanguage1($("#languageSelect1").val());
+        console.log(Language3)
       }
     function languageSelect2() {
         setLanguage2($("#languageSelect2").val());
+        console.log(Language3)
     }
     function languageSelect3() {
         setLanguage3($("#languageSelect3").val());
+        console.log(Language3)
     }
     function addEditor1() {
         setShowResults2(false)
@@ -55,12 +67,15 @@ export default function Editor() {
     const textAreaRef3 = useRef(null);
     function toTextArea1() {
         setTextArea1(ace1.current.editor.getValue());
+        console.log(textArea1)
     }
     function toTextArea2() {
         setTextArea2(ace2.current.editor.getValue());
+        console.log(textArea2)
     }
     function toTextArea3() {
         setTextArea3(ace3.current.editor.getValue());
+        console.log(textArea3)
     }
     function toClipBoard1() {
         textAreaRef1.current.select();
@@ -84,7 +99,7 @@ export default function Editor() {
             </div>
             <div className="d-flex row justify-content-center">
                 <div className="editor mr-5">
-                    <ReactAce ref={ace1} onChange={toTextArea1} mode={Language1} theme="monokai" setReadOnly={false} value={textArea1} />
+                    <ReactAce ref={ace1} onChange={toTextArea1} mode={Language1} theme="monokai" setReadOnly={false} value={textArea1}/>
                     <textarea  ref={textAreaRef1} value={textArea1} className="textArea"></textarea>
                     <Button onClick={toClipBoard1} className="float-right m-1">Copy Code</Button> 
                     <label className="mb-0 mt-3 ml-1" for="formGroupExampleSearch">Language</label>
@@ -163,7 +178,7 @@ export default function Editor() {
             </div>
             <form>
                 <div class="form-group col-md mt-3">
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Add notes here"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="snipNote" placeholder="Add notes here" onChange={handleNoteChange}></textarea>
                 </div>
             </form>
         </div>
