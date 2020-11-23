@@ -40,8 +40,8 @@ const App = () => {
       API.login(data)
         .then((user) => {
           if (user.data.loggedIn) {
-            setLoggedin(true);
             setUser(user.data.user);
+            setLoggedin(true)
 
             console.log('log in successful');
             window.location.href = '/profile';
@@ -77,6 +77,7 @@ const App = () => {
               if (user.data.loggedIn) {
                 setLoggedin(true);
                 setUser(user.data.user);
+                console.log(user)
                 console.log('log in successful');
                 window.location.href = '/profile';
               } else {
@@ -101,6 +102,7 @@ const App = () => {
         if (user.data.loggedIn) {
           setLoggedin(true);
           setUser(user.data.user);
+          console.log(user)
         } else {
           console.log(user.data.message);
         }
