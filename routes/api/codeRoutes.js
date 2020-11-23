@@ -2,20 +2,19 @@ const router = require("express").Router();
 const codeController = require("../../controllers/codeController");
 
 
-router.route("/")
+router.route("/codes")
   .get(codeController.findAll)
   .post(codeController.create);
 
 router
-  .route("/:id")
+  .route("/codes/:id")
   .get(codeController.findById)
   .put(codeController.update)
   .delete(codeController.remove);
 
 router
-  .route("/:keywords")
-  .get(codeController.findByKey)
-  .put(codeController.update)
-  .delete(codeController.remove);
+  .route("codes/:keywords")
+  .get(codeController.find)
+  
 
 module.exports = router;
