@@ -11,6 +11,7 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import UserContext from '../../utils/UserContext';
+import './signup.css'
 
 const Signup = () => {
   const {
@@ -180,7 +181,7 @@ const Signup = () => {
             onBlur={checkFirstname}
             valid={validFirstName}
           />
-          <FormText>{errorMessage['firstname']}</FormText>
+          <div className="errorStyle">{errorMessage['firstname']}</div>
         </FormGroup>
         <FormGroup>
           <Input
@@ -193,7 +194,7 @@ const Signup = () => {
             onBlur={checkLastname}
             valid={validLastName}
           />
-          <FormText>{errorMessage['lastname']}</FormText>
+          <div className="errorStyle">{errorMessage['lastname']}</div>
         </FormGroup>
         <FormGroup>
           <Input
@@ -206,7 +207,7 @@ const Signup = () => {
             onBlur={checkEmail}
             valid={validEmail}
           />
-          <FormText>{errorMessage['email']}</FormText>
+          <div className="errorStyle">{errorMessage['email']}</div>
         </FormGroup>
         <FormGroup>
           <Input
@@ -219,7 +220,7 @@ const Signup = () => {
             onBlur={checkUsername}
             valid={validUserName}
           />
-          <FormText>{errorMessage['username']}</FormText>
+          <div className="errorStyle">{errorMessage['username']}</div>
         </FormGroup>
         <FormGroup>
           <Input
@@ -232,7 +233,7 @@ const Signup = () => {
             onBlur={checkPassword}
             valid={validPassword}
           />
-          <FormText>{errorMessage['password']}</FormText>
+          <div className="errorStyle">{errorMessage['password']}</div>
         </FormGroup>
         <FormGroup>
           <Input
@@ -245,7 +246,7 @@ const Signup = () => {
             onKeyUp={checkConfirmPassword}
             valid={isConfirmed}
           />
-          <FormText>{errorMessage['confirmPassword']}</FormText>
+          <div className="errorStyle">{errorMessage['confirmPassword']}</div>
         </FormGroup>
         {/* if all fields are valid, allow the user to submit the form */}
         {validFirstName &&
