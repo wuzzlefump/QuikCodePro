@@ -135,7 +135,6 @@ const App = () => {
       <Router>
         <div>
           <TopNav />
-          <Container>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route
@@ -157,7 +156,6 @@ const App = () => {
               <Route exact path="/profile" component={Profile} />
               <Route render={NoMatch} />
             </Switch>
-          </Container>
         </div>
       </Router>
     </UserContext.Provider>
