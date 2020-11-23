@@ -25,6 +25,7 @@ import { faPoo } from '@fortawesome/free-solid-svg-icons'
 import { faFrog } from '@fortawesome/free-solid-svg-icons'
 import { faUserTie } from '@fortawesome/free-solid-svg-icons'
 import FooterPage from '../components/FooterPage'
+import Login from '../components/Login/Login'
 
 const Home = () => {
   const { user, loggedIn, logout } = useContext(UserContext);
@@ -71,7 +72,7 @@ const Home = () => {
 
     </>
     ) : (
-        <LogInBro />
+        <Login />
       )}
 
   </>

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import './Profile.scss';
 import { Button, Container, Row, Col, Jumbotron, Form, InputGroup, InputGroupText, InputGroupAddon, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Input, Label, FormGroup, CustomInput } from 'reactstrap';
 import { Link } from 'react-router-dom';
@@ -27,7 +27,7 @@ import { faFrog } from '@fortawesome/free-solid-svg-icons'
 import { faUserTie } from '@fortawesome/free-solid-svg-icons'
 import AvatarOption from '../../components/avatarOp'
 import FooterPage from '../../components/FooterPage'
-import LogInBro from '../../components/loginbro'
+import Login from '../../components/Login/Login'
 
 
 const Avatars = [
@@ -126,7 +126,10 @@ const Avatars = [
 const example = [{ name: "example", snip: "<p>hello world</p>", sniptwo: "<h1>good night moon</h1>" }, { name: "example2" }]
 const follow = [{ name: "Bob", skills: "none" }]
 
+
+
 const Profile = () => {
+
 
   const [avatarState, setAvatar] = useState()
 
@@ -167,10 +170,11 @@ const Profile = () => {
   const userSearch = () => { }
   const updateUser = () => { }
 
-
-
   const { user, loggedIn, logout } = useContext(UserContext);
- 
+
+ useEffect(()=>{
+console.log(user)
+},[])
   return (<>
     {loggedIn ? (<>
 
@@ -215,7 +219,7 @@ const Profile = () => {
             </CustomInput>
             </FormGroup>
               <hr />
-              <h2>Username:<span></span></h2>
+    <h2>Username:<span></span></h2>
               <textarea style={{ width: "80%" }} rows="7" name="bio" onChange={handleUserFormInput} placeholder="Write Your Bio Here"></textarea>
               <br />
               <Button primary="primary" onClick={updateUser}>Update</Button>
@@ -244,7 +248,7 @@ const Profile = () => {
       <FooterPage />
 
     </>) : (
-        <LogInBro />
+       <Login></Login>
       )}
 
   </>
