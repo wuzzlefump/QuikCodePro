@@ -1,39 +1,28 @@
-import React, { Component, useEffect, useState, useContext } from "react";
-import {
-  BrowserRouter,
-  Switch,
-  Route
-} from "react-router-dom";
-import "./App.css";
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import API from './utils/API';
-import TheNav from './components/thenav';
-import SignIn from './pages/signin';
-import SignUp from './pages/signup';
-import Profile from './pages/profile';
-import NewSnip from './pages/newsnip';
-import NoPage from './pages/nopage';
-import Feed from '../src/pages/feed';
-
+import Home from './pages/Home';
+import Profile from './pages/Profile';
+import Auth from './pages/Auth';
+import NoMatch from './pages/NoMatch';
+import TopNav from './components/TopNav';
+import { Container } from 'reactstrap';
 import UserContext from './utils/UserContext';
-
-import Container from 'react-bootstrap/Container';
-
-const App = () =>{
+import NewSnip from './pages/newsnip'
+const App = () => {
   const [userData, setUserData] = useState({
-
+    firstname: '',
+    lastname: '',
+    email: '',
     username: '',
-    password: ''
+    password: '',
   });
-
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedin] = useState(false);
   const [user, setUser] = useState(null);
-  const [failureMessage, setFailuareMessage] = useState(null);
-
-
+  const [failureMessage, setFailureMessage] = useState(null);
 
   useEffect(() => {
     isLoggedIn();
-
   }, []);
 
   const handleInputChange = (event) => {
@@ -45,79 +34,85 @@ const App = () =>{
     event.preventDefault();
     const data = {
       username: userData.username,
-      password: userData.password
+      password: userData.password,
     };
     if (userData.username && userData.password) {
-      API.login(data).then((user) => {
-        if (user.data.loggedIn) {
-          setLoggedIn(true);
-          setUser(user.data.user);
+      API.login(data)
+        .then((user) => {
+          if (user.data.loggedIn) {
+            setLoggedin(true);
+            setUser(user.data.user);
 
-          console.log("log in successful");
-        } else {
-          console.log("something went wrong");
-          alert("Login failed, please try again");
-        }
-      }).catch((error) => {
-        console.log("login function error", error);
-      });
+            console.log('log in successful');
+            window.location.href = '/profile';
+          } else {
+            console.log('Something went wrong :(');
+            alert('Login failed, Please try again.');
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
-  }
+  };
 
-  const handleSignUp = (event) => {
+  const handleSignup = (event) => {
     event.preventDefault();
     try {
       const data = {
-        // email: userData.email,
+        firstname: userData.firstname,
+        lastname: userData.lastname,
+        email: userData.email,
         username: userData.username,
-        password: userData.password
+        password: userData.password,
       };
 
-      //need to ask Jay about this block of code
       if (userData.username && userData.password) {
         API.signup(data)
           .then((user) => {
-            if (user.data === 'email is already in user') {
-              alert("This email is already signed up with us");
+            if (user.data === 'email is already in use') {
+              alert('Email already in use.');
             }
             if (user.data.loggedIn) {
-              
-                setLoggedIn(true);
+              if (user.data.loggedIn) {
+                setLoggedin(true);
                 setUser(user.data.user);
-                console.log("log in successful");
+                console.log('log in successful');
+                window.location.href = '/profile';
               } else {
-                console.log("something went wrong");
+                console.log('something went wrong :(');
                 console.log(user.data);
-                setFailuareMessage(user.data);
+                setFailureMessage(user.data);
               }
-            
+            }
           })
           .catch((error) => {
             console.log(error);
           });
       }
     } catch (error) {
-      console.log(error);
-    };
-  }
+      console.log('App -> error', error);
+    }
+  };
+
   const isLoggedIn = () => {
     if (!loggedIn) {
       API.isLoggedIn().then((user) => {
         if (user.data.loggedIn) {
-          setLoggedIn(true);
+          setLoggedin(true);
           setUser(user.data.user);
         } else {
           console.log(user.data.message);
         }
-      })
+      });
     }
   };
 
   const logout = () => {
     if (loggedIn) {
       API.logout().then(() => {
-        console.log("logged out successfully");
-        setLoggedIn(false);
+        console.log('logged out successfully');
+        setLoggedin(false);
         setUser(null);
       });
     }
@@ -130,38 +125,41 @@ const App = () =>{
     failureMessage,
     handleInputChange,
     handleLogin,
-    handleSignUp,
-    logout
+    handleSignup,
+    logout,
   };
-
   return (
     <UserContext.Provider value={contextValue}>
-
-      <BrowserRouter>
+      <Router>
         <div>
-          <TheNav/>
+          <TopNav />
           <Container>
             <Switch>
-              <Route exact path="/" component={Feed} />
+              <Route exact path="/" component={Home} />
               <Route
                 exact
                 path="/login"
-                render={() => <SignIn action="login" />}
+                render={() => <Auth action="login" />}
               />
               <Route
                 exact
                 path="/signup"
-                render={() => <SignIn action="signup" />}
+                render={() => <Auth action="signup" />}
+              />
+              <Route
+                exact
+                path="/newSnip"
+                component ={NewSnip}
+                render={() => <Auth action="newSnip" />}
               />
               <Route exact path="/profile" component={Profile} />
-              <Route exact path="/newSnip" component={NewSnip} />
-              <Route render={NoPage} />
+              <Route render={NoMatch} />
             </Switch>
           </Container>
         </div>
-      </BrowserRouter>
+      </Router>
     </UserContext.Provider>
   );
-}
+};
 
 export default App;

@@ -1,7 +1,17 @@
 import React, { useState } from 'react'
-import Nav from 'react-bootstrap/Nav'
-import Navbar from 'react-bootstrap/Navbar'
-import Button from 'react-bootstrap/Button';
+
+import {Button, Navbar, Nav, Collapse,
+  
+  NavbarToggler,
+  NavbarBrand,
+  
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  NavbarText}  from 'reactstrap';
 
 function FooterPage(){
 
@@ -38,14 +48,14 @@ function setJokeFunction() {
 
 
     return(
-  <Navbar fixed="bottom" bg="dark" variant="dark">
-    <Navbar.Text>QuikCode Say:<div></div>"<em>{Joke}</em>"</Navbar.Text>
-    <Navbar.Collapse className = "justify-content-end">
+  <Navbar fixed="bottom" dark color="dark">
+    <NavbarText>QuikCode Say:<div></div>"<em>{Joke}</em>"</NavbarText>
+    <Collapse className = "justify-content-end">
     <Button onClick={setJokeFunction} className="mr-4">Hit Me Again</Button>
         <Nav>
-      <Navbar.Text>© {new Date().getFullYear()}</Navbar.Text>
+      <NavbarText>© {new Date().getFullYear()}</NavbarText>
       </Nav>
-    </Navbar.Collapse>
+    </Collapse>
   </Navbar>)
 }
 export default FooterPage;

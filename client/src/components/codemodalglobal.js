@@ -1,9 +1,9 @@
-import React, {useState, useRef} from 'react'
-import Button from 'react-bootstrap/Button'
-import Modal from 'react-bootstrap/Modal'
+import React, { useState, useRef } from 'react'
+import { Button, Modal, Card, Collapse, CardHeader, CardBody, ModalHeader, ModalBody, ModalFooter, } from 'reactstrap'
+
 import ReactAce from 'react-ace';
-import Accordion from 'react-bootstrap/Accordion'
-import Card from 'react-bootstrap/Card'
+
+
 import brace from 'brace';
 import 'brace/mode/javascript';
 import 'brace/mode/css';
@@ -15,72 +15,73 @@ import $ from "jquery";
 
 
 
-function AceModelGlobal({name, title, note, author, snip}){
-
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+function AceModelGlobal({ name, title, note, author, snip }) {
 
 
-    //need to change language to user choice
-    const [Language, setLanguage] = useState("html");
+  const [modal, setModal] = useState(false);
 
-    const textAreaRef1 = useRef(null);
-    
-    function copyClipboard() {
-      textAreaRef1.current.select();
-      document.execCommand('copy');
-    }
+  //need to change language to user choice
+  const [Language, setLanguage] = useState("html");
 
-    const SaveGlobal =()=>{}
-  
-    return (
-      <>
-        <Button variant="primary" onClick={handleShow}>
-          {name}
-        </Button>
-  
-        <Modal
-          show={show}
-          onHide={handleClose}
-          backdrop="static"
-          keyboard={false}
-        >
-          <Modal.Header closeButton>
-          <Modal.Title>{name+" by "+author}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
+  const textAreaRef1 = useRef(null);
 
-          <div className="d-flex">
-             <div className="editor">
-                 <ReactAce mode={Language} theme="monokai" value={snip} setReadOnly={true} width={465}  maxLines={Infinity}/>
-                 <textarea  ref={textAreaRef1} value={snip} className="textArea"></textarea>
-             </div>
+  function copyClipboard() {
+    textAreaRef1.current.select();
+    document.execCommand('copy');
+  }
+
+  const SaveGlobal = () => { }
+
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setModal(!modal);
+  const toggles = () => setIsOpen(!isOpen);
+
+  return (
+    <>
+      <Button color="primary" onClick={toggle}>
+        {name}
+      </Button>
+
+      <Modal isOpen={modal} toggle={toggle} >
+        <ModalHeader toggle={toggle} charCode="Y"><h1>{name + " by " + author}</h1></ModalHeader>
+        <ModalBody>
+        <div className="d-flex">
+            <div className="editor">
+              <ReactAce mode={Language} theme="monokai" value={snip} setReadOnly={true} width={465} maxLines={Infinity} />
+              <textarea ref={textAreaRef1} value={snip} className="textArea"></textarea>
+            </div>
           </div>
-
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button onClick={SaveGlobal} variant="primary">Save to your Library</Button>
-            <Button onClick={copyClipboard} variant="primary">Copy To Clipboard</Button>
-          </Modal.Footer>
-          <Accordion defaultActiveKey="0">
-    <Card>
-      <Card.Header>
-        <Accordion.Toggle as={Button} variant="link" eventKey="1">
-        Code Note
+          <br/>
+          <Button color="primary" onClick={toggles} style={{ marginBottom: '1rem' }}>Notes</Button>
+      <Collapse isOpen={isOpen}>
+        <Card>
+          <CardBody>
+            {note}
+          </CardBody>
+        </Card>
+      </Collapse>
+        </ModalBody>
+        <ModalFooter>
+          <Button color="secondary" onClick={toggle}>Close</Button>
+          <Button color="secondary" onClick={copyClipboard}>Copy To Clipboard</Button>
+          <Button color="primary" onClick={SaveGlobal}>Save to your Library</Button>{' '}
+        </ModalFooter>
+        {/* <Accordion defaultActiveKey="0">
+          <Card>
+            <Card.Header>
+              <Accordion.Toggle as={Button} variant="link" eventKey="1">
+                Code Note
         </Accordion.Toggle>
-      </Card.Header>
-      <Accordion.Collapse eventKey="1">
-    <Card.Body>{note}</Card.Body>
-      </Accordion.Collapse>
-    </Card>
-  </Accordion>
-        </Modal>
-      </>)
+            </Card.Header>
+            <Accordion.Collapse eventKey="1">
+              <Card.Body>{note}</Card.Body>
+            </Accordion.Collapse>
+          </Card>
+        </Accordion> */}
+      </Modal>
+    </>)
 
 }
 export default AceModelGlobal

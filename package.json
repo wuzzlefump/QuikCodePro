@@ -1,7 +1,7 @@
 {
-  "name": "mern",
+  "name": "react-auth-hooks",
   "version": "1.0.0",
-  "description": "Mern Demo",
+  "description": "react app with passport auth",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
@@ -10,30 +10,36 @@
     "client": "cd client && npm run start",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "eslint": "eslint --fix"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaymascarenas/react-auth-hooks.git"
+  },
+  "keywords": [],
+  "author": "Jay Mascarenas",
   "license": "ISC",
-  "devDependencies": {
-    "nodemon": "^2.0.6",
-    "concurrently": "^5.3.0"
+  "bugs": {
+    "url": "https://github.com/jaymascarenas/react-auth-hooks/issues"
   },
+  "homepage": "https://github.com/jaymascarenas/react-auth-hooks#readme",
   "dependencies": {
-    "axios": "^0.21.0",
     "bcryptjs": "^2.4.3",
     "brace": "^0.11.1",
+    "colors": "^1.4.0",
     "concurrently": "^5.3.0",
     "connect-flash": "^0.1.1",
-    "express": "^4.16.3",
+    "express": "^4.17.1",
     "express-session": "^1.17.1",
     "if-env": "^1.0.4",
-    "jquery": "^3.5.1",
     "memorystore": "^1.6.4",
-    "mongoose": "^5.10.14",
+    "mongoose": "^5.10.13",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.6",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "path": "^0.12.7"
-  }
+  },
+  "devDependencies": {}
 }

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const router = require('express').Router();
 const passport = require('../../config/passport');
 const db = require('../../models');
@@ -48,6 +49,8 @@ router.post('/signup', (req, res, next) => {
         }
       });
     }
+  }).catch((error) => {
+    console.log('Issue searching db for user ', error);
   });
 });
 
