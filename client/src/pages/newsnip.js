@@ -1,9 +1,10 @@
 import React, {useContext} from 'react'
-import Jumbotron from 'react-bootstrap/Jumbotron'
+import {Jumbotron} from 'reactstrap'
 import Editor from '../components/Editor'
 import FooterPage from '../components/FooterPage'
 import LogInBro from '../components/loginbro'
 import UserContext from '../utils/UserContext'
+
 
 function NewSnip(){
 

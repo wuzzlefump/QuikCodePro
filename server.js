@@ -2,6 +2,7 @@ const express = require('express');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+// const colors = require('colors');
 const flash = require('connect-flash');
 const mongoose = require('mongoose');
 const session = require('express-session');
@@ -37,21 +38,22 @@ if (process.env.NODE_ENV === 'production') {
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/codedb",{
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-})
-.catch((error) => { 
-  console.log('Error connecting to Mongoose -> ', error);
-});
+mongoose
+  .connect(process.env.MONGODB_URI || 'mongodb://localhost/react-auth-hooks', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  })
+  .catch((error) => { 
+    console.log('Error connecting to Mongoose -> ', error);
+  });
 
 mongoose.connection.once('open', () => {
-console.log('MongoDB Connected');
+  console.log('MongoDB Connected');
 });
 
 mongoose.connection.on('error', (err) => {
-console.log('Error staying connected to Mongoose -> ', err);
+  console.log('Error staying connected to Mongoose -> ', err);
 });
 
 // Start the API server
