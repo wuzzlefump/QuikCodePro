@@ -75,8 +75,8 @@ const App = () => {
             }
             if (user.data.loggedIn) {
               if (user.data.loggedIn) {
-                setLoggedin(true);
                 setUser(user.data.user);
+                setLoggedin(true);
                 console.log(user)
                 console.log('log in successful');
                 window.location.href = '/profile';
@@ -100,8 +100,8 @@ const App = () => {
     if (!loggedIn) {
       API.isLoggedIn().then((user) => {
         if (user.data.loggedIn) {
-          setLoggedin(true);
           setUser(user.data.user);
+          setLoggedin(true);
           console.log(user)
         } else {
           console.log(user.data.message);
