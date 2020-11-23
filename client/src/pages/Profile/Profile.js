@@ -130,7 +130,7 @@ const follow = [{ name: "Bob", skills: "none" }]
 
 const Profile = () => {
 
-
+  const [currentUser,setCurrentUser] =useState()
   const [avatarState, setAvatar] = useState()
 
   function avatarInputChange(event) {
@@ -174,7 +174,8 @@ const Profile = () => {
 
  useEffect(()=>{
 console.log(user)
-},[])
+setCurrentUser(user)
+},[loggedIn,user])
   return (<>
     {loggedIn ? (<>
 
@@ -219,7 +220,7 @@ console.log(user)
             </CustomInput>
             </FormGroup>
               <hr />
-    <h2>Username:<span></span></h2>
+            <h4>{user.username}</h4>
               <textarea style={{ width: "80%" }} rows="7" name="bio" onChange={handleUserFormInput} placeholder="Write Your Bio Here"></textarea>
               <br />
               <Button primary="primary" onClick={updateUser}>Update</Button>
