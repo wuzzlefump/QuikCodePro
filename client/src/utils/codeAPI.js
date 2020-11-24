@@ -10,7 +10,7 @@ export default {
     return axios.get("/api/codes/" + id);
   },
   // Gets the snip with the given keywords
-  getSnipsByKey: function(id) {
+  getSnipsByKey: function(keyword) {
     return axios.get("/api/codes/" + keyword);
   },
   // Deletes the snip with the given id
