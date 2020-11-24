@@ -29,6 +29,14 @@ const usersSchema = new Schema({
     unique: false,
     required: true,
   },
+  avatar: { 
+    type: String, 
+    required: false
+  },
+  bio: { 
+    type: String,
+    required: false
+  },
   admin: {
     type: Boolean,
     unique: false,
