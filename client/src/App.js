@@ -10,6 +10,8 @@ import TopNav from './components/TopNav';
 import { Container } from 'reactstrap';
 import UserContext from './utils/UserContext';
 import NewSnip from './pages/newsnip'
+import FooterPage from './components/FooterPage';
+import { Button } from 'reactstrap';
 
 const App = () => {
   const [userData, setUserData] = useState({
@@ -160,6 +162,7 @@ const App = () => {
             <Route exact path="/profile" component={Profile} />
             <Route render={NoMatch} />
           </Switch>
+          <FooterPage />
         </div>
       </Router>
     </UserContext.Provider>

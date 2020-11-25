@@ -1,17 +1,6 @@
 import React, { useState } from 'react'
+import { Button, Navbar, Nav, Collapse, NavbarText }  from 'reactstrap';
 
-import {Button, Navbar, Nav, Collapse,
-  
-  NavbarToggler,
-  NavbarBrand,
-  
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText}  from 'reactstrap';
 
 function FooterPage(){
 
@@ -45,17 +34,15 @@ function setJokeFunction() {
   newQuote = quotes[randomNumber];
   setJoke(newQuote);
 }
-
-
     return(
   <Navbar fixed="bottom" dark color="dark">
     <NavbarText>QuikCode Say:<div></div>"<em>{Joke}</em>"</NavbarText>
-    <Collapse className = "justify-content-end">
-    <Button onClick={setJokeFunction} className="mr-4">Hit Me Again</Button>
+    <div className = "justify-content-end">
         <Nav>
+        <Button color="primary" onClick={setJokeFunction} className="mr-4">Hit Me Again</Button>
       <NavbarText>© {new Date().getFullYear()}</NavbarText>
       </Nav>
-    </Collapse>
+    </div>
   </Navbar>)
 }
 export default FooterPage;
