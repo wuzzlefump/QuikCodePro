@@ -220,7 +220,7 @@ export default function Editor() {
                     </div> : null }
                 </div>
             </div>
-            <div>
+            <div className="lowerDiv">
                 <div className="m-4">
                     <ReactTagInput tags={tags} onChange={(newTags) => setTags(newTags)} />
                 </div>
