@@ -220,20 +220,22 @@ export default function Editor() {
                     </div> : null }
                 </div>
             </div>
-            <div className="m-4">
-                <ReactTagInput tags={tags} onChange={(newTags) => setTags(newTags)} />
-            </div>
-            <form>
-                <div class="form-group col-md mt-3" style={{display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", borderRadius:5}}>
-                <InputGroup size="sm">
-            <InputGroupAddon addonType="prepend"></InputGroupAddon>
-            <Input placeholder="Title" />
-            </InputGroup>
-                <br></br>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="snipNote" placeholder="Add notes here" onChange={handleNoteChange}></textarea>
+            <div>
+                <div className="m-4">
+                    <ReactTagInput tags={tags} onChange={(newTags) => setTags(newTags)} />
                 </div>
-            </form>
-            <Button color="primary">Submit</Button>
+                <form>
+                    <div class="form-group col-md mt-3" style={{display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", borderRadius:5}}>
+                    <InputGroup size="sm">
+                <InputGroupAddon addonType="prepend"></InputGroupAddon>
+                <Input placeholder="Title" />
+                </InputGroup>
+                    <br></br>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="snipNote" placeholder="Add notes here" onChange={handleNoteChange}></textarea>
+                    </div>
+                </form>
+                <Button color="primary">Submit</Button>
+            </div>
         </div>
     )
 }
