@@ -6,14 +6,16 @@ import {
   Label,
   Input,
   FormText,
-  Alert, Card, CardImg, CardText, CardBody,
+  Alert, Card, CustomInput, CardBody,
   CardTitle, CardSubtitle
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import UserContext from '../../utils/UserContext';
 import './signup.css'
+import AvatarOption from '../avatarOp'
 
 const Signup = () => {
+  const Avatars = [  "Plant","Frog", "Wizard","Burger","Guitar","Ghost","Couch","Drumstick","Bird","Bomb","Apple","Injured Person","Ninja","Person","Tie Person","Hippo","Dog","Home Slice","Cat"]
   const {
     userData,
     handleInputChange,
@@ -248,6 +250,13 @@ const Signup = () => {
           />
           <div className="errorStyle">{errorMessage['confirmPassword']}</div>
         </FormGroup>
+        <FormGroup>
+                
+              <CustomInput size="sm" type="select" name="avatar" onChange={handleInputChange}>
+            <option>Choose an Avatar</option>
+  {Avatars.map(item =><AvatarOption name={item}>{item}</AvatarOption>)}
+            </CustomInput>
+            </FormGroup>
         {/* if all fields are valid, allow the user to submit the form */}
         {validFirstName &&
         validLastName &&

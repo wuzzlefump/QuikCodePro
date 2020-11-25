@@ -20,6 +20,8 @@ const App = () => {
     email: '',
     username: '',
     password: '',
+    avatar:'',
+    bio:''
   });
 
  
@@ -34,6 +36,7 @@ const App = () => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserData({ ...userData, [name]: value });
+    console.log(userData)
   };
 
   const handleLogin = (event) => {
@@ -71,6 +74,7 @@ const App = () => {
         email: userData.email,
         username: userData.username,
         password: userData.password,
+        avatar: userData.avatar
       };
 
       if (userData.username && userData.password) {
