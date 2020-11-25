@@ -1,6 +1,8 @@
 import React, { useState, useRef } from "react";
 import ReactDOM from "react-dom";
 import ReactAce from 'react-ace';
+import ReactTagInput from "@pathofdev/react-tag-input";
+import "@pathofdev/react-tag-input/build/index.css";
 // import {split as SplitEditor} from 'react-ace';
 import brace from 'brace';
 // import "./modal.css";
@@ -129,6 +131,9 @@ export default function Editor() {
         document.execCommand('copy')
     }
 
+    //tag functionality
+    const [tags, setTags] = React.useState(["example tag"])
+
     return (
         <div>
             <div className="d-flex row justify-content-center">
@@ -215,7 +220,9 @@ export default function Editor() {
                     </div> : null }
                 </div>
             </div>
-            
+            <div className="m-4">
+                <ReactTagInput tags={tags} onChange={(newTags) => setTags(newTags)} />
+            </div>
             <form>
                 <div class="form-group col-md mt-3" style={{display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", borderRadius:5}}>
                 <InputGroup size="sm">
