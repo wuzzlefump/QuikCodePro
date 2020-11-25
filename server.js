@@ -39,7 +39,7 @@ app.use(routes);
 
 // Connect to the Mongo DB
 mongoose
-  .connect(process.env.MONGODB_URI || 'mongodb://localhost/react-auth-hooks', {
+  .connect(process.env.MONGODB_URI || 'mongodb://localhost/quik-code-pro', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
