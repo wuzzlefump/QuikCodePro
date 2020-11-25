@@ -26,24 +26,12 @@ export default function Editor() {
     const [textArea2, setTextArea2] = useState("")
     const [textArea3, setTextArea3] = useState("")
     const [snipNote, setNote]=useState("")
+    const [snipTitle, setTitle]=useState("")
 
-    const [snipData, setSnipData] = useState({
-        title: '',
-        userId: '',
-        public: '',
-        scriptType: Language1,
-        snip: textArea1,
-        scriptTypeTwo: Language2,
-        snipTwo: textArea2,
-        scriptTypeThree: Language3,
-        snipThree: textArea3,
-        keywords: '',
-        dateCreated: '',
-        comments: '',
-      });
+    const [snipData, setSnipData] = useState({});
     
       const saveFromEditor = (event) => {
-        event.preventDefault();
+        // event.preventDefault();
         try {
           const codeData = {
             title: snipData.title,
@@ -66,9 +54,13 @@ export default function Editor() {
       }
 
     function handleNoteChange(event){
-        const change= event.target.value;
-        setNote(change)
-        console.log(snipNote)
+        const noteChange= event.target.value;
+        setNote(noteChange)
+    }
+
+    function handleTitleChange(event){
+        const titleChange= event.target.value;
+        setTitle(titleChange)
     }
 
     // function saveSnip(){
@@ -133,6 +125,27 @@ export default function Editor() {
 
     //tag functionality
     const [tags, setTags] = React.useState(["example tag"])
+    //creating the array of tags to be added to snipData
+    const tagArray = tags.map(tag => tag);
+
+    function TESTFUNCTION() {
+        setSnipData({
+            title: snipTitle,
+            userId: '',
+            public: '',
+            scriptType: Language1,
+            snip: textArea1,
+            scriptTypeTwo: Language2,
+            snipTwo: textArea2,
+            scriptTypeThree: Language3,
+            snipThree: textArea3,
+            keywords: tagArray,
+            dateCreated: '',
+            comments: snipNote
+        })
+        saveFromEditor();
+    }
+
 
     return (
         <div>
@@ -207,7 +220,7 @@ export default function Editor() {
                             <textarea  ref={textAreaRef3} value={textArea3} className="textArea"></textarea>
                             <Button color="primary" onClick={toClipBoard3} className="float-right m-1">Copy Code</Button>
                             <label className="mb-0 mt-3 ml-1" for="formGroupExampleSearch">Language</label>
-                            <select class="form-control" id="languageSelect3" onChange={languageSelect3}>
+                            <select className="form-control" id="languageSelect3" onChange={languageSelect3}>
                                 <option value="html">HTML</option>
                                 <option value="css">CSS</option>
                                 <option value="handlebars">Handlebars</option>
@@ -221,6 +234,13 @@ export default function Editor() {
                 </div>
             </div>
             <div>
+                <div>
+                <label className="mb-0 mt-3 ml-5" for="formGroupExampleSearch">Visibility</label>
+                    <select className="form-control ml-4 mr-4">
+                        <option value="private">Private</option> {/* might have to change value to true or false I think */}
+                        <option value="public">Public</option>
+                    </select>
+                </div>
                 <div className="m-4">
                     <ReactTagInput tags={tags} onChange={(newTags) => setTags(newTags)} />
                 </div>
@@ -228,13 +248,13 @@ export default function Editor() {
                     <div class="form-group col-md mt-3" style={{display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", borderRadius:5}}>
                     <InputGroup size="sm">
                 <InputGroupAddon addonType="prepend"></InputGroupAddon>
-                <Input placeholder="Title" />
+                <Input placeholder="Title" onChange={handleTitleChange}/>
                 </InputGroup>
                     <br></br>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="snipNote" placeholder="Add notes here" onChange={handleNoteChange}></textarea>
                     </div>
                 </form>
-                <Button color="primary">Submit</Button>
+                <Button color="primary" onClick={TESTFUNCTION}>Submit</Button>
             </div>
         </div>
     )
