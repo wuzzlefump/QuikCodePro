@@ -18,8 +18,8 @@ import codeAPI from "../utils/codeAPI";
 
 export default function Editor() {
     const [Language1, setLanguage1] = useState("html");
-    const [Language2, setLanguage2] = useState("html");
-    const [Language3, setLanguage3] = useState("html");
+    const [Language2, setLanguage2] = useState("");
+    const [Language3, setLanguage3] = useState("");
     const [showResults2, setShowResults2] = useState(false);
     const [showResults3, setShowResults3] = useState(false);
     const [textArea1, setTextArea1] = useState("")
@@ -37,12 +37,12 @@ export default function Editor() {
             title: snipData.title,
             userId: snipData.userId,
             public: snipData.public,
-            scriptType: snipData.codeType,
+            scriptType: snipData.scriptType,
             snip: snipData.snip,
             scriptTypeTwo: snipData.scriptTypeTwo,
-            snipTwo: snipData.scriptTypeTwo,
-            scriptTypeThree: snipData.scriptTypeTwo,
-            snipThree: snipData.scriptTypeTwo,
+            snipTwo: snipData.snipTwo,
+            scriptTypeThree: snipData.scriptTypeThree,
+            snipThree: snipData.snipThree,
             keywords: snipData.keywords,
             dateCreated: snipData.dateCreated,
             comments: snipData.comments
@@ -69,15 +69,14 @@ export default function Editor() {
 
     function languageSelect1() {
         setLanguage1($("#languageSelect1").val());
-        console.log(Language3)
       }
     function languageSelect2() {
         setLanguage2($("#languageSelect2").val());
-        console.log(Language3)
+
     }
     function languageSelect3() {
         setLanguage3($("#languageSelect3").val());
-        console.log(Language3)
+
     }
     function addEditor1() {
         setShowResults2(false)
