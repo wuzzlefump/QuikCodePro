@@ -18,7 +18,6 @@ function NewSnip(){
         {/* keywords input goes here */}
         {/* savecode */}
     </Jumbotron>
-    <FooterPage/>
     </>):(<LogInBro/>)}</>
     )
 
