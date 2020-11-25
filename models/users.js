@@ -8,26 +8,31 @@ const usersSchema = new Schema({
     type: String,
     unique: false,
     required: true,
+    trim: true,
   },
   lastname: {
     type: String,
     unique: false,
     required: true,
+    trim: true,
   },
   email: {
     type: String,
     unique: true,
     required: true,
+    trim: true,
   },
   username: {
     type: String,
     unique: true,
     required: true,
+    trim: true,
   },
   password: {
     type: String,
     unique: false,
     required: true,
+    trim: true,
   },
   avatar: { 
     type: String, 
