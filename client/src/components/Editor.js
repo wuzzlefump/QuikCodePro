@@ -10,7 +10,7 @@ import 'brace/mode/javascript';
 import 'brace/mode/css';
 import 'brace/mode/html';
 import 'brace/theme/monokai';
-import {Button} from 'reactstrap'
+import {Button,Input, InputGroup,InputGroupAddon}from 'reactstrap'
 import './Editor.css'
 import $ from "jquery";
 import codeAPI from "../utils/codeAPI";
@@ -137,15 +137,15 @@ export default function Editor() {
     return (
         <div>
             <div className="d-flex row justify-content-center">
-                <Button onClick={addEditor1} className="mb-3 mr-2">One Editor</Button>
-                <Button onClick={addEditor2} className="mb-3 mr-2">Two Editors</Button>
-                <Button onClick={addEditor3} className="mb-3">Three Editors</Button>
+                <Button color="primary" onClick={addEditor1} className="mb-3 mr-2">One Editor</Button>
+                <Button color="primary" onClick={addEditor2} className="mb-3 mr-2">Two Editors</Button>
+                <Button color="primary" onClick={addEditor3} className="mb-3">Three Editors</Button>
             </div>
             <div className="d-flex row justify-content-center">
                 <div className="editor mr-5">
                     <ReactAce ref={ace1} onChange={toTextArea1} mode={Language1} theme="monokai" setReadOnly={false} value={textArea1}/>
                     <textarea  ref={textAreaRef1} value={textArea1} className="textArea"></textarea>
-                    <Button onClick={toClipBoard1} className="float-right m-1">Copy Code</Button> 
+                    <Button color="primary" onClick={toClipBoard1} className="float-right m-1">Copy Code</Button> 
                     <label className="mb-0 mt-3 ml-1" for="formGroupExampleSearch">Language</label>
                     <select class="form-control" id="languageSelect1" onChange={languageSelect1}>
                         <option value="html">HTML</option>
@@ -164,7 +164,7 @@ export default function Editor() {
                     </button> */}
                     <ReactAce ref={ace2} onChange={toTextArea2} mode={Language2} theme="monokai" setReadOnly={false} value={textArea2}/>
                     <textarea  ref={textAreaRef2} value={textArea2} className="textArea"></textarea>
-                    <Button onClick={toClipBoard2} className="float-right m-1">Copy Code</Button>
+                    <Button color="primary" onClick={toClipBoard2} className="float-right m-1">Copy Code</Button>
                     <label className="mb-0 mt-3 ml-1" for="formGroupExampleSearch">Language</label>
                     <select class="form-control" id="languageSelect2" onChange={languageSelect2}>
                         <option value="html">HTML</option>
@@ -186,7 +186,7 @@ export default function Editor() {
                             </button> */}
                             <ReactAce ref={ace2} onChange={toTextArea2} mode={Language2} theme="monokai" setReadOnly={false} value={textArea2}/>
                             <textarea  ref={textAreaRef2} value={textArea2} className="textArea"></textarea>
-                            <Button onClick={toClipBoard2} className="float-right m-1">Copy Code</Button>
+                            <Button color="primary" onClick={toClipBoard2} className="float-right m-1">Copy Code</Button>
                             <label className="mb-0 mt-3 ml-1" for="formGroupExampleSearch">Language</label>
                             <select class="form-control" id="languageSelect2" onChange={languageSelect2}>
                                 <option value="html">HTML</option>
@@ -205,7 +205,7 @@ export default function Editor() {
                             </button> */}
                             <ReactAce ref={ace3} onChange={toTextArea3} mode={Language3} theme="monokai" setReadOnly={false} value={textArea3}/>
                             <textarea  ref={textAreaRef3} value={textArea3} className="textArea"></textarea>
-                            <Button onClick={toClipBoard3} className="float-right m-1">Copy Code</Button>
+                            <Button color="primary" onClick={toClipBoard3} className="float-right m-1">Copy Code</Button>
                             <label className="mb-0 mt-3 ml-1" for="formGroupExampleSearch">Language</label>
                             <select class="form-control" id="languageSelect3" onChange={languageSelect3}>
                                 <option value="html">HTML</option>
@@ -224,10 +224,16 @@ export default function Editor() {
                 <ReactTagInput tags={tags} onChange={(newTags) => setTags(newTags)} />
             </div>
             <form>
-                <div class="form-group col-md mt-3">
+                <div class="form-group col-md mt-3" style={{display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", borderRadius:5}}>
+                <InputGroup size="sm">
+            <InputGroupAddon addonType="prepend"></InputGroupAddon>
+            <Input placeholder="Title" />
+            </InputGroup>
+                <br></br>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="snipNote" placeholder="Add notes here" onChange={handleNoteChange}></textarea>
                 </div>
             </form>
+            <Button color="primary">Submit</Button>
         </div>
     )
 }

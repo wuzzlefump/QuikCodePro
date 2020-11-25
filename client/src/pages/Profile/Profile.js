@@ -246,7 +246,6 @@ setCurrentUser(user)
         </Row>
       </Container>
       <br></br>
-      <FooterPage />
 
     </>) : (
        <Login></Login>
