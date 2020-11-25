@@ -133,6 +133,15 @@ const Profile = () => {
   const [currentUser,setCurrentUser] =useState()
   const [avatarState, setAvatar] = useState()
 
+  function initialAvatar(avatar){
+const currentAvatar= avatar
+Avatars.forEach(item => {
+  if (currentAvatar === item.name) {
+    setAvatar(item.icon)
+  }
+})
+  }
+
   function avatarInputChange(event) {
     const currentAvatar = event.target.value;
     Avatars.forEach(item => {
@@ -175,6 +184,9 @@ const Profile = () => {
  useEffect(()=>{
 console.log(user)
 setCurrentUser(user)
+if(user !== null){
+  initialAvatar(user.avatar)
+}
 },[loggedIn,user])
   return (<>
     {loggedIn ? (<>
@@ -215,7 +227,7 @@ setCurrentUser(user)
               <FormGroup>
                 
               <CustomInput size="sm" type="select" name="avatar" onChange={avatarInputChange}>
-            <option>Choose an Avatar</option>
+            <option>{user.avatar}</option>
             {Avatars.map(item =><AvatarOption name={item.name}></AvatarOption>)}
             </CustomInput>
             </FormGroup>

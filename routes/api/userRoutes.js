@@ -39,6 +39,7 @@ router.post('/signup', (req, res, next) => {
             email: req.body.email,
             username: req.body.username,
             password: req.body.password,
+            avatar: req.body.avatar
           });
           newUser.password = newUser.generateHash(req.body.password);
           newUser.save((error2) => {
