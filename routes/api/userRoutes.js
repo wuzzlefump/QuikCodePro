@@ -39,7 +39,8 @@ router.post('/signup', (req, res, next) => {
             email: req.body.email,
             username: req.body.username,
             password: req.body.password,
-            avatar: req.body.avatar
+            avatar: req.body.avatar,
+            bio: req.body.bio
           });
           newUser.password = newUser.generateHash(req.body.password);
           newUser.save((error2) => {
@@ -54,6 +55,13 @@ router.post('/signup', (req, res, next) => {
     console.log('Issue searching db for user ', error);
   });
 });
+
+router.get('/',(req,res,next)=>{
+  db.User.find({},(err,users)=>{
+    if(err) throw err;
+    res.json(users)
+  })
+})
 
 router.get('/unauthorized', (req, res, next) => {
   res.json({
