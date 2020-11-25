@@ -28,6 +28,7 @@ import { faUserTie } from '@fortawesome/free-solid-svg-icons'
 import AvatarOption from '../../components/avatarOp'
 import FooterPage from '../../components/FooterPage'
 import Login from '../../components/Login/Login'
+import Axios from 'axios';
 
 
 const Avatars = [
@@ -176,7 +177,17 @@ Avatars.forEach(item => {
   }
 
   const privateSearchCode = () => { }
-  const userSearch = () => { }
+  const userSearch = () => {Axios.get("/api/users/").then(data=>{
+    console.log(data.data)
+    let x = []
+    data.data.forEach(item=>{
+      if(item.username.toLowerCase().includes(userSearchState.search.toLowerCase())){
+      x.push(item)
+     }
+    })
+    setUserList(x)
+    console.log(x)
+  }).catch(err=>console.log(err)) }
   const updateUser = () => { }
 
   const { user, loggedIn, logout } = useContext(UserContext);
@@ -187,7 +198,7 @@ setCurrentUser(user)
 if(user !== null){
   initialAvatar(user.avatar)
 }
-},[loggedIn,user])
+},[loggedIn,user,userList])
   return (<>
     {loggedIn ? (<>
 
@@ -252,7 +263,7 @@ if(user !== null){
 
               <Button color="primary" onClick={userSearch}>Search</Button>
               <br />
-              {follow.map(item => <><FollowModal name={item.name} bio={item.skills} /> <br /></>)}
+              {userList.map(item => <><FollowModal name={item.username} bio={item.bio} /> <br /></>)}
             </Jumbotron>
           </Col>
         </Row>

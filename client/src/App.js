@@ -74,7 +74,8 @@ const App = () => {
         email: userData.email,
         username: userData.username,
         password: userData.password,
-        avatar: userData.avatar
+        avatar: userData.avatar,
+        bio:'bio'
       };
 
       if (userData.username && userData.password) {
