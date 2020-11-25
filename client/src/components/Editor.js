@@ -11,6 +11,7 @@ import 'brace/theme/monokai';
 import {Button} from 'reactstrap'
 import './Editor.css'
 import $ from "jquery";
+import codeAPI from "../utils/codeAPI";
 
 
 export default function Editor() {
@@ -24,15 +25,53 @@ export default function Editor() {
     const [textArea3, setTextArea3] = useState("")
     const [snipNote, setNote]=useState("")
 
+    const [snipData, setSnipData] = useState({
+        title: '',
+        userId: '',
+        public: '',
+        scriptType: '',
+        snip: '',
+        scriptTypeTwo: '',
+        snipTwo: '',
+        scriptTypeThree: '',
+        snipThree: '',
+        keywords: '',
+        dateCreated: '',
+        comments: '',
+      });
+    
+      const saveFromEditor = (event) => {
+        event.preventDefault();
+        try {
+          const codeData = {
+            title: snipData.title,
+            userId: snipData.userId,
+            public: snipData.public,
+            scriptType: snipData.codeType,
+            snip: snipData.snip,
+            scriptTypeTwo: snipData.scriptTypeTwo,
+            snipTwo: snipData.scriptTypeTwo,
+            scriptTypeThree: snipData.scriptTypeTwo,
+            snipThree: snipData.scriptTypeTwo,
+            keywords: snipData.keywords,
+            dateCreated: snipData.dateCreated,
+            comments: snipData.comments
+          };
+          codeAPI.saveSnip(codeData)
+        } catch (error) {
+          console.log('App -> error', error);
+        }
+      }
+
     function handleNoteChange(event){
         const change= event.target.value;
         setNote(change)
         console.log(snipNote)
     }
 
-    function saveSnip(){
-        //post call goes
-    }
+    // function saveSnip(){
+    //     //post call goes
+    // }
 
     function languageSelect1() {
         setLanguage1($("#languageSelect1").val());

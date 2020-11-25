@@ -12,9 +12,9 @@ router
   .put(codeController.update)
   .delete(codeController.remove);
 
-router
-  .route("codes/:keywords")
-  .get(codeController.find)
+// router
+//   // .route("/codes/:keywords")
+//   .get(codeController.find)
   
 
 module.exports = router;
