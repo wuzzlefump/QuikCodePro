@@ -27,25 +27,23 @@ export default function Editor() {
     const [textArea3, setTextArea3] = useState("")
     const [snipNote, setNote]=useState("")
     const [snipTitle, setTitle]=useState("")
-
-    const [snipData, setSnipData] = useState({});
     
       const saveFromEditor = (event) => {
         // event.preventDefault();
         try {
           const codeData = {
-            title: snipData.title,
-            userId: snipData.userId,
-            public: snipData.public,
-            scriptType: snipData.scriptType,
-            snip: snipData.snip,
-            scriptTypeTwo: snipData.scriptTypeTwo,
-            snipTwo: snipData.snipTwo,
-            scriptTypeThree: snipData.scriptTypeThree,
-            snipThree: snipData.snipThree,
-            keywords: snipData.keywords,
-            dateCreated: snipData.dateCreated,
-            comments: snipData.comments
+            title: snipTitle,
+            userId: '',
+            public: '',
+            scriptType: Language1,
+            snip: textArea1,
+            scriptTypeTwo: Language2,
+            snipTwo: textArea2,
+            scriptTypeThree: Language3,
+            snipThree: textArea3,
+            keywords: tagArray,
+            dateCreated: '',
+            comments: snipNote
           };
           codeAPI.saveSnip(codeData)
         } catch (error) {
@@ -126,24 +124,6 @@ export default function Editor() {
     const [tags, setTags] = React.useState(["example tag"])
     //creating the array of tags to be added to snipData
     const tagArray = tags.map(tag => tag);
-
-    function TESTFUNCTION() {
-        setSnipData({
-            title: snipTitle,
-            userId: '',
-            public: '',
-            scriptType: Language1,
-            snip: textArea1,
-            scriptTypeTwo: Language2,
-            snipTwo: textArea2,
-            scriptTypeThree: Language3,
-            snipThree: textArea3,
-            keywords: tagArray,
-            dateCreated: '',
-            comments: snipNote
-        })
-        saveFromEditor();
-    }
 
 
     return (
@@ -253,7 +233,7 @@ export default function Editor() {
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="snipNote" placeholder="Add notes here" onChange={handleNoteChange}></textarea>
                     </div>
                 </form>
-                <Button color="primary" onClick={TESTFUNCTION}>Submit</Button>
+                <Button color="primary" onClick={saveFromEditor}>Submit</Button>
             </div>
         </div>
     )
