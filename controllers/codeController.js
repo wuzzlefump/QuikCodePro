@@ -23,10 +23,18 @@ module.exports = {
 //       .catch(err => res.status(422).json(err));
 //   },
   create: function(req, res) {
+    console.log(req.body)
     db.Codes
-      .create(req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+      .create(req.body, (error,result)=>{
+        if(error){
+          res.json(error)
+        }else{
+          console.log(result)
+          res.json(result)
+        }
+      })
+      // .then(dbModel => res.json(dbModel))
+      // .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
     db.Codes
