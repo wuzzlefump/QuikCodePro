@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import ReactDOM from "react-dom";
 import ReactAce from 'react-ace';
 import ReactTagInput from "@pathofdev/react-tag-input";
@@ -14,6 +14,7 @@ import {Button,Input, InputGroup,InputGroupAddon}from 'reactstrap'
 import './Editor.css'
 import $ from "jquery";
 import codeAPI from "../utils/codeAPI";
+import UserContext from '../utils/UserContext';
 
 
 export default function Editor() {
@@ -33,16 +34,16 @@ export default function Editor() {
         try {
           const codeData = {
             title: snipTitle,
-            userId: '',
-            public: '',
+            userId: user._id,
+            public: true,
             scriptType: Language1,
             snip: textArea1,
             scriptTypeTwo: Language2,
             snipTwo: textArea2,
             scriptTypeThree: Language3,
             snipThree: textArea3,
-            keywords: tagArray,
-            dateCreated: '',
+            keywords: tagArray.join(","),
+            updated:Date.now,
             comments: snipNote
           };
           codeAPI.saveSnip(codeData)
@@ -124,7 +125,7 @@ export default function Editor() {
     const [tags, setTags] = React.useState(["example tag"])
     //creating the array of tags to be added to snipData
     const tagArray = tags.map(tag => tag);
-
+    const { user } = useContext(UserContext);
 
     return (
         <div>
