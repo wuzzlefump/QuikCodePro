@@ -88,4 +88,14 @@ router.get('/admin', authMiddleware.isAdmin, (req, res, next) => {
   });
 });
 
+router.put('/profile/update', (req,res,)=>{
+  let param = req.body
+db.User.findByIdAndUpdate({_id:param._id}, {$set:{avatar:param.avatar, bio:param.bio}}).then(data=>{
+  console.log(data)
+  res.json(data)
+}).catch(err=>{
+  res.json(err)
+})
+})
+
 module.exports = router;
