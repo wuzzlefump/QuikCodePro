@@ -177,6 +177,7 @@ Avatars.forEach(item => {
   }
 
   const privateSearchCode = () => { }
+
   const userSearch = () => {Axios.get("/api/users/").then(data=>{
     console.log(data.data)
     let x = []
@@ -188,7 +189,10 @@ Avatars.forEach(item => {
     setUserList(x)
     console.log(x)
   }).catch(err=>console.log(err)) }
-  const updateUser = () => { }
+
+  const updateUser = () => {Axios.put('/api/users/profile/update',{_id:user._id, avatar:userFormState.avatar, bio:userFormState.bio}).then(data=>{
+    console.log(data)
+  })}
 
   const { user, loggedIn, logout } = useContext(UserContext);
 
@@ -244,9 +248,9 @@ if(user !== null){
             </FormGroup>
               <hr />
             <h4>{user.username}</h4>
-              <textarea style={{ width: "80%" }} rows="7" name="bio" onChange={handleUserFormInput} placeholder="Write Your Bio Here"></textarea>
+              <textarea style={{ width: "80%" }} rows="7" name="bio" onChange={handleUserFormInput} placeholder="Write Your Bio Here" value={user.bio}></textarea>
               <br />
-              <Button primary="primary" onClick={updateUser}>Update</Button>
+              <Button color="primary" onClick={updateUser}>Update</Button>
             </Jumbotron>
 
           </Col>
