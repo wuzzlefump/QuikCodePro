@@ -46,7 +46,7 @@ const Home = () => {
     let results = data.data
     let arr = []
     results.forEach(item=> {
-      if(item.public === true && item.keywords.include(globalInputState.keywords) && item.scriptType.toUpperCase() === globalInputState.language){
+      if(item.public === true && item.keywords.includes(globalInputState.keywords) && item.scriptType.toUpperCase() === globalInputState.language){
         arr.push(item)
       }
     })
