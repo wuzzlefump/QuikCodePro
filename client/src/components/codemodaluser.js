@@ -22,7 +22,7 @@ function AceModelUser({name, title, snip, sniptwo, props, language, languagetwo,
   
     const closeBtn = <button className="close" onClick={toggle}>&times;</button>;
 
-    const [snipState,setSnip] =useState({})
+    const [snipState,setSnip] =useState({});
 
     function handleSnipInput(event){
       const { name, value } = event.target;

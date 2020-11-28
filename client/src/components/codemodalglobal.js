@@ -25,6 +25,14 @@ function AceModelGlobal({ name, title, note, author, snip }) {
 
   const textAreaRef1 = useRef(null);
 
+  const [snipState, setSnip] =useState({});
+
+  function handleSnipInput(event){
+    const { name, value } = event.target;
+    setSnip({...snipState, [name]: value })
+    console.log(snipState)
+  }
+
   function copyClipboard() {
     textAreaRef1.current.select();
     document.execCommand('copy');
