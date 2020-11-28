@@ -11,7 +11,7 @@ function FollowModal({name, bio}){
 
     const followUser =() => {}
     return (   
-       <div>
+      <div>
       <Button color="primary" onClick={toggle}>{name}</Button>
       <Modal isOpen={modal} toggle={toggle} >
     <ModalHeader toggle={toggle} charCode="X">{name}</ModalHeader>

@@ -21,3 +21,6 @@ router.route('/follow').post((req, res) => {
     .catch(err => res.status(400).json("Error: " + err));
 });
 
+router.route('/follow/:id').get((req, res) => {
+    Followers.findById(req.params.id).then(exercise => res.json)
+})
