@@ -168,7 +168,7 @@ const Signup = () => {
        
         <CardBody>
 
-        <h2 className="loginTitle text-white">Sign Up</h2>
+        <h2 className="loginTitle text-white text-left">Sign Up</h2>
       {failureMessage ? <Alert type="danger">{failureMessage}</Alert> : <p></p>}
       <Form>
         <FormGroup>
@@ -272,8 +272,8 @@ const Signup = () => {
             Sign Up
           </Button>
         )}
-        <p className="signupLink text-white">
-          <Link className="text-white" to="/login">Already have an account? Log in here</Link>
+        <p className="signupLink text-white text-left">
+          <Link className="text-white " to="/login">Already have an account? Log in here</Link>
         </p>
       </Form>
       </CardBody>
