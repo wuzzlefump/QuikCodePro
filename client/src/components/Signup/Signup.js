@@ -168,7 +168,7 @@ const Signup = () => {
        
         <CardBody>
 
-        <CardTitle className= "text-white">Sign up</CardTitle>
+        <CardTitle className= "text-white">Sign Up</CardTitle>
       {failureMessage ? <Alert type="danger">{failureMessage}</Alert> : <p></p>}
       <Form>
         <FormGroup>
@@ -265,11 +265,11 @@ const Signup = () => {
         validPassword &&
         isConfirmed ? (
           <Button onClick={handleSignup} color="success" block>
-            Signup
+            Sign Up
           </Button>
         ) : (
           <Button className = "text-white" onClick={handleSignup} color="primary" block disabled>
-            Signup
+            Sign Up
           </Button>
         )}
         <p className="signupLink text-white">
