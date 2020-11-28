@@ -25,6 +25,7 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, props, language, l
     const [snipState,setSnip] =useState({})
     const [showEditor2, setEditor2] =useState(false)
     const [showEditor3, setEditor3] =useState(false)
+
     useEffect(() => {
       if (sniptwo.length > 0) {
         setEditor2(true)
@@ -78,17 +79,18 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, props, language, l
 
    <div>
     <Button color="primary" onClick={toggle}>{name}</Button>
-    <Modal isOpen={modal} toggle={toggle} >
+    <Modal className ="mx-auto " isOpen={modal} toggle={toggle} >
       <ModalHeader toggle={toggle} close={closeBtn}>{name}</ModalHeader>
-      <ModalBody>
+      <ModalBody className ="">
 
         {/* this is for the first editor */}
         
-          <div>
-            <div className="editor mb-2">
-              <ReactAce name="editorOne" mode={Language} theme="monokai" setReadOnly={false} width={465} onChange={handleSnipInput} maxLines={Infinity} value={snip}/>
+          <div className = "card d-flex px-3 pb-3 mb-3 bg-secondary">
+          <h4 className = "text-center text-white mt-2">Editor One</h4>
+            <div className="editor d-flex my-2">
+              <ReactAce name="editorOne" className="d-flex" mode={Language} theme="monokai" setReadOnly={false} width={465} onChange={handleSnipInput} maxLines={Infinity} value={snip}/>
               <textarea  ref={textAreaRef1} value={snip} className="textArea"></textarea>
-              <Button onClick={copyClipboard1} className="float-right m-1">Copy Code</Button>
+              
             </div>
               <Input type="select" name="languageOne" value={language} id="exampleSelectMulti"  onChange={languageSelect}>
                   <option value="html">HTML</option>
@@ -97,51 +99,46 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, props, language, l
                   <option value="markdown">Mark Down</option>
                   <option value="handlebars">Handlebars</option>
               </Input>
-          </div>
+              <Button color="primary" onClick={copyClipboard1} className="btn btn-primary mx-4 mt-2 ">Copy Code</Button>
+          </div >
         {/* this is where the first editor ends */}
 
         {/* this is where the second editor begins */}
         { showEditor2 ?
-          <div>
-            <div className="d-flex">
-              <div className="editor mt-3 mb-2">
+          <div className="card d-flex px-3 pb-3 my-3 bg-secondary">
+            <h4 className = "text-center text-white mt-2">Editor Two</h4>
+              <div className="editor d-flex my-2">
                   <ReactAce name="editorTwo" mode={LanguageTwo} theme="monokai" setReadOnly={false} width={465} maxLines={Infinity} value={sniptwo}  onChange={handleSnipInput}/>
                   <textarea  ref={textAreaRef2} value={sniptwo} className="textArea"></textarea>
-                    <Button onClick={copyClipboard2} className="float-right m-1">Copy Code</Button>
+                    
               </div>
-            </div>
-            <InputGroup size="sm">
-            <InputGroupAddon addonType="prepend"></InputGroupAddon>
-            <Input placeholder="Title" value={name} onChange={handleSnipInput}/>
-            </InputGroup>
-            <br></br>
+            
+            
             <Input name="languageTwo" value={languagetwo} type="select" id="languageSelect" onChange={languageSelect}>
                 <option value="html">HTML</option>
                 <option value="javascript">Javascript</option>
                 <option value="css">CSS</option>
                 <option value="markdown">Mark Down</option>
                 <option value="handlebars">Handlebars</option>
+
             </Input>
+            <Button color="primary" onClick={copyClipboard2} className="primary mx-4 mt-2 ">Copy Code</Button>
           </div>
         : null }
         {/* this is where the second editor ends */}
-          <br />
+          
         
         {/* this is where the third editor begins */}
         { showEditor3 ?
-          <div>
-            <div className="d-flex">
-              <div className="editor mt-3 mb-2">
+          <div className="card d-flex px-3 pb-3 my-3 bg-secondary">
+            <h4 className = "text-center text-white mt-2">Editor Three</h4>
+              <div className="editor d-flex my-2">
                   <ReactAce name="editorThree" mode={LanguageThree} theme="monokai" setReadOnly={false} width={465} maxLines={Infinity} value={snipthree}  onChange={handleSnipInput}/>
                   <textarea  ref={textAreaRef3} value={snipthree} className="textArea"></textarea>
-                    <Button onClick={copyClipboard3} className="float-right m-1">Copy Code</Button>
+                    
               </div>
-            </div>
-            <InputGroup size="sm">
-            <InputGroupAddon addonType="prepend"></InputGroupAddon>
-            <Input placeholder="Title" value={name} onChange={handleSnipInput}/>
-            </InputGroup>
-            <br></br>
+            
+            
             <Input name="languageThree" value={languagethree} type="select" id="languageSelect" onChange={languageSelect}>
                 <option value="html">HTML</option>
                 <option value="javascript">Javascript</option>
@@ -149,13 +146,17 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, props, language, l
                 <option value="markdown">Mark Down</option>
                 <option value="handlebars">Handlebars</option>
             </Input>
+            <Button color="primary" onClick={copyClipboard3} className="btn btn-primary mx-4 mt-2" >Copy Code</Button>
           </div>
         : null }
         {/* this is where the third editor ends */}
 
-      
-
-
+        <h6 className="mt-2 ">Title</h6>
+        <InputGroup size="sm" className="rounded mb-2 mt-1">
+            <InputGroupAddon addonType="prepend"></InputGroupAddon>
+            <Input className="rounded" placeholder="Title" value={name} onChange={handleSnipInput}/>
+            </InputGroup>
+            <h6 className="mt-2 ">Sharing Preference</h6>
           <Input name="share" size="sm" type="select" onChange={handleSnipInput}>
               <option>Sharing Preferences</option>
               <option>Private</option>
@@ -163,7 +164,7 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, props, language, l
               <option>Followers only</option>
 
           </Input>
-          <br></br>
+          <h6 className="mt-2 ">Comments</h6>
           <Input type="textarea" value={comments} name="Notes" id="exampleText" onChange={handleSnipInput} placeholder="notes" />
       </ModalBody>
       <ModalFooter style={{ display:"flex",justifyContent:"space-between"}}>
