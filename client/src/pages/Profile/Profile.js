@@ -177,11 +177,13 @@ keywords:""})
 
   const privateSearchCode = () => {Axios.get("/api/codes/findall").then(data=>{
     console.log(data.data)
+    console.log("TEST", data.data)
     let results = data.data
     let arr =[]
     results.forEach(item=>{
-      if(item.userId=== user._id  ){
+      if(item.userId=== user._id){
         arr.push(item)
+        console.log("TEST2", item)
       }
     })
     console.log(arr)
@@ -242,7 +244,7 @@ if(user !== null){
               </InputGroup>
               <Button color="primary" onClick={privateSearchCode}>Search</Button>
               <br />
-              {snipList.map(item => <><AceModalUser name={item.title} snip={item.snip} sniptwo={item.snipTwo} snipthree={item.snipThree} language={item.scriptType} languagetwo={item.scriptTypeTwo} languagethree={item.scriptTypeThree} updated={item.updated} userId={item.userId} _id={item._id}/><br /></>)}
+              {snipList.map(item => <><AceModalUser name={item.title} snip={item.snip} sniptwo={item.snipTwo} snipthree={item.snipThree} language={item.scriptType} languagetwo={item.scriptTypeTwo} languagethree={item.scriptTypeThree} updated={item.updated} userId={item.userId} _id={item._id} comments={item.comments}/><br /></>)}
             </Jumbotron>
           </Col>
           <Col sm={12} md={6}>
