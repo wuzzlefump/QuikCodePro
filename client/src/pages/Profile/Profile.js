@@ -161,6 +161,7 @@ keywords:""})
   function handlePrivateInput(event) {
     const { name, value } = event.target;
     setPrivateInputState({ ...privateInputState, [name]: value })
+    console.log(privateInputState)
   }
 
   const handleUserInput = (event) => {
@@ -181,7 +182,9 @@ keywords:""})
     let results = data.data
     let arr =[]
     results.forEach(item=>{
-      if(item.userId=== user._id){
+
+      if(item.userId=== user._id && item.keywords.includes(privateInputState.keywords) && item.scriptType.toUpperCase()===privateInputState.language){
+
         arr.push(item)
         console.log("TEST2", item)
       }

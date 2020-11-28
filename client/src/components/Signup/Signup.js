@@ -159,7 +159,7 @@ const Signup = () => {
   };
 
   return (
-    <div style={{display:"flex", flexDirection:"column", alignItems: "center", justifyContent: "center", marginTop: "10%",opacity:"0.8"}}> <Card
+    <div style={{display:"flex", flexDirection:"column", alignItems: "left", justifyContent: "left", marginTop: "10%",opacity:"0.8"}}> <Card
         bg="secondary"
         text='white'
         style={{ width: '30rem' }}
@@ -168,7 +168,7 @@ const Signup = () => {
        
         <CardBody>
 
-        <CardTitle className= "text-white">Sign Up</CardTitle>
+        <h2 className="loginTitle text-white">Sign Up</h2>
       {failureMessage ? <Alert type="danger">{failureMessage}</Alert> : <p></p>}
       <Form>
         <FormGroup>
@@ -273,7 +273,7 @@ const Signup = () => {
           </Button>
         )}
         <p className="signupLink text-white">
-          <Link className="text-white" to="/login">already have an account? Sign in here</Link>
+          <Link className="text-white" to="/login">Already have an account? Log in here</Link>
         </p>
       </Form>
       </CardBody>
