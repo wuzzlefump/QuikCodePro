@@ -103,15 +103,17 @@ export default function Editor() {
     }
 
     function clearCode(){
-        // $(".textArea").val("");
-        setLanguage1("html")
-        setLanguage2("")
-        setLanguage3("")
-        // setTags("");
-        setTitle("");
-        setNote("")
-        addEditor1();
-      }
+            ace1.current.editor.session.setValue("")
+            setLanguage1("html")
+            setLanguage2("")
+            setLanguage3("")
+            setTags(["example tag"]);
+            tagArray =[]
+            console.log(tagArray)
+            setTitle("");
+            setNote("")
+            addEditor1();
+        }
 
     const ace1 = useRef(null);
     const ace2 = useRef(null);
