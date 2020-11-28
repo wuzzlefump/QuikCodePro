@@ -42,9 +42,9 @@ const Login = () => {
         </FormGroup>
         <Button onClick={handleLogin} color="primary" block>
           Log In
-        </Button>
+        </Button><br></br>
         <p className="signupLink">
-          <Link className="text-white" to="/signup">dont have an account? Sign up here</Link>
+          <Link className="text-white" to="/signup">Need an account? Sign up here</Link>
         </p>
       </Form>
       </CardBody>
