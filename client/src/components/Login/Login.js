@@ -15,7 +15,7 @@ const Login = () => {
       >
        
         <CardBody>
-      <h2 className="loginTitle text-white">Login</h2>
+      <h2 className="loginTitle text-white">Log In</h2>
       <hr />
       <Form>
         <FormGroup>
@@ -41,7 +41,7 @@ const Login = () => {
           />
         </FormGroup>
         <Button onClick={handleLogin} color="primary" block>
-          Login
+          Log In
         </Button>
         <p className="signupLink">
           <Link className="text-white" to="/signup">dont have an account? Sign up here</Link>
