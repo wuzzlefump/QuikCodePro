@@ -14,7 +14,7 @@ import 'brace/theme/monokai';
 import $ from "jquery";
 
 
-function AceModelUser({name, title, snip, sniptwo, props}){
+function AceModelUser({name, title, snip, sniptwo, props, language, languagetwo, languagethree, comments}){
   
     const [modal, setModal] = useState(false);
   
@@ -22,7 +22,7 @@ function AceModelUser({name, title, snip, sniptwo, props}){
   
     const closeBtn = <button className="close" onClick={toggle}>&times;</button>;
 
-    const [snipState,setSnip] =useState({})
+    const [snipState,setSnip] =useState({});
 
     function handleSnipInput(event){
       const { name, value } = event.target;
@@ -31,8 +31,9 @@ function AceModelUser({name, title, snip, sniptwo, props}){
     }
 
     const updateSnip =()=>{}
-    const [Language, setLanguage] = useState("html");
-    const [LanguageTwo, setLanguageTwo] = useState("html");
+    const [Language, setLanguage] = useState(language);
+    const [LanguageTwo, setLanguageTwo] = useState(languagetwo);
+    const [LanguageThree, setLanguageThree] = useState(languagethree)
 
     function languageSelect(event) {
         setLanguage($("#languageSelect").val());
@@ -71,7 +72,7 @@ function AceModelUser({name, title, snip, sniptwo, props}){
              </div>
 
 
-          <Input type="select" name="languageOne" id="exampleSelectMulti"  onChange={languageSelect}>
+          <Input type="select" name="languageOne" value={language} id="exampleSelectMulti"  onChange={languageSelect}>
               <option value="html">HTML</option>
               <option value="javascript">Javascript</option>
               <option value="css">CSS</option>
@@ -87,10 +88,10 @@ function AceModelUser({name, title, snip, sniptwo, props}){
           </div>
           <InputGroup size="sm">
           <InputGroupAddon addonType="prepend"></InputGroupAddon>
-          <Input placeholder="Title" onChange={handleSnipInput}/>
+          <Input placeholder="Title" value={name} onChange={handleSnipInput}/>
         </InputGroup>
         <br></br>
-          <Input name="languageTwo" type="select" id="languageSelect" onChange={languageSelect}>
+          <Input name="languageTwo" value={languagetwo} type="select" id="languageSelect" onChange={languageSelect}>
               <option value="html">HTML</option>
               <option value="javascript">Javascript</option>
               <option value="css">CSS</option>
@@ -110,7 +111,7 @@ function AceModelUser({name, title, snip, sniptwo, props}){
 
           </Input>
           <br></br>
-          <Input type="textarea" name="Notes" id="exampleText" onChange={handleSnipInput} placeholder="notes" />
+          <Input type="textarea" value={comments} name="Notes" id="exampleText" onChange={handleSnipInput} placeholder="notes" />
       </ModalBody>
       <ModalFooter style={{ display:"flex",justifyContent:"space-between"}}>
         <Button color="danger" onClick={toggle}>Delete</Button>
