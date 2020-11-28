@@ -2,9 +2,10 @@ const router = require("express").Router();
 const codeController = require("../../controllers/codeController");
 
 
-router.route("/codes")
-  .get(codeController.findAll)
-  .post(codeController.create);
+router.route("api/codes/findall").get(codeController.findAll)
+  
+
+router.route("/save").post(codeController.create);
 
 router
   .route("/codes/:id")
