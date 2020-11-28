@@ -28,14 +28,25 @@ export default function Editor() {
     const [textArea3, setTextArea3] = useState("")
     const [snipNote, setNote]=useState("")
     const [snipTitle, setTitle]=useState("")
-    
+    const [privacy, setPrivacy]=useState(false)
+
+
+    const handlePrivacy=(e)=>{
+       let setting = e.target.value
+       console.log(setting)
+       if (setting === "public"){
+           setPrivacy(true)
+       }else{
+         setPrivacy(false)
+       }
+    }
       const saveFromEditor = (event) => {
         // event.preventDefault();
         try {
           const codeData = {
             title: snipTitle,
             userId: user._id,
-            public: true,
+            public: privacy,
             scriptType: Language1,
             snip: textArea1,
             scriptTypeTwo: Language2,
@@ -216,7 +227,7 @@ export default function Editor() {
             <div>
                 <div>
                 <label className="mb-0 mt-3 ml-5" for="formGroupExampleSearch">Visibility</label>
-                    <select className="form-control ml-4 mr-4">
+                    <select onChange={handlePrivacy} className="form-control ml-4 mr-4">
                         <option value="private">Private</option> {/* might have to change value to true or false I think */}
                         <option value="public">Public</option>
                     </select>
