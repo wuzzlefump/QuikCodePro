@@ -183,7 +183,7 @@ keywords:""})
     let arr =[]
     results.forEach(item=>{
 
-      if(item.userId=== user._id && item.keywords.includes(privateInputState.keywords) && item.scriptType.toUpperCase()===privateInputState.language){
+      if(item.userId=== user._id && item.keywords.includes(privateInputState.keywords) && item.scriptType.toUpperCase()===privateInputState.language.toUpperCase()){
 
         arr.push(item)
         console.log("TEST2", item)
