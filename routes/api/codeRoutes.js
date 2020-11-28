@@ -2,7 +2,7 @@ const router = require("express").Router();
 const codeController = require("../../controllers/codeController");
 
 
-router.route("api/codes/findall").get(codeController.findAll)
+router.route("/findall").get(codeController.findAll)
   
 
 router.route("/save").post(codeController.create);

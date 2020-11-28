@@ -51,10 +51,10 @@ const Navigation = () => {
                 ) : (
                   <>
                     <DropdownItem>
-                      <NavLink style={{color:"black"}} href="/login">Login</NavLink>
+                      <NavLink style={{color:"black"}} href="/login">Log In</NavLink>
                     </DropdownItem>
                     <DropdownItem>
-                      <NavLink  style={{color:"black"}} href="/signup">Signup</NavLink>
+                      <NavLink  style={{color:"black"}} href="/signup">Sign Up</NavLink>
                     </DropdownItem>
                   </>
                 )}
