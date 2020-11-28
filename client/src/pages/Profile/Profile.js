@@ -124,8 +124,6 @@ const Avatars = [
     "size": "7x"
   }
 ]
-const example = [{ name: "example", snip: "<p>hello world</p>", sniptwo: "<h1>good night moon</h1>" }, { name: "example2" }]
-const follow = [{ name: "Bob", skills: "none" }]
 
 
 
@@ -157,7 +155,8 @@ Avatars.forEach(item => {
   const [userList, setUserList] = useState([]);
   const [userSearchState, setUserSearchState] = useState({})
   const [userFormState, setUserFormState] = useState({})
-  const [privateInputState, setPrivateInputState] = useState({})
+  const [privateInputState, setPrivateInputState] = useState({language:"html",
+keywords:""})
 
   function handlePrivateInput(event) {
     const { name, value } = event.target;
@@ -176,7 +175,18 @@ Avatars.forEach(item => {
     console.log(userFormState)
   }
 
-  const privateSearchCode = () => { }
+  const privateSearchCode = () => {Axios.get("/api/codes/findall").then(data=>{
+    console.log(data.data)
+    let results = data.data
+    let arr =[]
+    results.forEach(item=>{
+      if(item.userId=== user._id  ){
+        arr.push(item)
+      }
+    })
+    console.log(arr)
+    setSnipList(arr)
+  }) }
 
   const userSearch = () => {Axios.get("/api/users/").then(data=>{
     console.log(data.data)
@@ -202,7 +212,7 @@ setCurrentUser(user)
 if(user !== null){
   initialAvatar(user.avatar)
 }
-},[loggedIn,user,userList])
+},[loggedIn,user,userList,snipList])
   return (<>
     {loggedIn ? (<>
 
@@ -213,7 +223,7 @@ if(user !== null){
               <h4>Private Code Search</h4>
               <FormGroup>
                 
-                <CustomInput type="select" id="exampleCustomSelect" onChange={handlePrivateInput} name="customSelect" >
+                <CustomInput type="select" id="exampleCustomSelect" onChange={handlePrivateInput} name="language" >
                   <option value="">Select a Language</option>
                   <option>JavaScript</option>
                   <option>HTML</option>
@@ -232,7 +242,7 @@ if(user !== null){
               </InputGroup>
               <Button color="primary" onClick={privateSearchCode}>Search</Button>
               <br />
-              {example.map(item => <><AceModalUser name={item.name} snip={item.snip} sniptwo={item.sniptwo} /><br /></>)}
+              {snipList.map(item => <><AceModalUser name={item.title} snip={item.snip} sniptwo={item.snipTwo} snipthree={item.snipThree} language={item.scriptType} languagetwo={item.scriptTypeTwo} languagethree={item.scriptTypeThree} updated={item.updated} userId={item.userId} _id={item._id}/><br /></>)}
             </Jumbotron>
           </Col>
           <Col sm={12} md={6}>
