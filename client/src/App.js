@@ -24,7 +24,6 @@ const App = () => {
     bio:''
   });
 
- 
   const [loggedIn, setLoggedin] = useState(false);
   const [user, setUser] = useState(null);
   const [failureMessage, setFailureMessage] = useState(null);

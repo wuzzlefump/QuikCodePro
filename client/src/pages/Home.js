@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect} from 'react';
 import UserContext from '../utils/UserContext'
 import LogInBro from '../components/loginbro'
-import AceModalGlobal from '../components/codemodalglobal'
+import AceModalGlobal from '../components/codemodalglobal';
 import Posts from '../components/posts'
 import { Container, Row, Col, Jumbotron, Form, Button, FormGroup, Label, Input, InputGroup, InputGroupText, InputGroupAddon, CustomInput } from 'reactstrap';
 import { faUser } from '@fortawesome/free-solid-svg-icons'
@@ -62,7 +62,6 @@ const Home = () => {
             <Jumbotron style={{ marginTop: "10%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", opacity: "0.7" }}>
               <h4>Global Code Search</h4>
               <FormGroup>
-                <Label for="exampleCustomSelect">Select a Language</Label>
                 <CustomInput type="select" id="exampleCustomSelect" onChange={handleGlobalInput} name="language" >
                   <option value="">Select</option>
                   <option>JavaScript</option>
