@@ -21,21 +21,20 @@ import 'brace/mode/handlebars';
 import 'brace/theme/monokai';
 import $ from 'jquery';
 
-function AceModelGlobal({
-  name,
-  title,
-  snip,
-  sniptwo,
-  snipthree,
-  props,
-  language,
-  languagetwo,
-  languagethree,
-  comments,
-}) {
+function AceModelGlobal({name,title,snip,sniptwo, snipthree, language,
+languagetwo,languagethree,comments}) {
   const [modal, setModal] = useState(false);
 
-  const toggle = () => setModal(!modal);
+  const toggle = () => {setModal(!modal)
+      if(sniptwo !== undefined &&sniptwo.length > 0  ) {
+      setEditor2(true);
+      setEditor3(false);
+    }
+    if(snipthree.length > 0&& snipthree !== undefined  ) {
+      setEditor2(true);
+      setEditor3(true);
+    }
+  };
 
   const closeBtn = (
     <button className="close" onClick={toggle}>
@@ -47,16 +46,7 @@ function AceModelGlobal({
   const [showEditor2, setEditor2] = useState(false);
   const [showEditor3, setEditor3] = useState(false);
 
-  // useEffect(() => {
-  //   if (sniptwo.length > 0) {
-  //     setEditor2(true);
-  //     setEditor3(false);
-  //   }
-  //   if (snipthree.length > 0) {
-  //     setEditor2(true);
-  //     setEditor3(true);
-  //   }
-  // });
+
 
   function handleSnipInput(event) {
     const { name, value } = event.target;
@@ -90,6 +80,19 @@ function AceModelGlobal({
     textAreaRef3.current.select();
     document.execCommand('copy');
   }
+
+    useEffect(() => { 
+      console.log(sniptwo)
+    // if(sniptwo !== undefined &&sniptwo.length > 0  ) {
+    //   setEditor2(true);
+    //   setEditor3(false);
+    // }
+    // if(snipthree.length > 0&& snipthree !== undefined  ) {
+    //   setEditor2(true);
+    //   setEditor3(true);
+    // }
+  });
+
   return (
     <div>
       <Button color="primary" onClick={toggle}>
@@ -267,14 +270,11 @@ function AceModelGlobal({
         <ModalFooter
           style={{ display: 'flex', justifyContent: 'space-between' }}
         >
-          <Button color="danger" onClick={toggle}>
-            Delete
-          </Button>
           <Button color="secondary" onClick={toggle}>
-            Cancel
+            Close
           </Button>
           <Button color="primary" onClick={SaveGlobal}>
-            Update
+            Add to your Library
           </Button>
         </ModalFooter>
       </Modal>
