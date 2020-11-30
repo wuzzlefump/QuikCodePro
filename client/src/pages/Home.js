@@ -30,7 +30,7 @@ import Axios from 'axios';
 
 const Home = () => {
   const { user, loggedIn, logout } = useContext(UserContext);
-  const [globalInputState, setGlobalInputState] = useState({lanuage:"html", keywords:""});
+  const [globalInputState, setGlobalInputState] = useState({language:"html", keywords:""});
   const [snipList, setSnipList] = useState([]);
 
   const postsexample = [{ name: "example 1", author: "Bob", language: "Html", snip: "<p>Hello World</p>", avatar: faCat, note: "Quality Stuff" }, { name: "example 2", author: "Tim", language: "Html", snip: "<p>Good night moon</p>", avatar: faDog, note: "Some Good Code Here" }]
