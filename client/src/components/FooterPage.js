@@ -35,7 +35,7 @@ function setJokeFunction() {
   setJoke(newQuote);
 }
     return(
-  <Navbar fixed="bottom" dark color="dark">
+  <Navbar fixed="bottom" className="py-0" dark color="dark">
     <NavbarText>QuikCode Say:<div></div>"<em>{Joke}</em>"</NavbarText>
     <div className = "justify-content-end">
         <Nav>

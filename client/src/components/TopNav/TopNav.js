@@ -25,7 +25,7 @@ const Navigation = () => {
 
   return (
     <div>
-      <Navbar className="navbar" color="dark" dark expand="md">
+      <Navbar className="navbar py-0" color="dark" dark expand="md">
         <NavbarBrand href="/"><img src="https://img.icons8.com/color/48/000000/source-code.png"/>QC Pro</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>

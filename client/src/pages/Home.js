@@ -59,8 +59,8 @@ const Home = () => {
       <Container>
         <Row>
           <Col sm={12} md={4}>
-            <Jumbotron style={{ marginTop: "10%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", opacity: "0.7" }}>
-              <h4>Global Code Search</h4>
+            <Jumbotron style={{ marginTop: "1rem", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", opacity: "0.7", paddingTop: "1rem" }}>
+              <h4 className="mb-4">Global Code Search</h4>
               <FormGroup>
                 <CustomInput type="select" id="exampleCustomSelect" onChange={handleGlobalInput} name="language" >
                   <option value="">Select</option>
@@ -84,8 +84,8 @@ const Home = () => {
             </Jumbotron>
           </Col>
           <Col sm={12} md={8}>
-            <Jumbotron style={{ marginTop: "5%", opacity: "0.7" }}>
-              <h2 style={{ textAlign: "center" }}>News Feed:</h2>
+            <Jumbotron style={{ marginTop: "1rem", opacity: "0.7", paddingTop: "1rem" }}>
+              <h2 className="mb-4" style={{ textAlign: "center" }}>News Feed:</h2>
               {postsexample.map((item) => <><Posts name={item.name} snip={item.snip} author={item.author} language={item.language} avatar={item.avatar} note={item.note} /><br /></>)}
             </Jumbotron>
           </Col>
