@@ -224,8 +224,8 @@ if(user !== null){
       <Container>
         <Row>
           <Col sm={12} md={3}>
-            <Jumbotron style={{ marginTop: "10%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", opacity: "0.7" }}>
-              <h4>Private Code Search</h4>
+            <Jumbotron style={{ marginTop: "1rem", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", opacity: "0.7", paddingTop: "2rem" }}>
+              <h4 className="mb-3">Private Code Search</h4>
               <FormGroup>
                 
                 <CustomInput type="select" id="exampleCustomSelect" onChange={handlePrivateInput} name="language" >
@@ -251,18 +251,18 @@ if(user !== null){
             </Jumbotron>
           </Col>
           <Col sm={12} md={6}>
-            <Jumbotron style={{ marginTop: "5%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", opacity: "0.7" }}>
+            <Jumbotron style={{ marginTop: "1rem", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", opacity: "0.7", paddingTop: "3rem" }}>
               <FontAwesomeIcon icon={avatarState} size="7x"></FontAwesomeIcon>
               <br></br>
-              <FormGroup>
+              <FormGroup className ="mb-0 pb-0">
                 
-              <CustomInput size="sm" type="select" name="avatar" onChange={avatarInputChange}>
-            <option>{user.avatar}</option>
+              <CustomInput  size="sm" type="select" name="avatar" onChange={avatarInputChange}>
+            <option >{user.avatar}</option>
             {Avatars.map(item =><AvatarOption name={item.name}></AvatarOption>)}
             </CustomInput>
             </FormGroup>
               <hr />
-            <h4>{user.username}</h4>
+            <h4 className="mb-4 mt=0 pt-0">{user.username}</h4>
               <textarea style={{ width: "80%" }} rows="7" name="bio" onChange={handleUserFormInput} placeholder="Write Your Bio Here" value={user.bio}></textarea>
               <br />
               <Button color="primary" onClick={updateUser}>Update</Button>
@@ -270,8 +270,8 @@ if(user !== null){
 
           </Col>
           <Col sm={12} md={3}>
-            <Jumbotron style={{ marginTop: "10%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", opacity: "0.7" }}>
-              <h4>Follow a User</h4>
+            <Jumbotron style={{ marginTop: "1rem", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", opacity: "0.7", paddingTop: "2rem" }}>
+              <h4 className="mb-3">Follow a User</h4>
               <InputGroup size="sm" className="mb-3" onChange={handleUserInput}>
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText id="user-search"></InputGroupText>
