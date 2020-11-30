@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 
 import {Button, Modal, ModalHeader,ModalBody, ModalFooter, Form, FormGroup,Input, InputGroup,InputGroupAddon}from 'reactstrap'
 
-
+import axios from 'axios'
 import ReactAce from 'react-ace';
 import brace from 'brace';
 import 'brace/mode/javascript';
@@ -14,15 +14,26 @@ import 'brace/theme/monokai';
 import $ from "jquery";
 
 
-function AceModelUser({name, title, snip, sniptwo, snipthree, props, language, languagetwo, languagethree, comments}){
+function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, languagetwo, languagethree, comments, userId,_id,keywords}){
   
+  const [snipOne, setSnipOne] = useState(snip);
+  const [snipTwo, setSnipTwo] = useState(sniptwo);
+  const [snipThree, setSnipThree] = useState(snipthree);
     const [modal, setModal] = useState(false);
   
     const toggle = () => setModal(!modal);
   
     const closeBtn = <button className="close" onClick={toggle}>&times;</button>;
 
-    const [snipState,setSnip] =useState({})
+    const [snipState,setSnip] =useState({
+      title:title,
+      comments:comments,
+      public:Public,
+      languageOne:language,
+      languageTwo:languagetwo,
+      languageThree:languagethree,
+
+    })
     const [showEditor2, setEditor2] =useState(false)
     const [showEditor3, setEditor3] =useState(false)
 
@@ -42,7 +53,6 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, props, language, l
       console.log(snipState)
     }
 
-    const updateSnip =()=>{}
     const [Language, setLanguage] = useState(language);
     const [LanguageTwo, setLanguageTwo] = useState(languagetwo);
     const [LanguageThree, setLanguageThree] = useState(languagethree)
@@ -52,10 +62,26 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, props, language, l
         console.log("Working?", $("#languageSelect").val())
         handleSnipInput(event)
     }
-
+    const ace1 = useRef(null);
+    const ace2 = useRef(null);
+    const ace3 = useRef(null);
     const textAreaRef1 = useRef(null);
     const textAreaRef2 = useRef(null);
     const textAreaRef3 = useRef(null);
+
+    function toTextArea1() {
+      setSnipOne(ace1.current.editor.getValue());
+      console.log(snipOne)
+  }
+  function toTextArea2() {
+      setSnipTwo(ace2.current.editor.getValue());
+      console.log(snipTwo)
+  }
+  function toTextArea3() {
+      setSnipThree(ace3.current.editor.getValue());
+      console.log(snipThree)
+  }
+
 
     function copyClipboard1() {
       textAreaRef1.current.select();
@@ -72,7 +98,9 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, props, language, l
       document.execCommand('copy');
     }
     
-
+    const updateSnip =()=>{axios.put('/api/codes/codes/'+_id,{_id:_id, userId:userId,title:snipState.title, comments:snipState.comments, public:snipState.Public, snip:snipOne, snipTwo:snipTwo, snipThree:snipThree, scriptType:snipState.languageOne, scriptTypeTwo:snipState.languageTwo, scriptTypeThree: snipState.LanguageThree, updated:Date.now, keywords:keywords }).then(data=> console.log(data)).catch(err=>console.log(err))}
+    const deleteSnip =()=>{axios.delete()}
+  
 
   
     return (
@@ -88,7 +116,7 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, props, language, l
           <div className = "card d-flex px-3 pb-3 mb-3 bg-secondary">
           <h4 className = "text-center text-white mt-2">Editor One</h4>
             <div className="editor d-flex my-2">
-              <ReactAce name="editorOne" className="d-flex" mode={Language} theme="monokai" setReadOnly={false} width={465} onChange={handleSnipInput} maxLines={Infinity} value={snip}/>
+              <ReactAce ref={ace1} name="editorOne" className="d-flex" mode={Language} theme="monokai" setReadOnly={false} width={465} onChange={toTextArea1} maxLines={Infinity} value={snipOne}/>
               <textarea  ref={textAreaRef1} value={snip} className="textArea"></textarea>
               
             </div>
@@ -108,7 +136,7 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, props, language, l
           <div className="card d-flex px-3 pb-3 my-3 bg-secondary">
             <h4 className = "text-center text-white mt-2">Editor Two</h4>
               <div className="editor d-flex my-2">
-                  <ReactAce name="editorTwo" mode={LanguageTwo} theme="monokai" setReadOnly={false} width={465} maxLines={Infinity} value={sniptwo}  onChange={handleSnipInput}/>
+                  <ReactAce ref={ace2} name="editorTwo" mode={LanguageTwo} theme="monokai" setReadOnly={false} width={465} maxLines={Infinity} value={snipTwo}  onChange={toTextArea2}/>
                   <textarea  ref={textAreaRef2} value={sniptwo} className="textArea"></textarea>
                     
               </div>
@@ -133,7 +161,7 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, props, language, l
           <div className="card d-flex px-3 pb-3 my-3 bg-secondary">
             <h4 className = "text-center text-white mt-2">Editor Three</h4>
               <div className="editor d-flex my-2">
-                  <ReactAce name="editorThree" mode={LanguageThree} theme="monokai" setReadOnly={false} width={465} maxLines={Infinity} value={snipthree}  onChange={handleSnipInput}/>
+                  <ReactAce ref={ace3} name="editorThree" mode={LanguageThree} theme="monokai" setReadOnly={false} width={465} maxLines={Infinity} value={snipThree}  onChange={toTextArea3}/>
                   <textarea  ref={textAreaRef3} value={snipthree} className="textArea"></textarea>
                     
               </div>
@@ -154,18 +182,17 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, props, language, l
         <h6 className="mt-2 ">Title</h6>
         <InputGroup size="sm" className="rounded mb-2 mt-1">
             <InputGroupAddon addonType="prepend"></InputGroupAddon>
-            <Input className="rounded" placeholder="Title" value={name} onChange={handleSnipInput}/>
+            <Input name="title" className="rounded" placeholder="Title" value={name} onChange={handleSnipInput}/>
             </InputGroup>
             <h6 className="mt-2 ">Sharing Preference</h6>
-          <Input name="share" size="sm" type="select" onChange={handleSnipInput}>
+          <Input name="Public" size="sm" type="select" onChange={handleSnipInput}>
               <option>Sharing Preferences</option>
               <option>Private</option>
               <option>Public</option>
-              <option>Followers only</option>
 
           </Input>
           <h6 className="mt-2 ">Comments</h6>
-          <Input type="textarea" value={comments} name="Notes" id="exampleText" onChange={handleSnipInput} placeholder="notes" />
+          <Input type="textarea" value={comments} name="comments" id="exampleText" onChange={handleSnipInput} placeholder="notes" />
       </ModalBody>
       <ModalFooter style={{ display:"flex",justifyContent:"space-between"}}>
         <Button color="danger" onClick={toggle}>Delete</Button>
