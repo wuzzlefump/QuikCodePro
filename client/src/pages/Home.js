@@ -86,7 +86,7 @@ const Home = () => {
           <Col sm={12} md={8}>
             <Jumbotron style={{ marginTop: "1rem", opacity: "0.7", paddingTop: "1rem" }}>
               <h2 className="mb-4" style={{ textAlign: "center" }}>News Feed:</h2>
-              {postsexample.map((item) => <><Posts name={item.name} snip={item.snip} author={item.author} language={item.language} avatar={item.avatar} note={item.note} /><br /></>)}
+              {postsexample.map((item) => <><Posts name={item.name} snip={item.snip} author={item.author} language={item.language} avatar={item.avatar} note={item.note} /></>)}
             </Jumbotron>
           </Col>
         </Row>
