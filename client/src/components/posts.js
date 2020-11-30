@@ -5,9 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function Posts({name, author, language, snip, avatar, note}){
 
-    return(<Card style={{ width: '100%',  display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center" }}>
- <FontAwesomeIcon icon={avatar} size="3x" className = "mt-2"></FontAwesomeIcon>
+    return(<Card className="my-1 py-0"style={{ width: '100%',  display:"flex", flexDirection:"column",  justifyContent:"center" }}>
+ 
     <CardBody>
+    <FontAwesomeIcon icon={avatar} size="3x" className = "mt-2 mr-3 float-left"></FontAwesomeIcon>
       <CardText>
        {author} Created a code snippet Titled {name} click the button to visit it
       </CardText>
