@@ -28,14 +28,24 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
     const [snipState,setSnip] =useState({
       title:title,
       comments:comments,
-      public:Public,
       languageOne:language,
       languageTwo:languagetwo,
       languageThree:languagethree,
-
     })
+    const [privacy,setPrivacy] =useState(Public)
     const [showEditor2, setEditor2] =useState(false)
     const [showEditor3, setEditor3] =useState(false)
+
+    
+    const handlePrivacy=(e)=>{
+      let setting = e.target.value
+      console.log(setting)
+      if (setting === "Public"){
+          setPrivacy(true)
+      }else{
+        setPrivacy(false)
+      }
+   }
 
     useEffect(() => {
       if (sniptwo.length > 0) {
@@ -47,6 +57,7 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
       }
     })
 
+    
     function handleSnipInput(event){
       const { name, value } = event.target;
       setSnip({...snipState, [name]: value })
@@ -98,7 +109,7 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
       document.execCommand('copy');
     }
     
-    const updateSnip =()=>{axios.put('/api/codes/codes/'+_id,{_id:_id, userId:userId,title:snipState.title, comments:snipState.comments, public:snipState.Public, snip:snipOne, snipTwo:snipTwo, snipThree:snipThree, scriptType:snipState.languageOne, scriptTypeTwo:snipState.languageTwo, scriptTypeThree: snipState.LanguageThree, updated:Date.now, keywords:keywords }).then(data=> console.log(data)).catch(err=>console.log(err))}
+    const updateSnip =()=>{axios.put('/api/codes/codes/'+_id,{_id:_id, userId:userId,title:snipState.title, comments:snipState.comments, public:privacy, snip:snipOne, snipTwo:snipTwo, snipThree:snipThree, scriptType:snipState.languageOne, scriptTypeTwo:snipState.languageTwo, scriptTypeThree: snipState.LanguageThree, updated:Date.now, keywords:keywords }).then(data=> console.log(data)).catch(err=>console.log(err))}
     const deleteSnip =()=>{axios.delete()}
   
 
@@ -117,10 +128,10 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
           <h4 className = "text-center text-white mt-2">Editor One</h4>
             <div className="editor d-flex my-2">
               <ReactAce ref={ace1} name="editorOne" className="d-flex" mode={Language} theme="monokai" setReadOnly={false} width={465} onChange={toTextArea1} maxLines={Infinity} value={snipOne}/>
-              <textarea  ref={textAreaRef1} value={snip} className="textArea"></textarea>
+              <textarea  ref={textAreaRef1} value={snipOne} className="textArea"></textarea>
               
             </div>
-              <Input type="select" name="languageOne" value={language} id="exampleSelectMulti"  onChange={languageSelect}>
+              <Input type="select" name="languageOne" value={snip.languageOne} id="exampleSelectMulti"  onChange={languageSelect}>
                   <option value="html">HTML</option>
                   <option value="javascript">Javascript</option>
                   <option value="css">CSS</option>
@@ -137,12 +148,12 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
             <h4 className = "text-center text-white mt-2">Editor Two</h4>
               <div className="editor d-flex my-2">
                   <ReactAce ref={ace2} name="editorTwo" mode={LanguageTwo} theme="monokai" setReadOnly={false} width={465} maxLines={Infinity} value={snipTwo}  onChange={toTextArea2}/>
-                  <textarea  ref={textAreaRef2} value={sniptwo} className="textArea"></textarea>
+                  <textarea  ref={textAreaRef2} value={snipTwo} className="textArea"></textarea>
                     
               </div>
             
             
-            <Input name="languageTwo" value={languagetwo} type="select" id="languageSelect" onChange={languageSelect}>
+            <Input name="languageTwo" value={snip.languageTwo} type="select" id="languageSelect" onChange={languageSelect}>
                 <option value="html">HTML</option>
                 <option value="javascript">Javascript</option>
                 <option value="css">CSS</option>
@@ -162,12 +173,12 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
             <h4 className = "text-center text-white mt-2">Editor Three</h4>
               <div className="editor d-flex my-2">
                   <ReactAce ref={ace3} name="editorThree" mode={LanguageThree} theme="monokai" setReadOnly={false} width={465} maxLines={Infinity} value={snipThree}  onChange={toTextArea3}/>
-                  <textarea  ref={textAreaRef3} value={snipthree} className="textArea"></textarea>
+                  <textarea  ref={textAreaRef3} value={snipThree} className="textArea"></textarea>
                     
               </div>
             
             
-            <Input name="languageThree" value={languagethree} type="select" id="languageSelect" onChange={languageSelect}>
+            <Input name="languageThree" value={snip.languageThree} type="select" id="languageSelect" onChange={languageSelect}>
                 <option value="html">HTML</option>
                 <option value="javascript">Javascript</option>
                 <option value="css">CSS</option>
@@ -182,10 +193,10 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
         <h6 className="mt-2 ">Title</h6>
         <InputGroup size="sm" className="rounded mb-2 mt-1">
             <InputGroupAddon addonType="prepend"></InputGroupAddon>
-            <Input name="title" className="rounded" placeholder="Title" value={name} onChange={handleSnipInput}/>
+            <Input name="title" className="rounded" placeholder="Title" value={snip.title} onChange={handleSnipInput}/>
             </InputGroup>
             <h6 className="mt-2 ">Sharing Preference</h6>
-          <Input name="Public" size="sm" type="select" onChange={handleSnipInput}>
+          <Input name="Public" size="sm" type="select" onChange={handlePrivacy}>
               <option>Sharing Preferences</option>
               <option>Private</option>
               <option>Public</option>
