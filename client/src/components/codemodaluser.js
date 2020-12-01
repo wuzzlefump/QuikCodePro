@@ -57,6 +57,7 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
       }
     })
 
+    
     function handleSnipInput(event){
       const { name, value } = event.target;
       setSnip({...snipState, [name]: value })
