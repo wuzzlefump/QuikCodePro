@@ -22,6 +22,8 @@ import 'brace/theme/monokai';
 import $ from 'jquery';
 import Axios from 'axios';
 import { id } from 'brace/worker/javascript';
+import Editable from 'react-editable-title'
+import './global.css'
 
 function AceModelGlobal({name,title,Public,snip,sniptwo, snipthree, language,
 languagetwo,languagethree,comments, userId, _id, keywords}) {
@@ -29,6 +31,7 @@ languagetwo,languagethree,comments, userId, _id, keywords}) {
   const [snipTwo, setSnipTwo] = useState(sniptwo);
   const [snipThree, setSnipThree] = useState(snipthree);
   const [modal, setModal] = useState(false);
+  const [text, setText] = useState(name)
 
   const toggle = () => {setModal(!modal)
     setSnip({title:name,
@@ -54,7 +57,7 @@ languagetwo,languagethree,comments, userId, _id, keywords}) {
   );
 
   const [snipState, setSnip] = useState({
-    title:name,
+    title:text,
     comments:comments,
     languageOne:language,
     languageTwo:languagetwo,
@@ -91,6 +94,10 @@ languagetwo,languagethree,comments, userId, _id, keywords}) {
     handleSnipInput(event);
   }
 
+  function handleTitleChange(newTitle) {
+    setText(newTitle)
+  }
+
   const ace1 = useRef(null);
   const ace2 = useRef(null);
   const ace3 = useRef(null);
@@ -124,7 +131,7 @@ function toTextArea3() {
     document.execCommand('copy');
   }
   
-  const SaveGlobal = ()=>{Axios.post('/api/codes/save', {_id:_id, userId:userId,title:snipState.title, comments:snipState.comments, public:Public, snip:snipOne, snipTwo:snipTwo, snipThree:snipThree, scriptType:snipState.languageOne, scriptTypeTwo:snip.languageTwo, scriptTypeThree: snipState.LanguageThree, updated:Date.now, keywords:keywords}, ).then(data=> console.log(data)).catch(err=>console.log(err))}
+  const SaveGlobal = ()=>{Axios.post('/api/codes/save', {_id:_id, userId:userId, title:snipState.title, comments:snipState.comments, public:Public, snip:snipOne, snipTwo:snipTwo, snipThree:snipThree, scriptType:snipState.languageOne, scriptTypeTwo:snip.languageTwo, scriptTypeThree: snipState.LanguageThree, updated:Date.now, keywords:keywords}, ).then(data=> console.log(data)).catch(err=>console.log(err))}
 
   //   useEffect(() => { 
   //     console.log(sniptwo)
@@ -145,7 +152,9 @@ function toTextArea3() {
       </Button>
       <Modal className="mx-auto " isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle} close={closeBtn}>
-          {name}
+          <div className="editable">
+            <Editable text={text} editButton editButtonStyle placeholder="Add Title Here" cb={handleTitleChange}></Editable>
+          </div>
         </ModalHeader>
         <ModalBody className="">
           {/* this is for the first editor */}
