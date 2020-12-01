@@ -56,9 +56,9 @@ router.post('/signup', (req, res, next) => {
   });
 });
 
-router.get('/',(req,res,next)=>{
-  db.User.find({},(err,users)=>{
-    if(err) throw err;
+router.get('/', (req, res, next) => {
+  db.User.find({}, (err, users) => {
+    if (err) throw err;
     res.json(users)
   })
 })
@@ -88,14 +88,54 @@ router.get('/admin', authMiddleware.isAdmin, (req, res, next) => {
   });
 });
 
-router.put('/profile/update', (req,res,)=>{
+router.put('/profile/update', (req, res,) => {
   let param = req.body
-db.User.findByIdAndUpdate({_id:param._id}, {$set:{avatar:param.avatar, bio:param.bio}}).then(data=>{
-  console.log(data)
-  res.json(data)
-}).catch(err=>{
-  res.json(err)
+  db.User.findByIdAndUpdate({ _id: param._id }, { $set: { avatar: param.avatar, bio: param.bio } }).then(data => {
+    console.log(data)
+    res.json(data)
+  }).catch(err => {
+    res.json(err)
+  })
 })
+
+router.put('/follow', authMiddleware.isLoggedIn, (req, res) => {
+  db.User.findByIdAndUpdate(req.body.followId, {
+    $push: { followers: req.user._id }
+  }, {
+    new: true
+  }, (err, result) => {
+    if (err) {
+      return res.status(422).json({ error: err })
+    }
+    db.User.findByIdAndUpdate(req.user._id,{
+      $push:{following:req.body.followId}
+    },{new:true}).then(result=>{
+      res.json(result)
+    }).catch(err=>{
+      return res.status(422).json({error:err})
+    })
+  }
+  )
+})
+
+router.put('/unfollow', authMiddleware.isLoggedIn, (req, res) => {
+  db.User.findByIdAndUpdate(req.body.unfollowId, {
+    $pull: { followers: req.user._id }
+  }, {
+    new: true
+  }, (err, result) => {
+    if (err) {
+      return res.status(422).json({ error: err })
+    }
+    db.User.findByIdAndUpdate(req.user._id,{
+      $pull:{following:req.body.unfollowId}
+    },{new:true}).then(result=>{
+      res.json(result)
+    }).catch(err=>{
+      return res.status(422).json({error:err})
+    })
+  }
+  )
 })
 
 module.exports = router;

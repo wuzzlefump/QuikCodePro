@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const { ObjectId } = mongoose.Schema.Types;
 
 const { Schema } = mongoose;
 
@@ -52,6 +53,14 @@ const usersSchema = new Schema({
     type: Date,
     default: Date.now(),
   },
+  followers: [{
+    type: ObjectId,
+    ref: "User"
+  }],
+  following: [{
+    type: ObjectId,
+    ref: "User"
+  }]
 });
 
 usersSchema.methods.generateHash = (password) => {
