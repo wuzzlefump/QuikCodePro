@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import {
   Button,
   Modal,
@@ -22,9 +22,11 @@ import 'brace/theme/monokai';
 import $ from 'jquery';
 import Axios from 'axios';
 import { id } from 'brace/worker/javascript';
+import UserContext from '../utils/UserContext';
 
 function AceModelGlobal({name,title,Public,snip,sniptwo, snipthree, language,
 languagetwo,languagethree,comments, userId, _id, keywords}) {
+  const { user, loggedIn, logout } = useContext(UserContext);
   const [snipOne, setSnipOne] = useState(snip);
   const [snipTwo, setSnipTwo] = useState(sniptwo);
   const [snipThree, setSnipThree] = useState(snipthree);
@@ -35,7 +37,8 @@ languagetwo,languagethree,comments, userId, _id, keywords}) {
       comments:comments,
       languageOne:language,
       languageTwo:languagetwo,
-      languageThree:languagethree,})
+      languageThree:languagethree,
+    keywords:keywords})
 
       if(sniptwo !== undefined &&sniptwo.length > 0  ) {
       setEditor2(true);
@@ -124,7 +127,9 @@ function toTextArea3() {
     document.execCommand('copy');
   }
   
-  const SaveGlobal = ()=>{Axios.post('/api/codes/save', {_id:_id, userId:userId,title:snipState.title, comments:snipState.comments, public:Public, snip:snipOne, snipTwo:snipTwo, snipThree:snipThree, scriptType:snipState.languageOne, scriptTypeTwo:snip.languageTwo, scriptTypeThree: snipState.LanguageThree, updated:Date.now, keywords:keywords}, ).then(data=> console.log(data)).catch(err=>console.log(err))}
+  const SaveGlobal = ()=>{
+    console.log( { userId:user._id,title:name, comments:snipState.comments, public:Public, snip:snip, snipTwo:sniptwo, snipThree:snipthree, scriptType:language, scriptTypeTwo:languagetwo, scriptTypeThree: languagethree, updated:Date.now, keywords:keywords})
+    Axios.post('/api/codes/save', { userId:user._id,title:name, comments:comments, public:true, snip:snip, snipTwo:sniptwo, snipThree:snipthree, scriptType:language, scriptTypeTwo:languagetwo, scriptTypeThree: languagethree, updated:Date.now, keywords:snipState.keywords}, ).then(data=> console.log(data.data)).catch(err=>console.log(err))}
 
   //   useEffect(() => { 
   //     console.log(sniptwo)

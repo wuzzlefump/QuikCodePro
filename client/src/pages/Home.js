@@ -50,7 +50,6 @@ const Home = () => {
         arr.push(item)
       }
     })
-    console.log(arr)
     setSnipList(arr)
   })}
 
@@ -80,7 +79,7 @@ const Home = () => {
               </InputGroup>
               <Button color="primary" onClick={globalSearchCode}>Search</Button>
               <br />
-            {snipList.map(item => <><AceModalGlobal name={item.title} snip={item.snip} sniptwo={item.snipTwo} snipthree={item.snipThree} language={item.scriptType} languagetwo={item.scriptTypeTwo} languagethree={item.scriptTypeThree} updated={item.updated} userId={item.userId} _id={item._id}/><br /></>)}
+            {snipList.map(item => <><AceModalGlobal name={item.title} snip={item.snip} sniptwo={item.snipTwo} snipthree={item.snipThree} language={item.scriptType} languagetwo={item.scriptTypeTwo} languagethree={item.scriptTypeThree} keywords={item.keywords} comments={item.comments} Public={item.public} updated={item.updated} userId={item.userId} _id={item._id}/><br /></>)}
             </Jumbotron>
           </Col>
           <Col sm={12} md={8}>

@@ -116,7 +116,10 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
     }
     
     const updateSnip =()=>{axios.put('/api/codes/codes/'+_id,{_id:_id, userId:userId,title:snipState.title, comments:snipState.comments, public:privacy, snip:snipOne, snipTwo:snipTwo, snipThree:snipThree, scriptType:snipState.languageOne, scriptTypeTwo:snipState.languageTwo, scriptTypeThree: snipState.LanguageThree, updated:Date.now, keywords:keywords }).then(data=> console.log(data)).catch(err=>console.log(err))}
-    const deleteSnip =()=>{axios.delete('/api/codes/codes/'+_id).then(data=>console.log(data)).catch(err=> console.log(err))}
+    const deleteSnip =()=>{axios.delete('/api/codes/codes/'+_id,{params:{_id: _id}}).then(data=>{
+      console.log(data);
+    } )
+    .catch(err=> console.log(err))}
   
 
   
