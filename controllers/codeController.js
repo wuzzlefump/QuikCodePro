@@ -45,9 +45,8 @@ module.exports = {
   
   remove: function(req, res) {
     db.Codes
-      .findById({ _id: req.params.id })
-      .then(dbModel => dbModel.remove())
-      .then(dbModel => res.json(dbModel))
+      .findByIdAndDelete({ _id: req.params.id })
+      .then(dbModel => res.json(dbmodel))
       .catch(err => res.status(422).json(err));
   }
 };
