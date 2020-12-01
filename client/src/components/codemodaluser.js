@@ -21,12 +21,18 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
   const [snipThree, setSnipThree] = useState(snipthree);
     const [modal, setModal] = useState(false);
   
-    const toggle = () => setModal(!modal);
+    const toggle = () => {setModal(!modal);
+    setSnip({title:name,
+      comments:comments,
+      languageOne:language,
+      languageTwo:languagetwo,
+      languageThree:languagethree,})}
+
   
     const closeBtn = <button className="close" onClick={toggle}>&times;</button>;
 
     const [snipState,setSnip] =useState({
-      title:title,
+      title:name,
       comments:comments,
       languageOne:language,
       languageTwo:languagetwo,
@@ -110,7 +116,7 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
     }
     
     const updateSnip =()=>{axios.put('/api/codes/codes/'+_id,{_id:_id, userId:userId,title:snipState.title, comments:snipState.comments, public:privacy, snip:snipOne, snipTwo:snipTwo, snipThree:snipThree, scriptType:snipState.languageOne, scriptTypeTwo:snipState.languageTwo, scriptTypeThree: snipState.LanguageThree, updated:Date.now, keywords:keywords }).then(data=> console.log(data)).catch(err=>console.log(err))}
-    const deleteSnip =()=>{axios.delete()}
+    const deleteSnip =()=>{axios.delete('/api/codes/codes/'+_id).then(data=>console.log(data)).catch(err=> console.log(err))}
   
 
   
@@ -131,7 +137,7 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
               <textarea  ref={textAreaRef1} value={snipOne} className="textArea"></textarea>
               
             </div>
-              <Input type="select" name="languageOne" value={snip.languageOne} id="exampleSelectMulti"  onChange={languageSelect}>
+              <Input type="select" name="languageOne" value={snipState.languageOne} id="exampleSelectMulti"  onChange={languageSelect}>
                   <option value="html">HTML</option>
                   <option value="javascript">Javascript</option>
                   <option value="css">CSS</option>
@@ -153,7 +159,7 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
               </div>
             
             
-            <Input name="languageTwo" value={snip.languageTwo} type="select" id="languageSelect" onChange={languageSelect}>
+            <Input name="languageTwo" value={snipState.languageTwo} type="select" id="languageSelect" onChange={languageSelect}>
                 <option value="html">HTML</option>
                 <option value="javascript">Javascript</option>
                 <option value="css">CSS</option>
@@ -178,7 +184,7 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
               </div>
             
             
-            <Input name="languageThree" value={snip.languageThree} type="select" id="languageSelect" onChange={languageSelect}>
+            <Input name="languageThree" value={snipState.languageThree} type="select" id="languageSelect" onChange={languageSelect}>
                 <option value="html">HTML</option>
                 <option value="javascript">Javascript</option>
                 <option value="css">CSS</option>
@@ -193,7 +199,7 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
         <h6 className="mt-2 ">Title</h6>
         <InputGroup size="sm" className="rounded mb-2 mt-1">
             <InputGroupAddon addonType="prepend"></InputGroupAddon>
-            <Input name="title" className="rounded" placeholder="Title" value={snip.title} onChange={handleSnipInput}/>
+            <Input name="title" className="rounded" placeholder="Title" value={snipState.title} onChange={handleSnipInput}/>
             </InputGroup>
             <h6 className="mt-2 ">Sharing Preference</h6>
           <Input name="Public" size="sm" type="select" onChange={handlePrivacy}>
@@ -203,10 +209,10 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
 
           </Input>
           <h6 className="mt-2 ">Comments</h6>
-          <Input type="textarea" value={comments} name="comments" id="exampleText" onChange={handleSnipInput} placeholder="notes" />
+          <Input type="textarea" value={snipState.comments} name="comments" id="exampleText" onChange={handleSnipInput} placeholder="notes" />
       </ModalBody>
       <ModalFooter style={{ display:"flex",justifyContent:"space-between"}}>
-        <Button color="danger" onClick={toggle}>Delete</Button>
+        <Button color="danger" onClick={deleteSnip}>Delete</Button>
         <Button color="secondary" onClick={toggle}>Cancel</Button>
         <Button color="primary" onClick={updateSnip}>Update</Button>
       </ModalFooter> 
