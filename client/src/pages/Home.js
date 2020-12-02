@@ -59,7 +59,7 @@ const Home = () => {
     let results = data.data
     let feedArr = []
     results.forEach(item=> {
-      if(user.following.includes(item.userId) ){
+      if(item.public === true && user.following.includes(item.userId) ){
         feedArr.push(item)
       }
     })
