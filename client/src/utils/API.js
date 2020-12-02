@@ -17,4 +17,6 @@ export default {
   logout: function () {
     return axios.get('/api/users/logout');
   },
+
+  
 };

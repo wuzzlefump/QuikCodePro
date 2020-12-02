@@ -99,16 +99,16 @@ router.put('/profile/update', (req, res,) => {
 })
 
 router.put('/follow', authMiddleware.isLoggedIn, (req, res) => {
-  db.User.findByIdAndUpdate(req.body.followId, {
-    $push: { followers: req.user._id }
+  db.User.findByIdAndUpdate(req.body.following, {
+    $push: { followers: req.body.followers }
   }, {
     new: true
   }, (err, result) => {
     if (err) {
       return res.status(422).json({ error: err })
     }
-    db.User.findByIdAndUpdate(req.user._id,{
-      $push:{following:req.body.followId}
+    db.User.findByIdAndUpdate(req.body.followers,{
+      $push:{following: req.body.following}
     },{new:true}).then(result=>{
       res.json(result)
     }).catch(err=>{
@@ -118,7 +118,7 @@ router.put('/follow', authMiddleware.isLoggedIn, (req, res) => {
   )
 })
 
-router.put('/unfollow', authMiddleware.isLoggedIn, (req, res) => {
+router.put('users/unfollow', authMiddleware.isLoggedIn, (req, res) => {
   db.User.findByIdAndUpdate(req.body.unfollowId, {
     $pull: { followers: req.user._id }
   }, {

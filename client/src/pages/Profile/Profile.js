@@ -169,6 +169,7 @@ keywords:""})
     setUserSearchState({ ...userSearchState, [name]: value })
     console.log(userSearchState)
   }
+  
 
   const handleUserFormInput = (event) => {
     const { name, value } = event.target;
@@ -204,6 +205,8 @@ keywords:""})
     setUserList(x)
     console.log(x)
   }).catch(err=>console.log(err)) }
+
+  
 
   const updateUser = () => {Axios.put('/api/users/profile/update',{_id:user._id, avatar:userFormState.avatar, bio:userFormState.bio}).then(data=>{
     console.log(data)
@@ -282,7 +285,9 @@ if(user !== null){
 
               <Button color="primary" onClick={userSearch}>Search</Button>
               <br />
-              {userList.map(item => <><FollowModal name={item.username} bio={item.bio} /> <br /></>)}
+              {userList.map(item => <><FollowModal name={item.username} bio={item.bio} 
+              id={item._id}
+              /> <br /></>)}
             </Jumbotron>
           </Col>
         </Row>
