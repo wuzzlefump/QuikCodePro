@@ -32,6 +32,7 @@ const Home = () => {
   const { user, loggedIn, logout } = useContext(UserContext);
   const [globalInputState, setGlobalInputState] = useState({language:"html", keywords:""});
   const [snipList, setSnipList] = useState([]);
+  const [feedList, setFeedList] = useState([]);
 
   const postsexample = [{ name: "example 1", author: "Bob", language: "Html", snip: "<p>Hello World</p>", avatar: faCat, note: "Quality Stuff" }, { name: "example 2", author: "Tim", language: "Html", snip: "<p>Good night moon</p>", avatar: faDog, note: "Some Good Code Here" }]
 
@@ -52,6 +53,25 @@ const Home = () => {
     })
     setSnipList(arr)
   })}
+
+  function feedFill() {Axios.get("/api/codes/findall").then(data=> {
+    console.log(data.data)
+    let results = data.data
+    let feedArr = []
+    results.forEach(item=> {
+      if(user.following.includes(item.userId) ){
+        feedArr.push(item)
+      }
+    })
+    setFeedList(feedArr)
+  })}
+
+  useEffect(() => {
+    feedFill();
+  },[user, loggedIn])
+
+
+  
 
   return (<>
     {loggedIn ? (<>
@@ -85,7 +105,7 @@ const Home = () => {
           <Col sm={12} md={8}>
             <Jumbotron style={{ marginTop: "1rem", opacity: "0.7", paddingTop: "1rem" }}>
               <h2 className="mb-4" style={{ textAlign: "center" }}>News Feed:</h2>
-              {postsexample.map((item) => <><Posts name={item.name} snip={item.snip} author={item.author} language={item.language} avatar={item.avatar} note={item.note} /></>)}
+              {feedList.map((item) => <><Posts avatar= {faHamburger} author="Philip" name={item.title} snip={item.snip} sniptwo={item.snipTwo} snipthree={item.snipThree} language={item.scriptType} languagetwo={item.scriptTypeTwo} languagethree={item.scriptTypeThree} keywords={item.keywords} comments={item.comments} Public={item.public} updated={item.updated} userId={item.userId} _id={item._id} /></>)}
             </Jumbotron>
           </Col>
         </Row>
