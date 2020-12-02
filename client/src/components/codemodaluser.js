@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 
-import {Button, Modal, ModalHeader,ModalBody, ModalFooter, Form, FormGroup,Input, InputGroup,InputGroupAddon}from 'reactstrap'
+import {Button, Modal, ModalHeader,ModalBody, ModalFooter, Form, FormGroup,Input, InputGroup,InputGroupAddon, Alert}from 'reactstrap'
 
 import axios from 'axios'
 import ReactAce from 'react-ace';
@@ -23,13 +23,30 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
   const [snipThree, setSnipThree] = useState(snipthree);
   const [modal, setModal] = useState(false);
   const [text, setText] = useState(name)
-  
+  const [showUpdateAlert, setShowUpdateAlert] = useState(false);
+  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
+
     const toggle = () => {setModal(!modal);
     setSnip({title:name,
       comments:comments,
       languageOne:language,
       languageTwo:languagetwo,
-      languageThree:languagethree,})}
+      languageThree:languagethree,})
+    }
+
+    const updateAlert = () => {
+      setShowUpdateAlert(true);
+      setTimeout(() => {
+        setShowUpdateAlert(false);
+      }, 2000);
+    }
+
+    const deleteAlert = () => {
+      setShowDeleteAlert(true);
+      setTimeout(() => {
+        setShowDeleteAlert(false);
+      }, 5000);
+    }
 
   
     const closeBtn = <button className="close" onClick={toggle}>&times;</button>;
@@ -54,17 +71,18 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
       }else{
         setPrivacy(false)
       }
-   }
+  }
 
     useEffect(() => {
       if (sniptwo.length > 0) {
         setEditor2(true)
         setEditor3(false)
-      } if (snipthree.length > 0) {
+      } 
+      if (snipthree.length > 0) {
         setEditor2(true)
         setEditor3(true)
       }
-    })
+  })
 
     
     function handleSnipInput(event){
@@ -122,17 +140,22 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
       document.execCommand('copy');
     }
     
-    const updateSnip =()=>{axios.put('/api/codes/codes/'+_id,{_id:_id, userId:userId,title:text, comments:snipState.comments, public:privacy, snip:snipOne, snipTwo:snipTwo, snipThree:snipThree, scriptType:snipState.languageOne, scriptTypeTwo:snipState.languageTwo, scriptTypeThree: snipState.LanguageThree, updated:Date.now, keywords:keywords }).then(data=> console.log(data)).catch(err=>console.log(err))}
+    const updateSnip =()=>{
+      axios.put('/api/codes/codes/'+_id,{_id:_id, userId:userId,title:text, comments:snipState.comments, public:privacy, snip:snipOne, snipTwo:snipTwo, snipThree:snipThree, scriptType:snipState.languageOne, scriptTypeTwo:snipState.languageTwo, scriptTypeThree: snipState.LanguageThree, updated:Date.now, keywords:keywords }).then(data=> console.log(data)).catch(err=>console.log(err))
+      updateAlert(); 
+  }
     const deleteSnip =()=>{axios.delete('/api/codes/codes/'+_id,{params:{_id: _id}}).then(data=>{
       console.log(data);
     } )
-    .catch(err=> console.log(err))}
+    .catch(err=> console.log(err))
+    deleteAlert();
+  }
   
 
   
     return (
 
-   <div>
+  <div>
     <Button color="primary" onClick={toggle}>{name}</Button>
     <Modal className ="mx-auto " isOpen={modal} toggle={toggle} >
       <ModalHeader toggle={toggle} close={closeBtn}>
@@ -207,6 +230,8 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
           <h6 className="mt-2 ">Comments</h6>
           <Input type="textarea" value={snipState.comments} name="comments" id="exampleText" onChange={handleSnipInput} placeholder="notes" />
       </ModalBody>
+      {showUpdateAlert? (<Alert color="success"> You made it better?!!</Alert>): null}
+      {showDeleteAlert? (<Alert color="danger"> Code has been murdered, try searching for it again you will never find it..</Alert>): null}
       <ModalFooter style={{ display:"flex",justifyContent:"space-between"}}>
         <Button color="danger" onClick={deleteSnip}>Delete</Button>
         <Button color="secondary" onClick={toggle}>Cancel</Button>
