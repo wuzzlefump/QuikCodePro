@@ -40,8 +40,7 @@ languagetwo,languagethree,comments, userId, _id, keywords}) {
       languageOne:language,
       languageTwo:languagetwo,
       languageThree:languagethree,
-    keywords:keywords})
-
+      keywords:keywords})
       if(sniptwo !== undefined &&sniptwo.length > 0  ) {
       setEditor2(true);
       setEditor3(false);
@@ -52,6 +51,12 @@ languagetwo,languagethree,comments, userId, _id, keywords}) {
     }
   };
 
+  const addAlert = () => {
+    setShowAlert(true);
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 2000);
+  }
 
   const closeBtn = (
     <button className="close" onClick={toggle}>
@@ -133,7 +138,7 @@ function toTextArea3() {
   const SaveGlobal = ()=>{
     console.log( { userId:user._id,title:name, comments:snipState.comments, public:Public, snip:snip, snipTwo:sniptwo, snipThree:snipthree, scriptType:language, scriptTypeTwo:languagetwo, scriptTypeThree: languagethree, updated:Date.now, keywords:keywords})
     Axios.post('/api/codes/save', { userId:user._id,title:name, comments:comments, public:true, snip:snip, snipTwo:sniptwo, snipThree:snipthree, scriptType:language, scriptTypeTwo:languagetwo, scriptTypeThree: languagethree, updated:Date.now, keywords:snipState.keywords}, ).then(data=> console.log(data.data)).catch(err=>console.log(err))
-    setShowAlert(true);
+    addAlert();
   }
 
   return (
@@ -146,7 +151,6 @@ function toTextArea3() {
           {name}
         </ModalHeader>
         <ModalBody className="">
-        {showAlert? (<Alert color="success"> You are successfully added this code to your library</Alert>): null}
           {/* this is for the first editor */}
           <div className="card d-flex px-3 pb-3 mb-3 bg-secondary">
             <h4 className="text-center text-white mt-2">Editor One</h4>
@@ -305,6 +309,7 @@ function toTextArea3() {
           <h6 className="mt-2 ">Comments</h6>
           <p name="Notes"id="exampleText"onChange={handleSnipInput}>{comments}</p>
         </ModalBody>
+        {showAlert? (<Alert color="success"> You have successfully added this code to your library</Alert>): null}
         <ModalFooter
           style={{ display: 'flex', justifyContent: 'space-between' }}
         >
