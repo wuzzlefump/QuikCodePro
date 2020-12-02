@@ -10,6 +10,7 @@ import {
   Input,
   InputGroup,
   InputGroupAddon,
+  Alert,
 } from 'reactstrap';
 import ReactAce from 'react-ace';
 import brace from 'brace';
@@ -31,6 +32,7 @@ languagetwo,languagethree,comments, userId, _id, keywords}) {
   const [snipTwo, setSnipTwo] = useState(sniptwo);
   const [snipThree, setSnipThree] = useState(snipthree);
   const [modal, setModal] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   const toggle = () => {setModal(!modal)
     setSnip({title:name,
@@ -49,6 +51,7 @@ languagetwo,languagethree,comments, userId, _id, keywords}) {
       setEditor3(true);
     }
   };
+
 
   const closeBtn = (
     <button className="close" onClick={toggle}>
@@ -126,22 +129,12 @@ function toTextArea3() {
     textAreaRef3.current.select();
     document.execCommand('copy');
   }
-  
+
   const SaveGlobal = ()=>{
     console.log( { userId:user._id,title:name, comments:snipState.comments, public:Public, snip:snip, snipTwo:sniptwo, snipThree:snipthree, scriptType:language, scriptTypeTwo:languagetwo, scriptTypeThree: languagethree, updated:Date.now, keywords:keywords})
-    Axios.post('/api/codes/save', { userId:user._id,title:name, comments:comments, public:true, snip:snip, snipTwo:sniptwo, snipThree:snipthree, scriptType:language, scriptTypeTwo:languagetwo, scriptTypeThree: languagethree, updated:Date.now, keywords:snipState.keywords}, ).then(data=> console.log(data.data)).catch(err=>console.log(err))}
-
-  //   useEffect(() => { 
-  //     console.log(sniptwo)
-  //   if(sniptwo !== undefined &&sniptwo.length > 0  ) {
-  //     setEditor2(true);
-  //     setEditor3(false);
-  //   }
-  //   if(snipthree.length > 0&& snipthree !== undefined  ) {
-  //     setEditor2(true);
-  //     setEditor3(true);
-  //   }
-  // });
+    Axios.post('/api/codes/save', { userId:user._id,title:name, comments:comments, public:true, snip:snip, snipTwo:sniptwo, snipThree:snipthree, scriptType:language, scriptTypeTwo:languagetwo, scriptTypeThree: languagethree, updated:Date.now, keywords:snipState.keywords}, ).then(data=> console.log(data.data)).catch(err=>console.log(err))
+    setShowAlert(true);
+  }
 
   return (
     <div>
@@ -153,6 +146,7 @@ function toTextArea3() {
           {name}
         </ModalHeader>
         <ModalBody className="">
+        {showAlert? (<Alert color="success"> You are successfully added this code to your library</Alert>): null}
           {/* this is for the first editor */}
           <div className="card d-flex px-3 pb-3 mb-3 bg-secondary">
             <h4 className="text-center text-white mt-2">Editor One</h4>
@@ -162,7 +156,7 @@ function toTextArea3() {
                 className="d-flex"
                 mode={Language}
                 theme="monokai"
-                setReadOnly={false}
+                setReadOnly={true}
                 width={465}
                 onChange={handleSnipInput}
                 maxLines={Infinity}
@@ -309,14 +303,7 @@ function toTextArea3() {
             <option>Followers only</option>
           </Input>
           <h6 className="mt-2 ">Comments</h6>
-          <Input
-            type="textarea"
-            value={comments}
-            name="Notes"
-            id="exampleText"
-            onChange={handleSnipInput}
-            placeholder="notes"
-          />
+          <p name="Notes"id="exampleText"onChange={handleSnipInput}>{comments}</p>
         </ModalBody>
         <ModalFooter
           style={{ display: 'flex', justifyContent: 'space-between' }}
