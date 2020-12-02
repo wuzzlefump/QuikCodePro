@@ -55,7 +55,9 @@ export default function Editor() {
             snipThree: textArea3,
             keywords: tagArray.join(","),
             updated:Date.now,
-            comments: snipNote
+            comments: snipNote,
+            author: user.username,
+            avatar: user.avatar
           };
           codeAPI.saveSnip(codeData)
           clearCode()

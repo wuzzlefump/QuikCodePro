@@ -54,7 +54,7 @@ const Home = () => {
     setSnipList(arr)
   })}
 
-  function feedFill() {Axios.get("/api/codes/findall").then(data=> {
+  function feedFill(user) {Axios.get("/api/codes/findall").then(data=> {
     console.log(data.data)
     let results = data.data
     let feedArr = []
@@ -67,8 +67,12 @@ const Home = () => {
   })}
 
   useEffect(() => {
-    feedFill();
-  },[user, loggedIn])
+    if(user !== null){
+    feedFill(user);
+    }
+  }
+  ,[user, loggedIn]
+  )
 
 
   

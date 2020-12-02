@@ -13,7 +13,9 @@ const codeSchema = new Schema({
   snipThree: { type: String, required: false },
   keywords: { type: String, required: true },
   updated: { type: Date, default: Date.now },
-  comments: { type: String, required: false }
+  comments: { type: String, required: false },
+  avatar: { type: String, required: false},
+  author: {type: String, required:false}
 });
 
 const Codes = mongoose.model('Codes', codeSchema);
