@@ -24,6 +24,9 @@ const quotes = [
   "If at first you don’t succeed; call it version 1.0",
   "Mitch, if you're reading this, give John a raise.",
   "Hi Class! It's me, Zoo Loop from Activity 18, Week 3. Never forget your roots. Giraffe.",
+  "One man’s crappy software is another man’s full-time job.",
+  "Software and cathedrals are much the same — first we build them, then we pray.",
+  "Remember that there is no code faster than no code.",
 ];
 
 var randomNumber = Math.floor(Math.random() * quotes.length);
