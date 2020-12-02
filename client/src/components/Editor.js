@@ -10,7 +10,7 @@ import 'brace/mode/javascript';
 import 'brace/mode/css';
 import 'brace/mode/html';
 import 'brace/theme/monokai';
-import {Button,Input, InputGroup,InputGroupAddon, Container}from 'reactstrap'
+import {Button,Input, InputGroup,InputGroupAddon, Container, Alert}from 'reactstrap'
 import './Editor.css'
 import $ from "jquery";
 import codeAPI from "../utils/codeAPI";
@@ -29,6 +29,7 @@ export default function Editor() {
     const [snipNote, setNote]=useState("")
     const [snipTitle, setTitle]=useState("")
     const [privacy, setPrivacy]=useState(false)
+    const [showAlert, setShowAlert] =useState(false);
 
 
     const handlePrivacy=(e)=>{
@@ -40,6 +41,14 @@ export default function Editor() {
          setPrivacy(false)
        }
     }
+
+    const addAlert = () => {
+      setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 3000);
+    }
+
       const saveFromEditor = (event) => {
         // event.preventDefault();
         try {
@@ -60,7 +69,8 @@ export default function Editor() {
             avatar: user.avatar
           };
           codeAPI.saveSnip(codeData)
-          clearCode()
+          clearCode();
+          addAlert();
         } catch (error) {
           console.log('App -> error', error);
         }
@@ -263,6 +273,7 @@ export default function Editor() {
                 </InputGroup>
                     <br></br>
                     <textarea value={snipNote} class="form-control" id="exampleFormControlTextarea1" rows="3" name="snipNote" placeholder="Add notes here" onChange={handleNoteChange}></textarea>
+                    {showAlert? (<Alert color="success"> You have successfully added this code to your library</Alert>): null}
                     </div>
                 </form>
                 <Button color="primary mt-3" onClick={saveFromEditor}>Submit</Button>
