@@ -27,6 +27,7 @@ const quotes = [
   "One man’s crappy software is another man’s full-time job.",
   "Software and cathedrals are much the same — first we build them, then we pray.",
   "Remember that there is no code faster than no code.",
+  "Don't push your luck; just push the code.",
 ];
 
 var randomNumber = Math.floor(Math.random() * quotes.length);

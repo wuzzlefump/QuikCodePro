@@ -46,7 +46,7 @@ export default function Editor() {
       setPrivacy(false);
     }
   };
-
+  
   const addAlert = () => {
     setShowAlert(true);
     setTimeout(() => {
