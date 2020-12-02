@@ -109,7 +109,7 @@ const Home = () => {
           <Col sm={12} md={8}>
             <Jumbotron style={{ marginTop: "1rem", opacity: "0.7", paddingTop: "1rem" }}>
               <h2 className="mb-4" style={{ textAlign: "center" }}>News Feed:</h2>
-              {feedList.map((item) => <><Posts avatar= {faHamburger} author="Philip" name={item.title} snip={item.snip} sniptwo={item.snipTwo} snipthree={item.snipThree} language={item.scriptType} languagetwo={item.scriptTypeTwo} languagethree={item.scriptTypeThree} keywords={item.keywords} comments={item.comments} Public={item.public} updated={item.updated} userId={item.userId} _id={item._id} /></>)}
+              {feedList.map((item) => <><Posts avatar= {faHamburger} author={item.author} name={item.title} title={item.title} snip={item.snip} sniptwo={item.snipTwo} snipthree={item.snipThree} language={item.scriptType} languagetwo={item.scriptTypeTwo} languagethree={item.scriptTypeThree} keywords={item.keywords} comments={item.comments} Public={item.public} updated={item.updated} userId={item.userId} _id={item._id} /></>)}
             </Jumbotron>
           </Col>
         </Row>
