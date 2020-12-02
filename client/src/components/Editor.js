@@ -103,17 +103,21 @@ export default function Editor() {
     }
 
     function clearCode(){
-            ace1.current.editor.session.setValue("")
-            setLanguage1("html")
-            setLanguage2("")
-            setLanguage3("")
-            setTags(["example tag"]);
-            tagArray =[]
-            console.log(tagArray)
-            setTitle("");
-            setNote("")
-            addEditor1();
+        ace1.current.editor.session.setValue("")
+        if (showResults2 === true) {
+            ace2.current.editor.session.setValue("")
+        } if (showResults3 === true) {
+            ace2.current.editor.session.setValue("")
+            ace3.current.editor.session.setValue("")
         }
+        setLanguage1("html")
+        setLanguage2("")
+        setLanguage3("")
+        setTags(["example tag"]);
+        setTitle("")
+        setNote("")
+        addEditor1();
+    }
 
     const ace1 = useRef(null);
     const ace2 = useRef(null);
@@ -253,10 +257,10 @@ export default function Editor() {
                     <div class="" style={{display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", borderRadius:5}}>
                     <InputGroup size="sm">
                 <InputGroupAddon addonType="prepend"></InputGroupAddon>
-                <Input className="title" placeholder="Title" onChange={handleTitleChange}/>
+                <Input value={snipTitle} className="title" placeholder="Title" onChange={handleTitleChange}/>
                 </InputGroup>
                     <br></br>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="snipNote" placeholder="Add notes here" onChange={handleNoteChange}></textarea>
+                    <textarea value={snipNote} class="form-control" id="exampleFormControlTextarea1" rows="3" name="snipNote" placeholder="Add notes here" onChange={handleNoteChange}></textarea>
                     </div>
                 </form>
                 <Button color="primary mt-3" onClick={saveFromEditor}>Submit</Button>
