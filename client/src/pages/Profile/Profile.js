@@ -228,9 +228,8 @@ if(user !== null){
         <Row>
           <Col sm={12} md={3}>
             <Jumbotron style={{ marginTop: "1rem", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", opacity: "0.7", paddingTop: "2rem" }}>
-              <h4 className="mb-3">Private Code Search</h4>
+              <h4 className="mb-3">Personal Code Search</h4>
               <FormGroup>
-                
                 <CustomInput type="select" id="exampleCustomSelect" onChange={handlePrivateInput} name="language" >
                   <option value="">Select a Language</option>
                   <option>JavaScript</option>
