@@ -29,6 +29,7 @@ import AvatarOption from '../../components/avatarOp'
 import FooterPage from '../../components/FooterPage'
 import Login from '../../components/Login/Login'
 import Axios from 'axios';
+import { use } from 'passport';
 
 
 const Avatars = [
@@ -128,7 +129,7 @@ const Avatars = [
 
 
 const Profile = () => {
-
+  const { user, loggedIn, logout } = useContext(UserContext);
   const [currentUser,setCurrentUser] =useState()
   const [avatarState, setAvatar] = useState()
 
@@ -212,12 +213,15 @@ keywords:""})
     console.log(data)
   })}
 
-  const { user, loggedIn, logout } = useContext(UserContext);
+
 
  useEffect(()=>{
+   
 console.log(user)
 setCurrentUser(user)
 if(user !== null){
+  setUserFormState({avatar:user.avatar,
+    bio:user.bio})
   initialAvatar(user.avatar)
 }
 },[loggedIn,user,userList,snipList])
@@ -265,7 +269,7 @@ if(user !== null){
             </FormGroup>
               <hr />
             <h4 className="mb-4 mt=0 pt-0">{user.username}</h4>
-              <textarea style={{ width: "80%" }} rows="7" name="bio" onChange={handleUserFormInput} placeholder="Write Your Bio Here" value={user.bio}></textarea>
+              <textarea style={{ width: "80%" }} rows="7" name="bio" onChange={handleUserFormInput} placeholder="Write Your Bio Here" value={userFormState.bio}></textarea>
               <br />
               <Button color="primary" onClick={updateUser}>Update</Button>
             </Jumbotron>
