@@ -4,26 +4,7 @@ import LogInBro from '../components/loginbro'
 import AceModalGlobal from '../components/codemodalglobal';
 import Posts from '../components/posts'
 import { Container, Row, Col, Jumbotron, Form, Button, FormGroup, Label, Input, InputGroup, InputGroupText, InputGroupAddon, CustomInput } from 'reactstrap';
-import { faUser } from '@fortawesome/free-solid-svg-icons'
-import { faSeedling } from '@fortawesome/free-solid-svg-icons'
-import { faHatWizard } from '@fortawesome/free-solid-svg-icons'
-import { faHamburger } from '@fortawesome/free-solid-svg-icons'
-import { faGhost } from '@fortawesome/free-solid-svg-icons'
-import { faCouch } from '@fortawesome/free-solid-svg-icons'
-import { faDrumstickBite } from '@fortawesome/free-solid-svg-icons'
-import { faDove } from '@fortawesome/free-solid-svg-icons'
-import { faBomb } from '@fortawesome/free-solid-svg-icons'
-import { faAppleAlt } from '@fortawesome/free-solid-svg-icons'
-import { faUserInjured } from '@fortawesome/free-solid-svg-icons'
-import { faUserNinja } from '@fortawesome/free-solid-svg-icons'
-import { faDog } from '@fortawesome/free-solid-svg-icons'
-import { faHippo } from '@fortawesome/free-solid-svg-icons'
-import { faBreadSlice } from '@fortawesome/free-solid-svg-icons'
-import { faCat } from '@fortawesome/free-solid-svg-icons'
-import { faBug } from '@fortawesome/free-solid-svg-icons'
-import { faPoo } from '@fortawesome/free-solid-svg-icons'
-import { faFrog } from '@fortawesome/free-solid-svg-icons'
-import { faUserTie } from '@fortawesome/free-solid-svg-icons'
+
 import FooterPage from '../components/FooterPage'
 import Login from '../components/Login/Login'
 import Axios from 'axios';
@@ -34,7 +15,7 @@ const Home = () => {
   const [snipList, setSnipList] = useState([]);
   const [feedList, setFeedList] = useState([]);
 
-  const postsexample = [{ name: "example 1", author: "Bob", language: "Html", snip: "<p>Hello World</p>", avatar: faCat, note: "Quality Stuff" }, { name: "example 2", author: "Tim", language: "Html", snip: "<p>Good night moon</p>", avatar: faDog, note: "Some Good Code Here" }]
+
 
   function handleGlobalInput(event) {
     const { name, value } = event.target;
@@ -109,7 +90,7 @@ const Home = () => {
           <Col sm={12} md={8}>
             <Jumbotron style={{ marginTop: "1rem", opacity: "0.7", paddingTop: "1rem" }}>
               <h2 className="mb-4" style={{ textAlign: "center" }}>News Feed:</h2>
-              {feedList.map((item) => <><Posts avatar= {faHamburger} author={item.author} name={item.title} title={item.title} snip={item.snip} sniptwo={item.snipTwo} snipthree={item.snipThree} language={item.scriptType} languagetwo={item.scriptTypeTwo} languagethree={item.scriptTypeThree} keywords={item.keywords} comments={item.comments} Public={item.public} updated={item.updated} userId={item.userId} _id={item._id} /></>)}
+              {feedList.map((item) => <><Posts avatar= {item.avatar} author={item.author} name={item.title} title={item.title} snip={item.snip} sniptwo={item.snipTwo} snipthree={item.snipThree} language={item.scriptType} languagetwo={item.scriptTypeTwo} languagethree={item.scriptTypeThree} keywords={item.keywords} comments={item.comments} Public={item.public} updated={item.updated} userId={item.userId} _id={item._id} /></>)}
             </Jumbotron>
           </Col>
         </Row>
