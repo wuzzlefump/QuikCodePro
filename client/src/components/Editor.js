@@ -273,7 +273,8 @@ export default function Editor() {
                 </InputGroup>
                     <br></br>
                     <textarea value={snipNote} class="form-control" id="exampleFormControlTextarea1" rows="3" name="snipNote" placeholder="Add notes here" onChange={handleNoteChange}></textarea>
-                    </div>
+ {showAlert? (<Alert color="success"> You have successfully added this code to your library</Alert>): null}                    
+</div>
                 </form>
                 <Button color="primary mt-3" onClick={saveFromEditor}>Submit</Button>
             </Container>
