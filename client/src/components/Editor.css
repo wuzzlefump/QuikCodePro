@@ -4,3 +4,23 @@
     position:absolute;
     z-index: -1;
 }
+
+.top-pad {
+    padding-top: 1rem;
+}
+
+.left-pad {
+    padding-left: 2rem;
+}
+
+.left-pad-2 {
+    padding-left: 48px;
+}
+
+.right-pad {
+    padding-right: 1rem;
+}
+
+.bottom-pad {
+    padding-bottom: 2rem;
+}

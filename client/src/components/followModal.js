@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react'
 import Axios from "axios";
 
-import {Modal, Button, ModalHeader, ModalBody, ModalFooter} from 'reactstrap'
+import {Modal, Button, ModalHeader, ModalBody, ModalFooter, Alert} from 'reactstrap'
 import UserContext from '../utils/UserContext';
 
 
@@ -11,11 +11,21 @@ function FollowModal({name, bio, id}){
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
+  const [showFollowAlert, setShowFollowAlert] =useState(false);
+
+  const addFollowAlert = () => {
+    setShowFollowAlert(true);
+    setTimeout(() => {
+      setShowFollowAlert(false);
+    }, 3000);
+  }
+
   const followUser =() => { 
     
     console.log("fired", id)
-    return Axios.put("/api/users/follow", {following:id, followers:user._id})
-  ;
+    addFollowAlert()
+    return Axios.put("/api/users/follow", {following:id, followers:user._id}); 
+    
 }
     return (   
        <div>
@@ -24,10 +34,13 @@ function FollowModal({name, bio, id}){
     <ModalHeader toggle={toggle} charCode="X">{name}</ModalHeader>
         <ModalBody>
         {bio}
+        
         </ModalBody>
         <ModalFooter>
+        {showFollowAlert? (<Alert color="success"> Followed! </Alert>): null}
           <Button color="primary" onClick={followUser}>Follow</Button>{' '}
           <Button color="secondary" onClick={toggle}>Cancel</Button>
+          
         </ModalFooter>
       </Modal>
     </div>
