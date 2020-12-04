@@ -175,8 +175,8 @@ export default function Editor() {
                 <Button color="primary" onClick={addEditor2} className="mb-3 mr-2">Two Editors</Button>
                 <Button color="primary" onClick={addEditor3} className="mb-3">Three Editors</Button>
             </div>
-            <div className="d-flex row justify-content-center">
-                <div className="editor mr-5">
+            <div className="d-flex row justify-content-center top-pad">
+                <div className="editor left-pad-2 right-pad bottom-pad">
                     <ReactAce ref={ace1} onChange={toTextArea1} mode={Language1} theme="monokai" setReadOnly={false} value={textArea1}/>
                     <textarea  ref={textAreaRef1} value={textArea1} className="textArea"></textarea>
                     <Button color="primary" onClick={toClipBoard1} className="float-right m-1">Copy Code</Button> 
@@ -192,7 +192,7 @@ export default function Editor() {
                 </div>
                 <div>
                     { showResults2 ? 
-                    <div className="editor mr-5">
+                    <div className="editor left-pad bottom-pad">
                     {/* <button type="button" class="close" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button> */}
@@ -214,7 +214,7 @@ export default function Editor() {
                     { showResults3 ?
                     <div className="d-flex row justify-content-center">
                         <div>
-                            <div className="editor ml-3 mr-5">
+                            <div className="editor left-pad bottom-pad">
                             {/* <button type="button" class="close" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button> */}
@@ -233,7 +233,7 @@ export default function Editor() {
                             </div>
                         </div>
                         <div>
-                            <div className="editor">
+                            <div className="editor left-pad bottom-pad">
                             {/* <button type="button" class="close" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button> */}
@@ -273,7 +273,6 @@ export default function Editor() {
                 </InputGroup>
                     <br></br>
                     <textarea value={snipNote} class="form-control" id="exampleFormControlTextarea1" rows="3" name="snipNote" placeholder="Add notes here" onChange={handleNoteChange}></textarea>
-                    {showAlert? (<Alert color="success"> You have successfully added this code to your library</Alert>): null}
                     </div>
                 </form>
                 <Button color="primary mt-3" onClick={saveFromEditor}>Submit</Button>
