@@ -18,7 +18,7 @@ import ReactTagInput from "@pathofdev/react-tag-input";
 import "@pathofdev/react-tag-input/build/index.css";
 
 
-function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, languagetwo, languagethree, comments, userId,_id,keywords}){
+function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, languagetwo, languagethree, comments, userId,_id,keywords, feedback}){
   
   const [snipOne, setSnipOne] = useState(snip);
   const [snipTwo, setSnipTwo] = useState(sniptwo);
@@ -150,7 +150,7 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
     }
     
     const updateSnip =()=>{
-      axios.put('/api/codes/codes/'+_id,{_id:_id, userId:userId,title:text, comments:snipState.comments, public:privacy, snip:snipOne, snipTwo:snipTwo, snipThree:snipThree, scriptType:snipState.languageOne, scriptTypeTwo:snipState.languageTwo, scriptTypeThree: snipState.LanguageThree, updated:Date.now, keywords:tagArr.join(",")}).then(data=> console.log(data)).catch(err=>console.log(err))
+      axios.put('/api/codes/codes/'+_id,{_id:_id, userId:userId,title:text, comments:snipState.comments, public:privacy, snip:snipOne, snipTwo:snipTwo, snipThree:snipThree, scriptType:snipState.languageOne, scriptTypeTwo:snipState.languageTwo, scriptTypeThree: snipState.LanguageThree, updated:Date.now, keywords:tagArr.join(","), votes:feedback}).then(data=> console.log(data)).catch(err=>console.log(err))
       updateAlert(); 
   }
     const deleteSnip =()=>{axios.delete('/api/codes/codes/'+_id,{params:{_id: _id}}).then(data=>{

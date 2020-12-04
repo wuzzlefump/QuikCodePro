@@ -253,7 +253,7 @@ if(user !== null){
               </InputGroup>
               <Button color="primary" onClick={privateSearchCode}>Search</Button>
               <br />
-              {snipList.map(item => <><AceModalUser keywords={item.keywords} name={item.title} snip={item.snip} sniptwo={item.snipTwo} snipthree={item.snipThree} language={item.scriptType} languagetwo={item.scriptTypeTwo} languagethree={item.scriptTypeThree} updated={item.updated} userId={item.userId} _id={item._id} Public={item.public} comments={item.comments}/><br /></>)}
+              {snipList.map(item => <><AceModalUser keywords={item.keywords} name={item.title} snip={item.snip} sniptwo={item.snipTwo} snipthree={item.snipThree} language={item.scriptType} languagetwo={item.scriptTypeTwo} languagethree={item.scriptTypeThree} updated={item.updated} userId={item.userId} _id={item._id} Public={item.public} comments={item.comments} feedback={item.votes}/><br /></>)}
             </Jumbotron>
           </Col>
           <Col sm={12} md={6}>

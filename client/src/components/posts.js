@@ -103,9 +103,9 @@ const Avatars = [
 
 
 function Posts({name, author, title, Public, snip, sniptwo, snipthree, language,
-  languagetwo,languagethree,comments, userId, _id, keywords, avatar, updated}){
-
+  languagetwo,languagethree,comments, userId, _id, keywords, avatar, updated,feedback}){
     const { user, loggedIn, logout } = useContext(UserContext);
+    const [votes, setVotes]=useState(feedback)
     const [iconState,setIcon]=useState()
     const avatarPost = ()=>{
       Avatars.forEach(item=>{
@@ -114,9 +114,9 @@ function Posts({name, author, title, Public, snip, sniptwo, snipthree, language,
         }
       })
     }
-    // const upVote= ()=>{    axios.put('/api/codes/codes/like/'+_id,{_id:_id, votes:true, userId:user._id }).then(data=> console.log(data)).catch(err=>console.log(err))};
-    // const downVote=()=>{    axios.put('/api/codes/codes/like/'+_id,{_id:_id, votes:false, userId:user._id }).then(data=> console.log(data)).catch(err=>console.log(err))};
-    const Vote= ()=>{    axios.put('/api/codes/codes/like/'+_id,{_id:_id, votes:increment, userId:user._id }).then(data=> console.log(data)).catch(err=>console.log(err))};
+    const upVote= ()=>{    axios.put('/api/codes/codes/like/'+_id,{_id:_id, votes:0, userId:user._id }).then(data=> console.log(data)).catch(err=>console.log(err))};
+    const downVote=()=>{    axios.put('/api/codes/codes/like/'+_id,{_id:_id, votes:1, userId:user._id }).then(data=> console.log(data)).catch(err=>console.log(err))};
+ 
 
     const [showUnclickedUpvote, setShowUnclickedUpvote] = useState(true)
     const [showClickedUpvote, setShowClickedUpvote] = useState(false)
@@ -124,6 +124,35 @@ function Posts({name, author, title, Public, snip, sniptwo, snipthree, language,
     const [showClickedDownvote, setShowClickedDownvote] = useState(false)
     const [increment, setIncrement] = useState(0)
 
+    function initialIncrement(){
+      console.log(feedback)
+      let x = 0
+      feedback.forEach(item=>{
+        if(item.vote === 0){
+          x=x+1
+        }else if(item.vote ===1){
+          x = x-1
+        }
+      })
+     setIncrement(x)
+    }
+    function alreadyVoted(){
+      console.log(user._id)
+      feedback.forEach(item=>{
+        if(item.id=== user._id && item.vote=== 0){
+          setShowClickedUpvote(true)
+          setShowUnclickedUpvote(false)
+          setShowUnclickedDownvote(true)
+          setShowClickedDownvote(false)
+        }else if(item.id === user._id && item.vote === 1){
+          setShowClickedUpvote(false)
+          setShowUnclickedUpvote(true)
+          setShowUnclickedDownvote(false)
+          setShowClickedDownvote(true)
+        }
+
+      })
+    }
     function Upvote() {
       setShowUnclickedUpvote(false)
       setShowClickedUpvote(true)
@@ -154,12 +183,12 @@ function Posts({name, author, title, Public, snip, sniptwo, snipthree, language,
 
     function incrementFunction() {
       setIncrement(increment + 1)
-      Vote()
+      upVote()
     }
 
     function decrementFunction() {
       setIncrement(increment - 1)
-      Vote()
+      downVote()
     }
 
     // const [likes, setLikes]=useState()
@@ -167,7 +196,11 @@ function Posts({name, author, title, Public, snip, sniptwo, snipthree, language,
     var thumbsUp = faThumbsUp
     var thumbsDown = faThumbsDown
 
-    useEffect(()=>{avatarPost()},[])
+    useEffect(()=>{
+      avatarPost()
+    initialIncrement()
+  alreadyVoted()
+},[])
 
     return(
     <Card className="my-1"style={{ width: '100%',  display:"flex", flexDirection:"column",  justifyContent:"center" }}>
