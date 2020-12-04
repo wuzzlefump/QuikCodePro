@@ -16,7 +16,7 @@ const codeSchema = new Schema({
   comments: { type: String, required: false },
   avatar: { type: String, required: false},
   author: {type: String, required:false},
-  votes:[{type: Object, ref: "Codes", required:false}]
+  votes:[{type: Object, ref: "Codes", default:{vote:"placeholder",userId:"placeholder"}, required:false}]
 });
 
 const Codes = mongoose.model('Codes', codeSchema);
