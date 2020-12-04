@@ -114,12 +114,56 @@ function Posts({name, author, title, Public, snip, sniptwo, snipthree, language,
         }
       })
     }
-    const upVote= ()=>{    axios.put('/api/codes/codes/like/'+_id,{_id:_id, votes:true, userId:user._id }).then(data=> console.log(data)).catch(err=>console.log(err))};
+    // const upVote= ()=>{    axios.put('/api/codes/codes/like/'+_id,{_id:_id, votes:true, userId:user._id }).then(data=> console.log(data)).catch(err=>console.log(err))};
+    // const downVote=()=>{    axios.put('/api/codes/codes/like/'+_id,{_id:_id, votes:false, userId:user._id }).then(data=> console.log(data)).catch(err=>console.log(err))};
+    const Vote= ()=>{    axios.put('/api/codes/codes/like/'+_id,{_id:_id, votes:increment, userId:user._id }).then(data=> console.log(data)).catch(err=>console.log(err))};
 
-    const downVote=()=>{    axios.put('/api/codes/codes/like/'+_id,{_id:_id, votes:false, userId:user._id }).then(data=> console.log(data)).catch(err=>console.log(err))}
+    const [showUnclickedUpvote, setShowUnclickedUpvote] = useState(true)
+    const [showClickedUpvote, setShowClickedUpvote] = useState(false)
+    const [showUnclickedDownvote, setShowUnclickedDownvote] = useState(true)
+    const [showClickedDownvote, setShowClickedDownvote] = useState(false)
+    const [increment, setIncrement] = useState(0)
 
-    const [likes, setLikes]=useState()
-    const [dislikes,setDislikes] =useState()
+    function Upvote() {
+      setShowUnclickedUpvote(false)
+      setShowClickedUpvote(true)
+      setShowUnclickedDownvote(true)
+      setShowClickedDownvote(false)
+      incrementFunction()
+    }
+
+    function unUpvote() {
+      setShowUnclickedUpvote(true)
+      setShowClickedUpvote(false)
+      decrementFunction()
+    }
+
+    function Downvote() {
+      setShowUnclickedDownvote(false)
+      setShowClickedDownvote(true)
+      setShowUnclickedUpvote(true)
+      setShowClickedUpvote(false)
+      decrementFunction()
+    }
+
+    function unDownvote() {
+      setShowUnclickedDownvote(true)
+      setShowClickedDownvote(false)
+      incrementFunction()
+    }
+
+    function incrementFunction() {
+      setIncrement(increment + 1)
+      Vote()
+    }
+
+    function decrementFunction() {
+      setIncrement(increment - 1)
+      Vote()
+    }
+
+    // const [likes, setLikes]=useState()
+    // const [dislikes,setDislikes] =useState()
     var thumbsUp = faThumbsUp
     var thumbsDown = faThumbsDown
 
@@ -128,12 +172,15 @@ function Posts({name, author, title, Public, snip, sniptwo, snipthree, language,
     return(
     <Card className="my-1"style={{ width: '100%',  display:"flex", flexDirection:"column",  justifyContent:"center" }}>
       <CardBody className=" ">
-        <div style={{ display:"flex", flexDirection:"column", float: "left" }}>
+      <div style={{ display:"flex", flexDirection:"column", float: "left", justifyContent: "center" }}>
           <div className="p-1">
-            <FontAwesomeIcon onClick={upVote} icon={thumbsUp} size="1.5x" className = "my-auto mr-4 float-left"></FontAwesomeIcon>
+            {showUnclickedUpvote ? <FontAwesomeIcon icon={thumbsUp} size="1.5x" className="my-auto mr-4 float-left" onClick={Upvote}></FontAwesomeIcon>: null}
+            {showClickedUpvote ? <FontAwesomeIcon style={{ color: "blue" }} icon={thumbsUp} size="1.5x" className="my-auto mr-4 float-left" onClick={unUpvote}></FontAwesomeIcon>: null}
           </div>
+            <div style={{border:"1px solid #007BFF", textAlign:"center", width:"25px" }}>{increment}</div>
           <div className="p-1">
-            <FontAwesomeIcon onClick={downVote} icon={thumbsDown} size="1.5x" className = "my-auto mr-4 float-left"></FontAwesomeIcon>
+            {showUnclickedDownvote ? <FontAwesomeIcon icon={thumbsDown} size="1.5x" className="my-auto mr-4 float-left" onClick={Downvote}></FontAwesomeIcon>: null}
+            {showClickedDownvote ? <FontAwesomeIcon style={{ color: "red" }} icon={thumbsDown} size="1.5x" className = "my-auto mr-4 float-left" onClick={unDownvote}></FontAwesomeIcon>: null}
           </div>
         </div>
       <FontAwesomeIcon icon={iconState} size="3x" className = "my-auto mr-4 float-left"></FontAwesomeIcon>
