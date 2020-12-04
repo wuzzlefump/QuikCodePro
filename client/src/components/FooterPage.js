@@ -28,6 +28,11 @@ const quotes = [
   "Software and cathedrals are much the same — first we build them, then we pray.",
   "Remember that there is no code faster than no code.",
   "Don't push your luck; just push the code.",
+  "In case of fire: 1. git commit 2. git push 3. leave the building",
+  "A user interface is like a joke, if you have to explain it.. then is not that good",
+  "3 SQL Database walked into a NoSQL bar. A little while later.. they walked out because they could not find a table",
+  "Roses are Red, Violets are Blue Unexpected '{' on line 32",
+  "20% of US bandwidth is used by Netflix. The rest is used by npm install"
 ];
 
 var randomNumber = Math.floor(Math.random() * quotes.length);
