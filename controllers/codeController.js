@@ -1,5 +1,6 @@
 
 const db = require("../models");
+const { findOneAndUpdate } = require("../models/codes");
 // Defining methods for the codeController
 module.exports = {
   findAll: function(req, res) {
@@ -49,5 +50,20 @@ module.exports = {
       .findByIdAndDelete({ _id: req.params.id})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  like: function(req, res) {
+    db.Codes.findByIdAndUpdate({_id:req.params.id}, {
+      $push: { votes:{vote:req.body.votes, id:req.body.userId}  }
+    }, {
+      new: true
+    }, (err, result) => {
+      if (err) {
+        return res.status(422).json({ error: err })
+      }
+      else{
+        res.json(result)
+      }
+    }
+    )
   }
 };
