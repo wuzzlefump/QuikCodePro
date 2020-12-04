@@ -12,8 +12,10 @@ import 'brace/mode/markdown';
 import 'brace/mode/handlebars';
 import 'brace/theme/monokai';
 import $ from "jquery";
-import Editable from 'react-editable-title'
-import './codemodaluser.css'
+import Editable from 'react-editable-title';
+import './codemodaluser.css';
+import ReactTagInput from "@pathofdev/react-tag-input";
+import "@pathofdev/react-tag-input/build/index.css";
 
 
 function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, languagetwo, languagethree, comments, userId,_id,keywords}){
@@ -25,6 +27,13 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
   const [text, setText] = useState(name)
   const [showUpdateAlert, setShowUpdateAlert] = useState(false);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
+
+
+   //tag functionality
+   const [tags, setTags] = React.useState(keywords.split(","));
+   //creating the array of tags to be added to snipData
+   const tagArr = tags.map(tag => tag);
+
 
     const toggle = () => {setModal(!modal);
     setSnip({title:name,
@@ -141,7 +150,7 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
     }
     
     const updateSnip =()=>{
-      axios.put('/api/codes/codes/'+_id,{_id:_id, userId:userId,title:text, comments:snipState.comments, public:privacy, snip:snipOne, snipTwo:snipTwo, snipThree:snipThree, scriptType:snipState.languageOne, scriptTypeTwo:snipState.languageTwo, scriptTypeThree: snipState.LanguageThree, updated:Date.now, keywords:keywords }).then(data=> console.log(data)).catch(err=>console.log(err))
+      axios.put('/api/codes/codes/'+_id,{_id:_id, userId:userId,title:text, comments:snipState.comments, public:privacy, snip:snipOne, snipTwo:snipTwo, snipThree:snipThree, scriptType:snipState.languageOne, scriptTypeTwo:snipState.languageTwo, scriptTypeThree: snipState.LanguageThree, updated:Date.now, keywords:tagArr.join(",")}).then(data=> console.log(data)).catch(err=>console.log(err))
       updateAlert(); 
   }
     const deleteSnip =()=>{axios.delete('/api/codes/codes/'+_id,{params:{_id: _id}}).then(data=>{
@@ -227,6 +236,9 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
               <option>Private</option>
               <option>Public</option>
           </Input>
+          <div className="my-4" >
+                    <ReactTagInput  tags={tags} onChange={(tagArr) => setTags(tagArr)} />
+          </div>
           <h6 className="mt-2 ">Comments</h6>
           <Input type="textarea" value={snipState.comments} name="comments" id="exampleText" onChange={handleSnipInput} placeholder="notes" />
       </ModalBody>
