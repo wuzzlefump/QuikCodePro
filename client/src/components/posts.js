@@ -21,6 +21,8 @@ import { faBreadSlice } from '@fortawesome/free-solid-svg-icons'
 import { faCat } from '@fortawesome/free-solid-svg-icons'
 import { faFrog } from '@fortawesome/free-solid-svg-icons'
 import { faUserTie } from '@fortawesome/free-solid-svg-icons'
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { faThumbsDown } from '@fortawesome/free-solid-svg-icons'
 const Avatars = [
   {
     "name": "Plant",
@@ -110,24 +112,35 @@ function Posts({name, author, title, Public, snip, sniptwo, snipthree, language,
       })
     }
 
+    var thumbsUp = faThumbsUp
+    var thumbsDown = faThumbsDown
+
     useEffect(()=>{avatarPost()},[])
 
-    return(<Card className="my-1"style={{ width: '100%',  display:"flex", flexDirection:"column",  justifyContent:"center" }}>
- 
-    <CardBody className=" ">
-    <FontAwesomeIcon icon={iconState} size="3x" className = "my-auto mr-4 float-left"></FontAwesomeIcon>
-      <p className="float-left mr-3 mt-3">
-       <b>{author} </b>  created a code snippet: 
-       </p>
-       <div className="pt-2">
-       <AceModalGlobal className="d-inline  " name={title} author={author} language={language} 
-      snip={snip} avatar={avatar} comments={comments} title={title} 
-      Public={Public} sniptwo= {sniptwo} snipthree={snipthree} 
-      languagetwo={languagetwo} languagethree={languagethree} userId={userId}
-      _id={_id} keywords={keywords} updated={updated}/>
-      </div>
-      
-    </CardBody>
-  </Card>)
+    return(
+    <Card className="my-1"style={{ width: '100%',  display:"flex", flexDirection:"column",  justifyContent:"center" }}>
+      <CardBody className=" ">
+        <div style={{ display:"flex", flexDirection:"column", float: "left" }}>
+          <div className="p-1">
+            <FontAwesomeIcon icon={thumbsUp} size="1.5x" className = "my-auto mr-4 float-left"></FontAwesomeIcon>
+          </div>
+          <div className="p-1">
+            <FontAwesomeIcon icon={thumbsDown} size="1.5x" className = "my-auto mr-4 float-left"></FontAwesomeIcon>
+          </div>
+        </div>
+      <FontAwesomeIcon icon={iconState} size="3x" className = "my-auto mr-4 float-left"></FontAwesomeIcon>
+        <p className="float-left mr-3 mt-3">
+        <b>{author} </b>  created a code snippet: 
+        </p>
+        <div className="pt-2">
+        <AceModalGlobal className="d-inline  " name={title} author={author} language={language} 
+        snip={snip} avatar={avatar} comments={comments} title={title} 
+        Public={Public} sniptwo= {sniptwo} snipthree={snipthree} 
+        languagetwo={languagetwo} languagethree={languagethree} userId={userId}
+        _id={_id} keywords={keywords} updated={updated}/>
+        </div>
+      </CardBody>
+    </Card>
+  )
 }
 export default Posts
