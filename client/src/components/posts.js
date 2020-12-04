@@ -1,6 +1,8 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect,useState, useContext } from 'react'
 import {Card, CardBody, CardText } from 'reactstrap'
 import AceModalGlobal from './codemodalglobal'
+import axios from 'axios'
+import UserContext from '../utils/UserContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faGuitar } from '@fortawesome/free-solid-svg-icons'
@@ -103,6 +105,7 @@ const Avatars = [
 function Posts({name, author, title, Public, snip, sniptwo, snipthree, language,
   languagetwo,languagethree,comments, userId, _id, keywords, avatar, updated}){
 
+    const { user, loggedIn, logout } = useContext(UserContext);
     const [iconState,setIcon]=useState()
     const avatarPost = ()=>{
       Avatars.forEach(item=>{
@@ -111,7 +114,12 @@ function Posts({name, author, title, Public, snip, sniptwo, snipthree, language,
         }
       })
     }
+    const upVote= ()=>{    axios.put('/api/codes/codes/like/'+_id,{_id:_id, votes:true, userId:user._id }).then(data=> console.log(data)).catch(err=>console.log(err))};
 
+    const downVote=()=>{    axios.put('/api/codes/codes/like/'+_id,{_id:_id, votes:false, userId:user._id }).then(data=> console.log(data)).catch(err=>console.log(err))}
+
+    const [likes, setLikes]=useState()
+    const [dislikes,setDislikes] =useState()
     var thumbsUp = faThumbsUp
     var thumbsDown = faThumbsDown
 
@@ -122,10 +130,10 @@ function Posts({name, author, title, Public, snip, sniptwo, snipthree, language,
       <CardBody className=" ">
         <div style={{ display:"flex", flexDirection:"column", float: "left" }}>
           <div className="p-1">
-            <FontAwesomeIcon icon={thumbsUp} size="1.5x" className = "my-auto mr-4 float-left"></FontAwesomeIcon>
+            <FontAwesomeIcon onClick={upVote} icon={thumbsUp} size="1.5x" className = "my-auto mr-4 float-left"></FontAwesomeIcon>
           </div>
           <div className="p-1">
-            <FontAwesomeIcon icon={thumbsDown} size="1.5x" className = "my-auto mr-4 float-left"></FontAwesomeIcon>
+            <FontAwesomeIcon onClick={downVote} icon={thumbsDown} size="1.5x" className = "my-auto mr-4 float-left"></FontAwesomeIcon>
           </div>
         </div>
       <FontAwesomeIcon icon={iconState} size="3x" className = "my-auto mr-4 float-left"></FontAwesomeIcon>

@@ -14,6 +14,9 @@ router
   .put(codeController.update)
   .delete(codeController.remove)
 
+  router
+  .route("/codes/like/:id")
+  .put(codeController.like)
 // router
 //   // .route("/codes/:keywords")
 //   .get(codeController.find)
