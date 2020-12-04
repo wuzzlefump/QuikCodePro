@@ -137,7 +137,7 @@ function toTextArea3() {
 
   const SaveGlobal = ()=>{
     console.log( { userId:user._id,title:name, comments:snipState.comments, public:Public, snip:snip, snipTwo:sniptwo, snipThree:snipthree, scriptType:language, scriptTypeTwo:languagetwo, scriptTypeThree: languagethree, updated:Date.now, keywords:keywords, author: user.username, avatar: user.avatar})
-    Axios.post('/api/codes/save', { userId:user._id,title:name, comments:comments, public:true, snip:snip, snipTwo:sniptwo, snipThree:snipthree, scriptType:language, scriptTypeTwo:languagetwo, scriptTypeThree: languagethree, updated:Date.now, keywords:snipState.keywords}, ).then(data=> console.log(data.data)).catch(err=>console.log(err))
+    Axios.post('/api/codes/save', { userId:user._id,title:name, comments:comments, public:true, snip:snip, snipTwo:sniptwo, snipThree:snipthree, scriptType:language, scriptTypeTwo:languagetwo, scriptTypeThree: languagethree, updated:Date.now, keywords:snipState.keywords, author: user.username, avatar: user.avatar}, ).then(data=> console.log(data.data)).catch(err=>console.log(err))
     addAlert();
   }
 
