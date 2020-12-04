@@ -44,7 +44,7 @@ const Home = () => {
         feedArr.push(item)
       }
     })
-    setFeedList(feedArr)
+    setFeedList(feedArr.reverse())
   })}
 
   useEffect(() => {
