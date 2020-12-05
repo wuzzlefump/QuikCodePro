@@ -21,9 +21,9 @@
   "author": "Jay Mascarenas",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jaymascarenas/react-auth-hooks/issues"
+    "url": "https://github.com/catherinelui2/QuikCodePro"
   },
-  "homepage": "https://github.com/jaymascarenas/react-auth-hooks#readme",
+  "homepage": "https://quikcodepro.herokuapp.com/",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "brace": "^0.11.1",
