@@ -154,11 +154,19 @@ function Posts({name, author, title, Public, snip, sniptwo, snipthree, language,
       })
     }
     function Upvote() {
+      if(showClickedDownvote === true){
       setShowUnclickedUpvote(false)
       setShowClickedUpvote(true)
       setShowUnclickedDownvote(true)
       setShowClickedDownvote(false)
-      incrementFunction()
+      doubleIncrementFunction()
+      }else{
+        setShowUnclickedUpvote(false)
+        setShowClickedUpvote(true)
+        setShowUnclickedDownvote(true)
+        setShowClickedDownvote(false)
+        incrementFunction()
+      }
     }
 
     function unUpvote() {
@@ -168,11 +176,20 @@ function Posts({name, author, title, Public, snip, sniptwo, snipthree, language,
     }
 
     function Downvote() {
+      if(showClickedUpvote=== true){
+        setShowUnclickedDownvote(false)
+        setShowClickedDownvote(true)
+        setShowUnclickedUpvote(true)
+        setShowClickedUpvote(false)
+        doubleDecrementFunction()
+      }else{
       setShowUnclickedDownvote(false)
       setShowClickedDownvote(true)
       setShowUnclickedUpvote(true)
       setShowClickedUpvote(false)
       decrementFunction()
+      }
+ 
     }
 
     function unDownvote() {
@@ -185,9 +202,20 @@ function Posts({name, author, title, Public, snip, sniptwo, snipthree, language,
       setIncrement(increment + 1)
       upVote()
     }
+    function doubleIncrementFunction() {
+      setIncrement(increment + 2)
+      upVote()
+      upVote()
+    }
 
     function decrementFunction() {
       setIncrement(increment - 1)
+      downVote()
+    }
+    
+    function doubleDecrementFunction() {
+      setIncrement(increment - 2)
+      downVote()
       downVote()
     }
 
