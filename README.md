@@ -30,7 +30,7 @@
   
  
 ## Credits 
- Our authentication "base" for this project was forked from https://github.com/jaymascarenas/react-auth-hooks many thanks to their efforts. We used the react-ace package https://www.npmjs.com/package/react-ace, and are huge fans of the Ace folks. 
+ Our authentication "base" for this project was forked from [react-auth-hooks](https://github.com/jaymascarenas/react-auth-hooks) many thanks to their efforts. We used the react-ace package [react-ace] (https://www.npmjs.com/package/react-ace), and are huge fans of the Ace folks. 
   
  
 ## License 
@@ -46,9 +46,9 @@
   
  
 ## Questions/Contact 
- Contact me: 
+ Contact Us: 
   
  
- [GitHub](https://github.com/pprewitt) 
+ [Github/wuzzlefump](https://github.com/wuzzlefump), [GitHub/pprewitt](https://github.com/pprewitt), [Github/catherinelui2](https://github.com/catherinelui2), [GitHub/BenSGar92] (https://github.com/BenSGar92), [Github/johngarcia144](https://github.com/johngarcia144)
  
- Email: [philip.prewitt@gmail.com](mailto:philip.prewitt@gmail.com); 
+ Email: [paulelliottwork@gmail.com](mailto:paulelliottwork@gmail.com), [philip.prewitt@gmail.com](mailto:philip.prewitt@gmail.com), [catherinelui.2@gmail.com](mailto:catherinelui.2@gmail.com), [bensgar92@gmail.com](mailto:bensgar92@gmail.com) [john.garcia144@gmail.com](mailto:john.garcia144@gmail.com); 
