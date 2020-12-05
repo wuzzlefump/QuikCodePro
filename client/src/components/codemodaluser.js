@@ -74,7 +74,6 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
     
     const handlePrivacy=(e)=>{
       let setting = e.target.value
-      console.log(setting)
       if (setting === "Public"){
           setPrivacy(true)
       }else{
@@ -97,7 +96,6 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
     function handleSnipInput(event){
       const { name, value } = event.target;
       setSnip({...snipState, [name]: value })
-      console.log(snipState)
     }
 
     function handleTitleChange(newTitle) {
@@ -110,7 +108,6 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
 
     function languageSelect(event) {
         setLanguage($("#languageSelect").val());
-        console.log("Working?", $("#languageSelect").val())
         handleSnipInput(event)
     }
     const ace1 = useRef(null);
@@ -122,15 +119,12 @@ function AceModelUser({name, title, snip, sniptwo, snipthree, Public, language, 
 
     function toTextArea1() {
       setSnipOne(ace1.current.editor.getValue());
-      console.log(snipOne)
   }
   function toTextArea2() {
       setSnipTwo(ace2.current.editor.getValue());
-      console.log(snipTwo)
   }
   function toTextArea3() {
       setSnipThree(ace3.current.editor.getValue());
-      console.log(snipThree)
   }
 
 

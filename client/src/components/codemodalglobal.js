@@ -78,7 +78,6 @@ languagetwo,languagethree,comments, userId, _id, keywords}) {
 
   const handlePrivacy=(e)=>{
     let setting = e.target.value
-    console.log(setting)
     if (setting === "Public"){
         setPrivacy(true)
     }else{
