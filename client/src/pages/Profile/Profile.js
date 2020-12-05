@@ -249,7 +249,7 @@ if(user !== null){
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText id="Keywords"></InputGroupText>
                 </InputGroupAddon>
-                <Input name="keywords" aria-label="Small" aria-describedby="Keywords" placeholder="KeyWords" />
+                <Input name="keywords" aria-label="Small" aria-describedby="Keywords" placeholder="Keywords" />
               </InputGroup>
               <Button color="primary" onClick={privateSearchCode}>Search</Button>
               <br />
@@ -269,7 +269,7 @@ if(user !== null){
             </FormGroup>
               <hr />
             <h4 className="mb-4 mt=0 pt-0">{user.username}</h4>
-              <textarea style={{ width: "80%" }} rows="7" name="bio" onChange={handleUserFormInput} placeholder="Write Your Bio Here" value={userFormState.bio}></textarea>
+              <textarea style={{ width: "80%" }} rows="7" name="bio" onChange={handleUserFormInput} placeholder="Write your bio here" value={userFormState.bio}></textarea>
               <br />
               <Button color="primary" onClick={updateUser}>Update</Button>
             </Jumbotron>
