@@ -34,7 +34,6 @@ export default function Editor() {
 
     const handlePrivacy=(e)=>{
        let setting = e.target.value
-       console.log(setting)
        if (setting === "public"){
            setPrivacy(true)
        }else{

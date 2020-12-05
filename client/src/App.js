@@ -35,7 +35,6 @@ const App = () => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserData({ ...userData, [name]: value });
-    console.log(userData)
   };
 
   const handleLogin = (event) => {
@@ -87,12 +86,10 @@ const App = () => {
               if (user.data.loggedIn) {
                 setUser(user.data.user);
                 setLoggedin(true);
-                console.log(user)
                 console.log('log in successful');
                 window.location.href = '/profile';
               } else {
                 console.log('something went wrong :(');
-                console.log(user.data);
                 setFailureMessage(user.data);
               }
             }
@@ -112,7 +109,6 @@ const App = () => {
         if (user.data.loggedIn) {
           setUser(user.data.user);
           setLoggedin(true);
-          console.log(user)
         } else {
           console.log(user.data.message);
         }
