@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import './Profile.scss';
-import { Button, Container, Row, Col, Jumbotron, Form, InputGroup, InputGroupText, InputGroupAddon, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Input, Label, FormGroup, CustomInput } from 'reactstrap';
+import { Button, Container, Row, Col, Jumbotron, Form, InputGroup, InputGroupText, InputGroupAddon, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Input, Label, FormGroup, CustomInput, Alert } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import UserContext from '../../utils/UserContext';
 import AceModalUser from '../../components/codemodaluser'
@@ -130,8 +130,9 @@ const Avatars = [
 
 const Profile = () => {
   const { user, loggedIn, logout } = useContext(UserContext);
-  const [currentUser,setCurrentUser] =useState()
-  const [avatarState, setAvatar] = useState()
+  const [currentUser,setCurrentUser] =useState();
+  const [avatarState, setAvatar] = useState();
+  const [showAlert, setShowAlert] =useState(false);
 
   function initialAvatar(avatar){
 const currentAvatar= avatar
@@ -151,6 +152,14 @@ Avatars.forEach(item => {
     })
     handleUserFormInput(event)
   };
+
+  const updateBioAlert = () => {
+    setShowAlert(true);
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 3000);
+  }
+
   // lists for code snippets and users
   const [snipList, setSnipList] = useState([]);
   const [userList, setUserList] = useState([]);
@@ -210,13 +219,12 @@ keywords:""})
   
 
   const updateUser = () => {Axios.put('/api/users/profile/update',{_id:user._id, avatar:userFormState.avatar, bio:userFormState.bio}).then(data=>{
-    console.log(data)
-  })}
+    console.log(data)})
+    updateBioAlert();
+}
 
+useEffect(()=>{
 
-
- useEffect(()=>{
-   
 console.log(user)
 setCurrentUser(user)
 if(user !== null){
@@ -270,6 +278,8 @@ if(user !== null){
               <hr />
             <h4 className="mb-4 mt=0 pt-0">{user.username}</h4>
               <textarea style={{ width: "80%" }} rows="7" name="bio" onChange={handleUserFormInput} placeholder="Write your bio here" value={userFormState.bio}></textarea>
+              <br />
+              {showAlert? (<Alert color="success"> You have successfully updated your bio</Alert>): null}
               <br />
               <Button color="primary" onClick={updateUser}>Update</Button>
             </Jumbotron>
