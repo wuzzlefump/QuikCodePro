@@ -232,7 +232,7 @@ if(user !== null){
     bio:user.bio})
   initialAvatar(user.avatar)
 }
-},[loggedIn,user,userList,snipList])
+},[loggedIn,user])
   return (<>
     {loggedIn ? (<>
 
