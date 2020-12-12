@@ -12,11 +12,19 @@ function FollowModal({name, bio, id}){
   const toggle = () => setModal(!modal);
 
   const [showFollowAlert, setShowFollowAlert] =useState(false);
+  const [showUnfollowAlert, setShowUnfollowAlert] =useState(false);
 
   const addFollowAlert = () => {
     setShowFollowAlert(true);
     setTimeout(() => {
       setShowFollowAlert(false);
+    }, 3000);
+  }
+
+  const addUnfollowAlert = () => {
+    setShowUnfollowAlert(true);
+    setTimeout(() => {
+      setShowUnfollowAlert(false);
     }, 3000);
   }
 
@@ -26,6 +34,14 @@ function FollowModal({name, bio, id}){
     addFollowAlert()
     return Axios.put("/api/users/follow", {following:id, followers:user._id}); 
     
+}
+
+const unfollowUser =() => { 
+    
+  console.log("fired", id)
+  addUnfollowAlert()
+  return Axios.put("/api/users/unfollow", {following:id, followers:user._id}); 
+  
 }
     return (   
        <div>
@@ -38,7 +54,9 @@ function FollowModal({name, bio, id}){
         </ModalBody>
         <ModalFooter>
         {showFollowAlert? (<Alert color="success"> Followed! </Alert>): null}
-          <Button color="primary" onClick={followUser}>Follow</Button>{' '}
+        {showUnfollowAlert? (<Alert color="danger"> Unfollowed! </Alert>): null}
+        {user.following.includes(id)? (<Button color="danger" onClick={unfollowUser}>Unfollow</Button>):
+           (<Button color="primary" onClick={followUser}>Follow</Button>)}
           <Button color="secondary" onClick={toggle}>Cancel</Button>
           
         </ModalFooter>
