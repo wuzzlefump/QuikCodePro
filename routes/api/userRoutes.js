@@ -118,17 +118,17 @@ router.put('/follow', authMiddleware.isLoggedIn, (req, res) => {
   )
 })
 
-router.put('users/unfollow', authMiddleware.isLoggedIn, (req, res) => {
-  db.User.findByIdAndUpdate(req.body.unfollowId, {
-    $pull: { followers: req.user._id }
+router.put('/unfollow', authMiddleware.isLoggedIn, (req, res) => {
+  db.User.findByIdAndUpdate(req.body.following, {
+    $pull: { followers: req.body.followers }
   }, {
     new: true
   }, (err, result) => {
     if (err) {
       return res.status(422).json({ error: err })
     }
-    db.User.findByIdAndUpdate(req.user._id,{
-      $pull:{following:req.body.unfollowId}
+    db.User.findByIdAndUpdate(req.body.followers,{
+      $pull:{following: req.body.following}
     },{new:true}).then(result=>{
       res.json(result)
     }).catch(err=>{
