@@ -14,7 +14,7 @@ const Home = () => {
   const [globalInputState, setGlobalInputState] = useState({language:"html", keywords:""});
   const [snipList, setSnipList] = useState([]);
   const [feedList, setFeedList] = useState([]);
-  const [feedFilter, setFeedFilter] = useState([]);
+  // const [feedFilter, setFeedFilter] = useState([]);
 
 
 
@@ -46,23 +46,23 @@ const Home = () => {
       }
     })
     setFeedList(feedArr.reverse())
-    followingFilter(feedArr.reverse())
+    // followingFilter(feedArr)
     
   })}
 
-  function followingFilter(x) {
-    let array = []
-    console.log("feed", feedList)
-    x.forEach(item => {
-      array.push(item.author)
-      // if (array.includes(item.author) === !true) {
-      //   array.push(item.author)
-      // } else {
+  // function followingFilter(x) {
+  //   let array = []
+  //   console.log("feed", feedList)
+  //   x.forEach(item => {
+  //     array.push(item.author)
+  //     // if (array.includes(item.author) === !true) {
+  //     //   array.push(item.author)
+  //     // } else {
         
-      // }
-    }); console.log("Test", array)
-    setFeedFilter(x)
-  }
+  //     // }
+  //   }); console.log("Test", array)
+  //   setFeedFilter(array)
+  // }
 
   useEffect(() => {
     if(user !== null){
@@ -108,13 +108,14 @@ const Home = () => {
           <Col sm={12} md={8}>
             <Jumbotron style={{ marginTop: "1rem", opacity: "0.7", paddingTop: "1rem" }}>
               <h2 className="mb-4" style={{ textAlign: "center" }}>News Feed:</h2>
-              <FormGroup>
+              {/* adding filter here */}
+              {/* <FormGroup>
                 <CustomInput type="select">
                   {feedFilter.map(item => {
-                    <option>{item}</option>
+                    <option name={item}>{item}</option>
                   })}
                 </CustomInput>
-              </FormGroup>
+              </FormGroup> */}
               {feedList.map((item) => <><Posts avatar= {item.avatar} author={item.author} name={item.title} title={item.title} snip={item.snip} sniptwo={item.snipTwo} snipthree={item.snipThree} language={item.scriptType} languagetwo={item.scriptTypeTwo} languagethree={item.scriptTypeThree} keywords={item.keywords} comments={item.comments} Public={item.public} updated={item.updated} userId={item.userId} _id={item._id} feedback={item.votes} /></>)}
             </Jumbotron>
           </Col>
